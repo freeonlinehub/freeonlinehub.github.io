@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://laitingyou.github.io/free-tools/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://laitingyou.github.io/free-tools/free-tools/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://laitingyou.github.io/free-tools/ai-tools/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://laitingyou.github.io/free-tools/best-ai-tools/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://laitingyou.github.io/free-tools/seo-tools/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://laitingyou.github.io/free-tools/free-image-tools/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://laitingyou.github.io/free-tools/free-video-tools/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://laitingyou.github.io/free-tools/free-pdf-tools/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://laitingyou.github.io/free-tools/developer-tools/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://laitingyou.github.io/free-tools/social-media-tools/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://laitingyou.github.io/free-tools/blog/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://laitingyou.github.io/free-tools/blog/best-free-ai-video-generators/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://laitingyou.github.io/free-tools/blog/best-free-seo-tools/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://laitingyou.github.io/free-tools/blog/best-free-pdf-tools/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://laitingyou.github.io/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://laitingyou.github.io/free-tools/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://laitingyou.github.io/ai-tools/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://laitingyou.github.io/best-ai-tools/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://laitingyou.github.io/seo-tools/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://laitingyou.github.io/free-image-tools/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://laitingyou.github.io/free-video-tools/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://laitingyou.github.io/free-pdf-tools/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://laitingyou.github.io/developer-tools/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://laitingyou.github.io/social-media-tools/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://laitingyou.github.io/blog/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://laitingyou.github.io/blog/best-free-ai-video-generators/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://laitingyou.github.io/blog/best-free-seo-tools/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://laitingyou.github.io/blog/best-free-pdf-tools/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>

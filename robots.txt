@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://laitingyou.github.io/free-tools/sitemap.xml
+Sitemap: https://laitingyou.github.io/sitemap.xml

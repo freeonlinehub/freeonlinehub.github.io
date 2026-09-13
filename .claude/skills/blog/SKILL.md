@@ -38,7 +38,7 @@ you only ever edit HTML and commit.
 
 - `<title>`: ≤ 60 chars, primary keyword near the front.
 - `meta description`: 140–160 chars, keyword + concrete value promise.
-- `<link rel="canonical">` → `https://laitingyou.github.io/free-tools/blog/<slug>/`
+- `<link rel="canonical">` → `https://laitingyou.github.io/blog/<slug>/`
 - Open Graph: `og:type=article`, `og:site_name=FreeToolsHub`, title, description, url.
 - JSON-LD **BlogPosting**: headline, datePublished (ISO), dateModified, author and
   publisher as `{"@type":"Organization","name":"FreeToolsHub"}`, url.
@@ -128,5 +128,5 @@ you only ever edit HTML and commit.
    and every internal link resolves (no 404s). Then `git add`, commit with a
    descriptive message, and push to **both** remotes —
    `git push origin main && git push pages main` — so the post goes live on
-   https://laitingyou.github.io/free-tools/ and https://laitingyou.github.io/
+   https://laitingyou.github.io/ and https://laitingyou.github.io/
    (GitHub Pages redeploys automatically on both).

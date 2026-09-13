@@ -2,7 +2,7 @@
 
 A static, SEO-first directory of the best free online tools: AI, SEO, images, video,
 PDF, developer and social media tools. Live at
-**https://laitingyou.github.io/free-tools/** (GitHub Pages).
+**https://laitingyou.github.io/** (GitHub Pages).
 
 ## Tech stack
 
@@ -32,16 +32,25 @@ PDF, developer and social media tools. Live at
 
 ## Deployment
 
-The same site is served from two repos, so two URLs reach it:
+**Primary:** the `laitingyou/laitingyou.github.io` repo serves the site at
+**https://laitingyou.github.io/** (Pages deploys via the bundled
+`.github/workflows/deploy-pages.yml`).
 
-- `laitingyou/free-tools` → **https://laitingyou.github.io/free-tools/** (Pages builds from `main`)
-- `laitingyou/laitingyou.github.io` → **https://laitingyou.github.io/** (Pages deploys via the bundled `.github/workflows/deploy-pages.yml`, which only runs in that repo)
-
-All pages use relative links, so the site works at both paths unchanged. After
-every change, push to both:
+**Optional mirror:** the `laitingyou/free-tools` repo serves the same site at
+https://laitingyou.github.io/free-tools/. All canonical, Open Graph and sitemap
+URLs point to the root site, so the mirror adds no SEO value and can be deleted
+at any time. If you keep it, push to both after every change:
 
 ```bash
 git push origin main && git push pages main
+```
+
+If you delete the mirror, push only to `origin` (after pointing it at the
+user-site repo):
+
+```bash
+git remote set-url origin https://github.com/laitingyou/laitingyou.github.io.git
+git push origin main
 ```
 
 ## How to edit
