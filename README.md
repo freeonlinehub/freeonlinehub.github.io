@@ -44,6 +44,13 @@ Note: the former `laitingyou/free-tools` mirror at
 https://freeonlinehub.github.io/free-tools/ has been retired (its Pages is
 disabled); all canonical, Open Graph and sitemap URLs point at the root site.
 
+**Cloudflare Pages mirror:** the repo is also connected to Cloudflare Pages,
+which serves the same site at https://freeonlinehub-github-io.pages.dev/. Set
+its build command to `node replace-base-url.mjs` (output directory `.`) so the
+deployed copy rewrites all canonical, OG, JSON-LD, sitemap and robots URLs to
+the pages.dev domain. The rewrite runs only inside Cloudflare's build — the
+repo itself always keeps the github.io URLs, and GitHub Pages stays canonical.
+
 ## How to edit
 
 - **Add a tool**: copy an existing `<article class="tool-card …">` block in the
