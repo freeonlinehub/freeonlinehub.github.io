@@ -17,10 +17,13 @@
 import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
 import { join, extname } from 'node:path';
 
-// CF_PAGES_URL is injected by Cloudflare Pages during builds; the fallback
-// covers local dry-runs.
+// The production pages.dev domain is fixed. Do NOT use CF_PAGES_URL here:
+// Cloudflare sets it to the per-deployment URL (e.g.
+// https://df44839d.<project>.pages.dev) on non-production and some production
+// builds, and those hash-prefixed hosts change with every deploy. Override
+// with PAGES_BASE_URL if the project is ever renamed.
 const FROM = 'https://freeonlinehub.github.io';
-const TO = process.env.CF_PAGES_URL || 'https://freeonlinehub-github-io.pages.dev';
+const TO = process.env.PAGES_BASE_URL || 'https://freeonlinehub-github-io.pages.dev';
 
 const EXTENSIONS = new Set(['.html', '.xml', '.txt']);
 const SKIP_DIRS = new Set(['.git', 'node_modules', '.claude']);
