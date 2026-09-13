@@ -12,18 +12,31 @@
  * The rewrite only touches Cloudflare's ephemeral build copy — nothing is
  * committed back to the repo, so GitHub Pages keeps the github.io URLs.
  *
- * Usage: node replace-base-url.mjs
+ * Usage: node replace-base-url.mjs <base-url>
+ * Example (Cloudflare Pages build command):
+ *   node replace-base-url.mjs https://freeonlinehub-github-io.pages.dev
  */
 import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
 import { join, extname } from 'node:path';
 
-// The production pages.dev domain is fixed. Do NOT use CF_PAGES_URL here:
-// Cloudflare sets it to the per-deployment URL (e.g.
-// https://df44839d.<project>.pages.dev) on non-production and some production
-// builds, and those hash-prefixed hosts change with every deploy. Override
-// with PAGES_BASE_URL if the project is ever renamed.
+// The source domain baked into the repo. Override the target per deployment
+// by passing a different <base-url> argument.
 const FROM = 'https://freeonlinehub.github.io';
-const TO = process.env.PAGES_BASE_URL || 'https://freeonlinehub-github-io.pages.dev';
+
+const target = process.argv[2];
+if (!target) {
+  console.error('Usage: node replace-base-url.mjs <base-url>');
+  console.error('Example: node replace-base-url.mjs https://freeonlinehub-github-io.pages.dev');
+  process.exit(1);
+}
+const TO = target.replace(/\/+$/, '');
+try {
+  const u = new URL(TO);
+  if (!/^https?:$/.test(u.protocol)) throw new Error('bad protocol');
+} catch {
+  console.error(`Invalid base URL: ${target}`);
+  process.exit(1);
+}
 
 const EXTENSIONS = new Set(['.html', '.xml', '.txt']);
 const SKIP_DIRS = new Set(['.git', 'node_modules', '.claude']);
