@@ -139,4 +139,6 @@ you only ever edit HTML and commit.
    (default mode is the full article plus an "Originally published at"
    attribution footer; use `--mode summary` for a teaser + link instead).
    The script reads the gitignored `wp-credentials.json`; if that file is
-   missing, say so and skip this step.
+   missing, say so and skip this step. When an already-published post is
+   edited, re-run the same command with `--update` to refresh the WordPress
+   copy instead of creating a duplicate.

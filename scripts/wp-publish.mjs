@@ -116,48 +116,74 @@ try {
   process.exit(1);
 }
 
-const auth = `${creds.username}:${creds.appPassword}`;
 /* WordPress.com free sites expose posting over XML-RPC; the site-level
    wp-json REST API and the public-api wp/v2 gateway reject application
-   passwords, so we speak XML-RPC (wp.newPost) directly. */
+   passwords, so we speak XML-RPC (wp.newPost / wp.editPost) directly. */
 const endpoint = `${creds.site.replace(/\/$/, '')}/xmlrpc.php`;
 
 function xmlEscape(s) {
   return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
-const xml = `<?xml version="1.0" encoding="UTF-8"?>
+async function xmlrpc(method, paramsXml) {
+  const res = await fetch(endpoint, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/xml; charset=utf-8' },
+    body: `<?xml version="1.0" encoding="UTF-8"?>
 <methodCall>
-  <methodName>wp.newPost</methodName>
-  <params>
-    <param><value><int>1</int></value></param>
-    <param><value><string>${xmlEscape(creds.username)}</string></value></param>
-    <param><value><string>${xmlEscape(creds.appPassword)}</string></value></param>
-    <param><value><struct>
+  <methodName>${method}</methodName>
+  <params>${paramsXml}</params>
+</methodCall>`,
+  });
+  const body = await res.text();
+  if (!res.ok || body.includes('<fault>')) {
+    const fault = match(/<string>([\s\S]*?)<\/string>/, body);
+    console.error(`WordPress XML-RPC error (${method}): ${fault || body.slice(0, 300)}`);
+    if (/username or password/i.test(fault || '')) {
+      console.error('Check the username and application password in wp-credentials.json.');
+    }
+    process.exit(1);
+  }
+  return body;
+}
+
+const contentStruct = `<struct>
       <member><name>post_type</name><value><string>post</string></value></member>
       <member><name>post_status</name><value><string>${status}</string></value></member>
       <member><name>post_title</name><value><string>${xmlEscape(payload.title)}</string></value></member>
       <member><name>post_content</name><value><string>${xmlEscape(payload.content)}</string></value></member>
       <member><name>post_excerpt</name><value><string>${xmlEscape(payload.excerpt)}</string></value></member>
       <member><name>post_name</name><value><string>${xmlEscape(payload.slug)}</string></value></member>
-    </struct></value></param>
-  </params>
-</methodCall>`;
+    </struct>`;
 
-const res = await fetch(endpoint, {
-  method: 'POST',
-  headers: { 'Content-Type': 'text/xml; charset=utf-8' },
-  body: xml,
-});
+const authParams = `<param><value><int>1</int></value></param>
+    <param><value><string>${xmlEscape(creds.username)}</string></value></param>
+    <param><value><string>${xmlEscape(creds.appPassword)}</string></value></param>`;
 
-const body = await res.text();
-if (!res.ok || body.includes('<fault>')) {
-  const fault = match(/<string>([\s\S]*?)<\/string>/, body);
-  console.error(`WordPress XML-RPC error: ${res.status} ${fault || body.slice(0, 300)}`);
-  if (/username or password/i.test(fault || '')) {
-    console.error('Check the username and application password in wp-credentials.json.');
+if (hasFlag('--update')) {
+  /* Re-publish an existing post: find it by slug, then overwrite content. */
+  const list = await xmlrpc('wp.getPosts', `${authParams}
+    <param><value><struct>
+      <member><name>post_type</name><value><string>post</string></value></member>
+      <member><name>number</name><value><int>50</int></value></member>
+    </struct></value></param>`);
+  const structs = list.match(/<struct>[\s\S]*?<\/struct>/g) || [];
+  const id = structs.map((s) => ({
+    id: (s.match(/<name>post_id<\/name>\s*<value>\s*<(?:string|int)>(\d+)/) || [])[1],
+    slug: (s.match(/<name>post_name<\/name>\s*<value>\s*<string>([\s\S]*?)<\/string>/) || [])[1],
+  })).find((p) => p.slug === payload.slug);
+
+  if (!id || !id.id) {
+    console.error(`No WordPress post found with slug "${payload.slug}" — run without --update to create it.`);
+    process.exit(1);
   }
-  process.exit(1);
+  await xmlrpc('wp.editPost', `${authParams}
+    <param><value><int>${id.id}</int></value></param>
+    <param>${contentStruct}</param>`);
+  console.log(`✓ WordPress post ${id.id} updated (${status}): ${creds.site.replace(/\/$/, '')}/${payload.slug}/`);
+} else {
+  const body = await xmlrpc('wp.newPost', `${authParams}
+    <param>${contentStruct}</param>`);
+  const postId = (body.match(/<value>\s*<(?:string|int)>(\d+)<\/(?:string|int)>/) || [])[1];
+  console.log(`✓ WordPress ${status} post created (id ${postId}): ${creds.site.replace(/\/$/, '')}/?p=${postId}`);
 }
-const postId = (body.match(/<value>\s*<(?:string|int)>(\d+)<\/(?:string|int)>/) || [])[1];
-console.log(`✓ WordPress ${status} post created (id ${postId}): ${creds.site.replace(/\/$/, '')}/?p=${postId}`);
