@@ -32,26 +32,17 @@ PDF, developer and social media tools. Live at
 
 ## Deployment
 
-**Primary:** the `laitingyou/laitingyou.github.io` repo serves the site at
-**https://laitingyou.github.io/** (Pages deploys via the bundled
-`.github/workflows/deploy-pages.yml`).
-
-**Optional mirror:** the `laitingyou/free-tools` repo serves the same site at
-https://laitingyou.github.io/free-tools/. All canonical, Open Graph and sitemap
-URLs point to the root site, so the mirror adds no SEO value and can be deleted
-at any time. If you keep it, push to both after every change:
+The site lives in the `laitingyou/laitingyou.github.io` repo and is served at
+**https://laitingyou.github.io/** — GitHub Pages deploys it with the bundled
+`.github/workflows/deploy-pages.yml` on every push to `main`:
 
 ```bash
-git push origin main && git push pages main
-```
-
-If you delete the mirror, push only to `origin` (after pointing it at the
-user-site repo):
-
-```bash
-git remote set-url origin https://github.com/laitingyou/laitingyou.github.io.git
 git push origin main
 ```
+
+Note: the former `laitingyou/free-tools` mirror at
+https://laitingyou.github.io/free-tools/ has been retired (its Pages is
+disabled); all canonical, Open Graph and sitemap URLs point at the root site.
 
 ## How to edit
 

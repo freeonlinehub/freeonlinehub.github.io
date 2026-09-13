@@ -1,6 +1,5 @@
-# Deploys the static site to GitHub Pages. Only runs in the user-site mirror
-# repo (laitingyou.github.io); in laitingyou/free-tools Pages builds from the
-# main branch directly, so this workflow exits early there.
+# Deploys the static site to GitHub Pages on every push to main
+# (https://laitingyou.github.io/).
 name: Deploy to GitHub Pages
 
 on:
