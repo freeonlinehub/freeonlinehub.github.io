@@ -107,8 +107,10 @@ you only ever edit HTML and commit.
   `/best-ai-tools/` when relevant, and sibling posts. Add the reciprocal
   direction too — see publish checklist.
 - **External links (外链)**: 2–5 per post to authoritative primary sources.
-  Third-party tools get `target="_blank" rel="noopener nofollow"`; the four own
-  products get `target="_blank" rel="noopener"` (no nofollow).
+  **Never add `nofollow`** — site policy is that every external link passes
+  full link equity. Use `target="_blank" rel="noopener"` for all external
+  links, own products and third-party alike (`noopener` is a security
+  attribute only; it has no SEO effect).
 
 ## Publish checklist — a post is NOT done until all of this is true
 
