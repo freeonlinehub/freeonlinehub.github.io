@@ -116,26 +116,48 @@ try {
   process.exit(1);
 }
 
-const auth = Buffer.from(`${creds.username}:${creds.appPassword}`).toString('base64');
-const endpoint = `${creds.site.replace(/\/$/, '')}/wp-json/wp/v2/posts`;
+const auth = `${creds.username}:${creds.appPassword}`;
+/* WordPress.com free sites expose posting over XML-RPC; the site-level
+   wp-json REST API and the public-api wp/v2 gateway reject application
+   passwords, so we speak XML-RPC (wp.newPost) directly. */
+const endpoint = `${creds.site.replace(/\/$/, '')}/xmlrpc.php`;
+
+function xmlEscape(s) {
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<methodCall>
+  <methodName>wp.newPost</methodName>
+  <params>
+    <param><value><int>1</int></value></param>
+    <param><value><string>${xmlEscape(creds.username)}</string></value></param>
+    <param><value><string>${xmlEscape(creds.appPassword)}</string></value></param>
+    <param><value><struct>
+      <member><name>post_type</name><value><string>post</string></value></member>
+      <member><name>post_status</name><value><string>${status}</string></value></member>
+      <member><name>post_title</name><value><string>${xmlEscape(payload.title)}</string></value></member>
+      <member><name>post_content</name><value><string>${xmlEscape(payload.content)}</string></value></member>
+      <member><name>post_excerpt</name><value><string>${xmlEscape(payload.excerpt)}</string></value></member>
+      <member><name>post_name</name><value><string>${xmlEscape(payload.slug)}</string></value></member>
+    </struct></value></param>
+  </params>
+</methodCall>`;
 
 const res = await fetch(endpoint, {
   method: 'POST',
-  headers: {
-    'Authorization': `Basic ${auth}`,
-    'Content-Type': 'application/json',
-    'Accept': 'application/json',
-  },
-  body: JSON.stringify(payload),
+  headers: { 'Content-Type': 'text/xml; charset=utf-8' },
+  body: xml,
 });
 
 const body = await res.text();
-if (!res.ok) {
-  console.error(`WordPress API error ${res.status}: ${body.slice(0, 400)}`);
-  if (res.status === 401 || res.status === 403) {
-    console.error('Check the application password and username in wp-credentials.json.');
+if (!res.ok || body.includes('<fault>')) {
+  const fault = match(/<string>([\s\S]*?)<\/string>/, body);
+  console.error(`WordPress XML-RPC error: ${res.status} ${fault || body.slice(0, 300)}`);
+  if (/username or password/i.test(fault || '')) {
+    console.error('Check the username and application password in wp-credentials.json.');
   }
   process.exit(1);
 }
-const post = JSON.parse(body);
-console.log(`✓ WordPress ${post.status} post created: ${post.link}`);
+const postId = (body.match(/<value>\s*<(?:string|int)>(\d+)<\/(?:string|int)>/) || [])[1];
+console.log(`✓ WordPress ${status} post created (id ${postId}): ${creds.site.replace(/\/$/, '')}/?p=${postId}`);
