@@ -20,7 +20,8 @@ you only ever edit HTML and commit.
    VEONIB (https://veonib.com, AI product videos), FLOWNIB (https://flownib.com,
    AI social publishing), Backlink Submit (https://backlinksubmit.com, free
    backlink database), SocialToPrompt (https://socialtoprompt.com, social video →
-   AI prompt).
+   AI prompt), VideosPrompt (https://videosprompt.org, AI video prompt
+   community) and SEONIB (https://seonib.com, AI blog automation).
 
 ## File & URL rules
 
@@ -67,8 +68,10 @@ you only ever edit HTML and commit.
       <strong>Disclosure:</strong> FreeToolsHub is built by the team behind
       <a class="font-semibold" href="https://veonib.com" target="_blank" rel="noopener">VEONIB</a>,
       <a class="font-semibold" href="https://flownib.com" target="_blank" rel="noopener">FLOWNIB</a>,
-      <a class="font-semibold" href="https://backlinksubmit.com" target="_blank" rel="noopener">Backlink Submit</a> and
-      <a class="font-semibold" href="https://socialtoprompt.com" target="_blank" rel="noopener">SocialToPrompt</a>.
+      <a class="font-semibold" href="https://backlinksubmit.com" target="_blank" rel="noopener">Backlink Submit</a>,
+      <a class="font-semibold" href="https://socialtoprompt.com" target="_blank" rel="noopener">SocialToPrompt</a>,
+      <a class="font-semibold" href="https://videosprompt.org" target="_blank" rel="noopener">VideosPrompt</a> and
+      <a class="font-semibold" href="https://seonib.com" target="_blank" rel="noopener">SEONIB</a>.
       We label them “Editor’s Pick” and recommend third-party tools on merit.
     </aside>
     ```
