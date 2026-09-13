@@ -2,7 +2,7 @@
 
 A static, SEO-first directory of the best free online tools: AI, SEO, images, video,
 PDF, developer and social media tools. Live at
-**https://laitingyou.github.io/** (GitHub Pages).
+**https://freeonlinehub.github.io/** (GitHub Pages).
 
 ## Tech stack
 
@@ -32,16 +32,16 @@ PDF, developer and social media tools. Live at
 
 ## Deployment
 
-The site lives in the `laitingyou/laitingyou.github.io` repo and is served at
-**https://laitingyou.github.io/** — GitHub Pages deploys it with the bundled
-`.github/workflows/deploy-pages.yml` on every push to `main`:
+The site lives in the `freeonlinehub/freeonlinehub.github.io` repo and is
+served at **https://freeonlinehub.github.io/** — GitHub Pages deploys it with
+the bundled `.github/workflows/deploy-pages.yml` on every push to `main`:
 
 ```bash
 git push origin main
 ```
 
 Note: the former `laitingyou/free-tools` mirror at
-https://laitingyou.github.io/free-tools/ has been retired (its Pages is
+https://freeonlinehub.github.io/free-tools/ has been retired (its Pages is
 disabled); all canonical, Open Graph and sitemap URLs point at the root site.
 
 ## How to edit

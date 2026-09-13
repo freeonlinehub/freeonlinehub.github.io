@@ -38,7 +38,7 @@ you only ever edit HTML and commit.
 
 - `<title>`: ≤ 60 chars, primary keyword near the front.
 - `meta description`: 140–160 chars, keyword + concrete value promise.
-- `<link rel="canonical">` → `https://laitingyou.github.io/blog/<slug>/`
+- `<link rel="canonical">` → `https://freeonlinehub.github.io/blog/<slug>/`
 - Open Graph: `og:type=article`, `og:site_name=FreeToolsHub`, title, description, url.
 - JSON-LD **BlogPosting**: headline, datePublished (ISO), dateModified, author and
   publisher as `{"@type":"Organization","name":"FreeToolsHub"}`, url.
@@ -127,4 +127,4 @@ you only ever edit HTML and commit.
    open the post, confirm no console errors, prose renders, TOC anchors jump,
    and every internal link resolves (no 404s). Then `git add`, commit with a
    descriptive message, and `git push origin main` — the site (and the post)
-   goes live at https://laitingyou.github.io/ via the bundled Pages workflow.
+   goes live at https://freeonlinehub.github.io/ via the bundled Pages workflow.
