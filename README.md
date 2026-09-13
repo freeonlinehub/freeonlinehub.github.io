@@ -30,6 +30,20 @@ PDF, developer and social media tools. Live at
 /blog/                   Blog (+ one folder per post)
 ```
 
+## Deployment
+
+The same site is served from two repos, so two URLs reach it:
+
+- `laitingyou/free-tools` → **https://laitingyou.github.io/free-tools/** (Pages builds from `main`)
+- `laitingyou/laitingyou.github.io` → **https://laitingyou.github.io/** (Pages deploys via the bundled `.github/workflows/deploy-pages.yml`, which only runs in that repo)
+
+All pages use relative links, so the site works at both paths unchanged. After
+every change, push to both:
+
+```bash
+git push origin main && git push pages main
+```
+
 ## How to edit
 
 - **Add a tool**: copy an existing `<article class="tool-card …">` block in the

@@ -126,4 +126,7 @@ you only ever edit HTML and commit.
 6. Verify locally before pushing: serve the folder (`python3 -m http.server`),
    open the post, confirm no console errors, prose renders, TOC anchors jump,
    and every internal link resolves (no 404s). Then `git add`, commit with a
-   descriptive message, and push to `main` — GitHub Pages redeploys automatically.
+   descriptive message, and push to **both** remotes —
+   `git push origin main && git push pages main` — so the post goes live on
+   https://laitingyou.github.io/free-tools/ and https://laitingyou.github.io/
+   (GitHub Pages redeploys automatically on both).
