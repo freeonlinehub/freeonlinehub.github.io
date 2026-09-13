@@ -132,3 +132,9 @@ you only ever edit HTML and commit.
    and every internal link resolves (no 404s). Then `git add`, commit with a
    descriptive message, and `git push origin main` — the site (and the post)
    goes live at https://freeonlinehub.github.io/ via the bundled Pages workflow.
+7. WordPress mirror: publish the same article to the WordPress.com site with
+   `node scripts/wp-publish.mjs blog/<slug>/index.html --status publish`
+   (default mode is the full article plus an "Originally published at"
+   attribution footer; use `--mode summary` for a teaser + link instead).
+   The script reads the gitignored `wp-credentials.json`; if that file is
+   missing, say so and skip this step.
