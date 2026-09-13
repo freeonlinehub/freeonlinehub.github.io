@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Free Tools Directory — Every Free Tool in One Place (2026)</title>
+  <meta name="description" content="Search the full FreeToolsHub directory: 50+ hand-picked free tools for AI, SEO, images, video, PDF, development and social media. Filter by category or search by name.">
+  <link rel="canonical" href="https://laitingyou.github.io/free-tools/free-tools/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="FreeToolsHub">
+  <meta property="og:title" content="Free Tools Directory — Every Free Tool in One Place">
+  <meta property="og:description" content="Search the full FreeToolsHub directory: 50+ hand-picked free tools for AI, SEO, images, video, PDF, development and social media.">
+  <meta property="og:url" content="https://laitingyou.github.io/free-tools/free-tools/">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <script src="../js/tailwindcss.js"></script>
+  <script src="../js/site.js"></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://laitingyou.github.io/free-tools/"},{"@type":"ListItem","position":2,"name":"Tool Directory","item":"https://laitingyou.github.io/free-tools/free-tools/"}]}
+  </script>
+</head>
+<body class="bg-white font-sans text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100">
+
+  <header class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/80 backdrop-blur-md dark:border-slate-800/80 dark:bg-slate-950/80">
+    <div class="wrap flex h-16 items-center justify-between gap-3">
+      <a href="../" class="flex flex-none items-center gap-2.5 text-lg font-extrabold tracking-tight text-slate-900 no-underline dark:text-white">
+        <span class="grid h-8 w-8 flex-none place-items-center rounded-[9px] bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 text-[13px] font-extrabold text-white shadow-md shadow-indigo-500/25">FT</span>
+        FreeTools<span class="text-indigo-600 dark:text-indigo-400">Hub</span>
+      </a>
+      <button data-nav-toggle aria-label="Toggle navigation" aria-expanded="false"
+        class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-slate-600 md:hidden dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">☰</button>
+      <nav data-nav class="main-nav">
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../ai-tools/">AI Tools</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../seo-tools/">SEO</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../free-image-tools/">Image</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../free-video-tools/">Video</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../free-pdf-tools/">PDF</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../developer-tools/">Developer</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../social-media-tools/">Social</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm font-semibold text-indigo-700 no-underline hover:bg-indigo-50 dark:text-indigo-300 dark:hover:bg-slate-800" href="./">Directory</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../blog/">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <p class="crumbs"><a href="../">Home</a> / Tool Directory</p>
+      <div class="mb-8 max-w-2xl">
+        <h1 class="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">Free Tools Directory</h1>
+        <p class="mt-3 text-slate-600 dark:text-slate-400">Every tool we&rsquo;ve reviewed, on one page. Filter by category or search — showing <span id="dir-count" class="font-bold text-indigo-600 dark:text-indigo-400">54</span> tools.</p>
+      </div>
+
+      <div class="filter-bar">
+        <input id="dir-search" type="search" placeholder="Search tools… e.g. video, backlink, compress" aria-label="Search tools">
+        <button class="chip" data-chip="all">All</button>
+        <button class="chip" data-chip="ai">AI</button>
+        <button class="chip" data-chip="seo">SEO</button>
+        <button class="chip" data-chip="image">Image</button>
+        <button class="chip" data-chip="video">Video</button>
+        <button class="chip" data-chip="pdf">PDF</button>
+        <button class="chip" data-chip="dev">Developer</button>
+        <button class="chip" data-chip="social">Social</button>
+      </div>
+
+      <div id="dir-grid" class="dir-tools">
+
+        <article class="tool-card tool-card-pick" data-cat="ai video" data-search="veonib ai product video ecommerce marketing url to video ecommerce">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#ec4899">V</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://veonib.com" target="_blank" rel="noopener">VEONIB</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill pill-pick">★ Editor&rsquo;s Pick</span><span class="pill">AI Video</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">Turns any product URL into a marketing video in ~60 seconds — AI scripts, virtual presenters, UGC-style shots.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://veonib.com" target="_blank" rel="noopener">Visit →</a>
+        </article>
+
+        <article class="tool-card tool-card-pick" data-cat="ai social video" data-search="socialtoprompt video to prompt download tiktok instagram youtube veo kling seedance wan prompt">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#f59e0b">S</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://socialtoprompt.com" target="_blank" rel="noopener">SocialToPrompt</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill pill-pick">★ Editor&rsquo;s Pick</span><span class="pill">Video to Prompt</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">Download social videos and turn them into detailed AI prompts for Veo, Kling, Seedance and Wan.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://socialtoprompt.com" target="_blank" rel="noopener">Visit →</a>
+        </article>
+
+        <article class="tool-card tool-card-pick" data-cat="ai social" data-search="flownib social media publishing schedule ai distribution one click publish">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#8b5cf6">F</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://flownib.com" target="_blank" rel="noopener">FLOWNIB</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill pill-pick">★ Editor&rsquo;s Pick</span><span class="pill">AI Publishing</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">Create, schedule and publish social content to every platform with one click, powered by AI.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://flownib.com" target="_blank" rel="noopener">Visit →</a>
+        </article>
+
+        <article class="tool-card tool-card-pick" data-cat="seo" data-search="backlinksubmit backlink submit free backlinks seo directory launchpad autofill dr">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#10b981">B</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://backlinksubmit.com" target="_blank" rel="noopener">Backlink Submit</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill pill-pick">★ Editor&rsquo;s Pick</span><span class="pill">Backlinks</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">3,840+ verified free backlink sites and launchpads with one-click form autofill.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://backlinksubmit.com" target="_blank" rel="noopener">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="ai" data-search="chatgpt openai ai chatbot writing assistant">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#10a37f">C</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://chatgpt.com" target="_blank" rel="noopener nofollow">ChatGPT</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">AI Chatbot</span><span class="pill pill-free">Free Tier</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">The default AI assistant for writing, analysis and coding help.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://chatgpt.com" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="ai" data-search="claude anthropic ai chatbot writing documents reasoning">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#d97757">C</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://claude.ai" target="_blank" rel="noopener nofollow">Claude</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">AI Chatbot</span><span class="pill pill-free">Free Tier</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">Anthropic&rsquo;s assistant — exceptional with long documents and natural writing.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://claude.ai" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="ai" data-search="gemini google ai chatbot multimodal workspace">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#4285f4">G</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://gemini.google.com" target="_blank" rel="noopener nofollow">Google Gemini</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">AI Chatbot</span><span class="pill pill-free">Free Tier</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">Google&rsquo;s multimodal AI with Search and Workspace integration.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://gemini.google.com" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="ai" data-search="perplexity ai search answer engine citations research">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#20b8cd">P</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://www.perplexity.ai" target="_blank" rel="noopener nofollow">Perplexity</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">AI Search</span><span class="pill pill-free">Free Tier</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">An answer engine that cites its sources for trustworthy research.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://www.perplexity.ai" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="ai" data-search="notebooklm google research sources audio overview study">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#ea4335">N</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://notebooklm.google.com" target="_blank" rel="noopener nofollow">NotebookLM</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">Research</span><span class="pill pill-free">Free</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">AI research assistant grounded strictly in your uploaded sources.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://notebooklm.google.com" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="ai dev" data-search="google ai studio gemini api prototype developer">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#fbbc04">A</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://aistudio.google.com" target="_blank" rel="noopener nofollow">Google AI Studio</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">AI Development</span><span class="pill pill-free">Free</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">Prototype Gemini in the browser and get a free API key for your apps.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://aistudio.google.com" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="ai" data-search="hugging face open source models spaces community">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#ffcc4d">H</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://huggingface.co" target="_blank" rel="noopener nofollow">Hugging Face</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">Open Models</span><span class="pill pill-free">Free</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">The open-source AI hub — thousands of models running in your browser.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://huggingface.co" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="seo" data-search="google search console gsc indexing queries vitals analytics">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#4285f4">G</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://search.google.com/search-console" target="_blank" rel="noopener nofollow">Google Search Console</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">Analytics</span><span class="pill pill-free">Free</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">How Google sees your site: indexing, queries, clicks and vitals.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://search.google.com/search-console" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="seo" data-search="bing webmaster tools index scan keyword yahoo duckduckgo">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#008373">B</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://www.bing.com/webmasters" target="_blank" rel="noopener nofollow">Bing Webmaster Tools</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">Analytics</span><span class="pill pill-free">Free</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">Free site scans, keyword research and index control across Bing, Yahoo and DuckDuckGo.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://www.bing.com/webmasters" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="seo" data-search="ahrefs webmaster tools backlinks audit keywords seo health">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#054ada">A</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://ahrefs.com/webmaster-tools" target="_blank" rel="noopener nofollow">Ahrefs Webmaster Tools</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">Site Audit</span><span class="pill pill-free">Free</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">Free backlink profile, organic keywords and SEO health reports for your own sites.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://ahrefs.com/webmaster-tools" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="seo" data-search="google keyword planner volume competition ads research">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#34a853">K</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://ads.google.com/home/tools/keyword-planner/" target="_blank" rel="noopener nofollow">Google Keyword Planner</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">Keywords</span><span class="pill pill-free">Free</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">Search volumes and competition straight from Google Ads data.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://ads.google.com/home/tools/keyword-planner/" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="seo" data-search="screaming frog crawler audit broken links redirects">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#0ea5e9">S</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://www.screamingfrog.co.uk/seo-spider/" target="_blank" rel="noopener nofollow">Screaming Frog</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">Site Crawler</span><span class="pill pill-free">Free ≤500 URLs</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">The classic desktop crawler for technical audits up to 500 URLs.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://www.screamingfrog.co.uk/seo-spider/" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="seo dev" data-search="pagespeed insights core web vitals performance lighthouse">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#f97316">P</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://pagespeed.web.dev" target="_blank" rel="noopener nofollow">PageSpeed Insights</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">Performance</span><span class="pill pill-free">Free</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">Lab and field performance reports with prioritised fixes.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://pagespeed.web.dev" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="seo dev" data-search="rich results test schema structured data validation">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#ef4444">R</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://search.google.com/test/rich-results" target="_blank" rel="noopener nofollow">Rich Results Test</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">Structured Data</span><span class="pill pill-free">Free</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">Validate schema markup and preview eligible rich results.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://search.google.com/test/rich-results" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="seo" data-search="ubersuggest neil patel keywords content ideas audit">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#6d28d9">U</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://neilpatel.com/ubersuggest/" target="_blank" rel="noopener nofollow">Ubersuggest</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">Keywords</span><span class="pill pill-free">Freemium</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">Keyword volumes, content ideas and audits with a free daily quota.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://neilpatel.com/ubersuggest/" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="seo" data-search="google trends seasonal interest region compare">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#f4b400">T</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://trends.google.com" target="_blank" rel="noopener nofollow">Google Trends</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">Trends</span><span class="pill pill-free">Free</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">Compare search interest over time and spot seasonal patterns.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://trends.google.com" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="image" data-search="photopea photoshop browser editor psd raw">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#0ea5e9">P</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://www.photopea.com" target="_blank" rel="noopener nofollow">Photopea</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">Photo Editor</span><span class="pill pill-free">Free</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">Photoshop-grade editing in your browser — opens PSD, XD, Sketch, RAW.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://www.photopea.com" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="image social" data-search="canva design templates social graphics">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#00c4cc">C</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://www.canva.com" target="_blank" rel="noopener nofollow">Canva</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">Design</span><span class="pill pill-free">Free Plan</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">Drag-and-drop templates for everything social, print or deck-shaped.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://www.canva.com" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="image" data-search="squoosh google compress webp avif jpeg image compression">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#8b5cf6">S</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://squoosh.app" target="_blank" rel="noopener nofollow">Squoosh</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">Compression</span><span class="pill pill-free">Free · OSS</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">Compare image codecs side by side — all locally, nothing uploaded.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://squoosh.app" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="image" data-search="tinypng compress png jpeg webp batch">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#14b8a6">T</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://tinypng.com" target="_blank" rel="noopener nofollow">TinyPNG</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">Compression</span><span class="pill pill-free">Free Tier</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">The classic drag-and-drop compressor for PNG, JPEG and WebP.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://tinypng.com" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="image" data-search="remove bg background removal ai cutout">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#ef4444">r</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://www.remove.bg" target="_blank" rel="noopener nofollow">remove.bg</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">Background Removal</span><span class="pill pill-free">Free Previews</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">One-click AI background removal with impressively clean edges.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://www.remove.bg" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="image" data-search="pixlr editor retouch photo layers">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#0d9488">P</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://pixlr.com" target="_blank" rel="noopener nofollow">Pixlr</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">Photo Editor</span><span class="pill pill-free">Freemium</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">Quick fixes (X) and layered retouching (E) plus AI generative fill.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://pixlr.com" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="image dev" data-search="excalidraw whiteboard diagram sketch flow">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#6366f1">E</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://excalidraw.com" target="_blank" rel="noopener nofollow">Excalidraw</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">Whiteboard</span><span class="pill pill-free">Free · OSS</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">Hand-drawn-style diagrams with instant share links.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://excalidraw.com" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="image dev" data-search="figma ui design prototype interface">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#f24e1e">F</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://www.figma.com" target="_blank" rel="noopener nofollow">Figma</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">UI Design</span><span class="pill pill-free">Free Plan</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">Interface design, prototyping and collaboration in the browser.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://www.figma.com" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="video" data-search="capcut short form editor captions templates tiktok">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#111827">C</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://www.capcut.com" target="_blank" rel="noopener nofollow">CapCut</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">Video Editor</span><span class="pill pill-free">Free</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">The go-to free editor for short-form video with auto-captions and templates.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://www.capcut.com" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="video" data-search="davinci resolve editor color grading vfx audio">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#4f46e5">D</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://www.blackmagicdesign.com/products/davinciresolve" target="_blank" rel="noopener nofollow">DaVinci Resolve</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">Video Editor</span><span class="pill pill-free">Free</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">Hollywood-grade editing, colour, VFX and audio — free on desktop.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://www.blackmagicdesign.com/products/davinciresolve" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="video" data-search="clipchamp microsoft browser editor 1080p stock">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#7c3aed">C</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://clipchamp.com" target="_blank" rel="noopener nofollow">Clipchamp</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">Video Editor</span><span class="pill pill-free">Free Tier</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">Microsoft&rsquo;s browser editor with 1080p exports and stock assets.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://clipchamp.com" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="video" data-search="obs studio screen recording streaming live">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#0ea5e9">O</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://obsproject.com" target="_blank" rel="noopener nofollow">OBS Studio</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">Recording</span><span class="pill pill-free">Free · OSS</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">The standard for screen recording and live streaming.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://obsproject.com" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="video" data-search="handbrake convert transcode compress batch">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#16a34a">H</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://handbrake.fr" target="_blank" rel="noopener nofollow">HandBrake</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">Converter</span><span class="pill pill-free">Free · OSS</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">Batch-convert and shrink video with presets for every device.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://handbrake.fr" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="video dev" data-search="ffmpeg cli convert cut mux stream">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#334155">F</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://ffmpeg.org" target="_blank" rel="noopener nofollow">FFmpeg</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">Converter · CLI</span><span class="pill pill-free">Free · OSS</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">The command-line engine behind half the video apps on earth.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://ffmpeg.org" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="pdf" data-search="ilovepdf merge split compress convert sign">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#e11d48">i</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://www.ilovepdf.com" target="_blank" rel="noopener nofollow">iLovePDF</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">All-in-one</span><span class="pill pill-free">Freemium</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">Merge, split, compress, convert and sign — the most complete free suite.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://www.ilovepdf.com" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="pdf" data-search="pdf24 tools no limits windows desktop offline">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#dc2626">2</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://www.pdf24.org" target="_blank" rel="noopener nofollow">PDF24 Tools</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">All-in-one</span><span class="pill pill-free">Free</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">100+ PDF tools without meaningful limits, plus a free Windows app.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://www.pdf24.org" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="pdf" data-search="smallpdf compress convert sign clean">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#ef4444">S</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://smallpdf.com" target="_blank" rel="noopener nofollow">Smallpdf</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">All-in-one</span><span class="pill pill-free">Freemium</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">Clean, fast PDF utilities with rotating free daily tasks.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://smallpdf.com" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="pdf" data-search="sejda edit pdf text merge sign">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#16a34a">S</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://www.sejda.com" target="_blank" rel="noopener nofollow">Sejda</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">PDF Editing</span><span class="pill pill-free">Freemium</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">Edits PDF text in place, merges and signs — 3 free tasks per hour.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://www.sejda.com" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="pdf dev" data-search="stirling pdf self hosted privacy open source docker">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#4f46e5">S</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://stirlingpdf.com" target="_blank" rel="noopener nofollow">Stirling PDF</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">Self-hosted</span><span class="pill pill-free">Free · OSS</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">Privacy-first, self-hosted PDF toolbox with 50+ operations.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://stirlingpdf.com" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="pdf" data-search="pdfescape fill forms annotate browser">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#0ea5e9">P</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://www.pdfescape.com" target="_blank" rel="noopener nofollow">PDFescape</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">Forms</span><span class="pill pill-free">Free</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">Fill and annotate PDF forms in the browser, no install.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://www.pdfescape.com" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="pdf" data-search="adobe acrobat online convert sign compressor">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#fa0f00">A</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://www.adobe.com/acrobat/online.html" target="_blank" rel="noopener nofollow">Adobe Acrobat Online</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">Convert · Sign</span><span class="pill pill-free">Free Tools</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">Adobe&rsquo;s official free converters, compressor and e-signatures.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://www.adobe.com/acrobat/online.html" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="dev" data-search="vs code visual studio code editor extensions">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#0ea5e9">V</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://code.visualstudio.com" target="_blank" rel="noopener nofollow">VS Code</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">Code Editor</span><span class="pill pill-free">Free</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">The default code editor of a generation, with an extension for everything.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://code.visualstudio.com" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="dev ai" data-search="github copilot ai coding pair programmer completions">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#6366f1">C</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://github.com/features/copilot" target="_blank" rel="noopener nofollow">GitHub Copilot</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">AI Coding</span><span class="pill pill-free">Free Tier</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">AI pair programmer with a free monthly tier for completions and chat.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://github.com/features/copilot" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="dev" data-search="github pages hosting static site https">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#24292f">G</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://pages.github.com" target="_blank" rel="noopener nofollow">GitHub Pages</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">Hosting</span><span class="pill pill-free">Free</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">Free static hosting with HTTPS, straight from a repo.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://pages.github.com" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="dev" data-search="regex101 regular expressions debug explanation">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#10b981">R</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://regex101.com" target="_blank" rel="noopener nofollow">Regex101</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">Regex</span><span class="pill pill-free">Free</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">Build and debug regex with live matches and plain-English explanations.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://regex101.com" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="dev" data-search="hoppscotch api rest graphql websocket testing open source">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#16a34a">H</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://hoppscotch.io" target="_blank" rel="noopener nofollow">Hoppscotch</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">API Testing</span><span class="pill pill-free">Free · OSS</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">A featherweight open-source API client in the browser.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://hoppscotch.io" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="dev" data-search="caniuse browser support compatibility feature">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#f59e0b">C</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://caniuse.com" target="_blank" rel="noopener nofollow">Can I Use</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">Compatibility</span><span class="pill pill-free">Free</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">Browser support tables for every web platform feature.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://caniuse.com" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="dev" data-search="devdocs documentation api offline reference">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#3b82f6">D</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://devdocs.io" target="_blank" rel="noopener nofollow">DevDocs</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">Documentation</span><span class="pill pill-free">Free · OSS</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">Every API documentation in one fast, offline-capable interface.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://devdocs.io" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="dev image" data-search="carbon code screenshot image share snippet">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#0f172a">C</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://carbon.now.sh" target="_blank" rel="noopener nofollow">Carbon</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">Code Images</span><span class="pill pill-free">Free</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">Turn code snippets into beautiful shareable images.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://carbon.now.sh" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="social" data-search="buffer schedule queue channels social media">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#ea580c">B</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://buffer.com" target="_blank" rel="noopener nofollow">Buffer</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">Scheduling</span><span class="pill pill-free">Free Plan</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">Schedule to three channels free with a clean queue and AI assistant.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://buffer.com" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="social" data-search="metricool analytics calendar schedule measure">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#f43f5e">M</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://metricool.com" target="_blank" rel="noopener nofollow">Metricool</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">Analytics</span><span class="pill pill-free">Free Plan</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">Plan, schedule and measure every network from one calendar.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://metricool.com" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="social" data-search="linktree bio link page analytics">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#10b981">L</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://linktr.ee" target="_blank" rel="noopener nofollow">Linktree</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">Bio Links</span><span class="pill pill-free">Free</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">The original link-in-bio page with basic analytics on the free tier.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://linktr.ee" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="social" data-search="typefully threads x twitter composer draft">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#334155">T</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://typefully.com" target="_blank" rel="noopener nofollow">Typefully</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">Writing · Threads</span><span class="pill pill-free">Free Tier</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">A distraction-free composer for X and Threads with scheduling.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://typefully.com" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+        <article class="tool-card" data-cat="social" data-search="later instagram tiktok visual scheduling grid">
+          <div class="flex items-center gap-3">
+            <div class="tool-icon" style="--tint:#6d28d9">L</div>
+            <div>
+              <h3 class="m-0 text-lg font-bold tracking-tight"><a class="text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400" href="https://later.com" target="_blank" rel="noopener nofollow">Later</a></h3>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="pill">Scheduling</span><span class="pill pill-free">Free Plan</span></div>
+            </div>
+          </div>
+          <p class="m-0 grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">Visual-first scheduling for Instagram and TikTok.</p>
+          <a class="text-sm font-semibold text-indigo-600 dark:text-indigo-400" href="https://later.com" target="_blank" rel="noopener nofollow">Visit →</a>
+        </article>
+
+      </div>
+
+      <p id="dir-empty" class="hidden py-12 text-center text-slate-400 dark:text-slate-500">No tools match — try a different keyword or category.</p>
+    </div>
+  </main>
+
+  <footer class="mt-14 border-t border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900/40">
+    <div class="wrap flex flex-wrap items-center justify-between gap-2 py-6 text-sm text-slate-400 dark:text-slate-500">
+      <span>© 2026 <a class="text-slate-600 hover:text-indigo-600 dark:text-slate-300" href="../">FreeToolsHub</a>. All rights reserved.</span>
+      <span>Styled with Tailwind CSS · Hosted on GitHub Pages</span>
+    </div>
+  </footer>
+
+</body>
+</html>
