@@ -51,5 +51,8 @@ disabled); all canonical, Open Graph and sitemap URLs point at the root site.
   the `data-cat` / `data-search` attributes so filtering works.
 - **Add a blog post**: create `blog/<post-slug>/index.html` (copy an existing post),
   add a card to `blog/index.html` and a `<url>` entry to `sitemap.xml`.
+- **Add a new page** (category, landing page, …): create `<folder>/index.html`
+  from an existing page's shell, link it from the nav/footer, and add a
+  `<url>` entry to `sitemap.xml` — every new page must be in the sitemap.
 - Tailwind classes are generated at runtime by the local `js/tailwindcss.js` —
   nothing to rebuild, just edit HTML and commit.

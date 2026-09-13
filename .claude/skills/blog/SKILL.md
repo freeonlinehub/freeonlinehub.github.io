@@ -117,7 +117,11 @@ you only ever edit HTML and commit.
    SEO=emerald, PDF=orange, Image=sky, Video=pink, Developer=teal,
    Social=violet — pick the nearest for new topics), `<h2>` title, 1–2 sentence
    description, `<span>` date · read time.
-2. `sitemap.xml`: add `<url><loc>…/blog/<slug>/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>`.
+2. `sitemap.xml`: add an entry for the new post, e.g.
+   `<url><loc>https://freeonlinehub.github.io/blog/<slug>/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>`.
+   This applies to **any new page anywhere on the site** — a new category page
+   or landing page must also get a matching `<url>` entry (use
+   `weekly`/`0.8` for category pages).
 3. Reciprocal internal links: open the 1–2 most related existing posts and add
    a link to the new post in their prose or "Related reading" grid (also update
    their `dateModified` only if you change body text).
