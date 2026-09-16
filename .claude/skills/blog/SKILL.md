@@ -21,7 +21,8 @@ you only ever edit HTML and commit.
    AI social publishing), Backlink Submit (https://backlinksubmit.com, free
    backlink database), SocialToPrompt (https://socialtoprompt.com, social video →
    AI prompt), VideosPrompt (https://videosprompt.org, AI video prompt
-   community) and SEONIB (https://seonib.com, AI blog automation).
+   community), SEONIB (https://seonib.com, AI blog automation) and
+   VideoEditorOnline (https://videoeditoronline.org, browser video editor).
 
 ## File & URL rules
 
@@ -70,8 +71,9 @@ you only ever edit HTML and commit.
       <a class="font-semibold" href="https://flownib.com" target="_blank" rel="noopener">FLOWNIB</a>,
       <a class="font-semibold" href="https://backlinksubmit.com" target="_blank" rel="noopener">Backlink Submit</a>,
       <a class="font-semibold" href="https://socialtoprompt.com" target="_blank" rel="noopener">SocialToPrompt</a>,
-      <a class="font-semibold" href="https://videosprompt.org" target="_blank" rel="noopener">VideosPrompt</a> and
-      <a class="font-semibold" href="https://seonib.com" target="_blank" rel="noopener">SEONIB</a>.
+      <a class="font-semibold" href="https://videosprompt.org" target="_blank" rel="noopener">VideosPrompt</a>,
+      <a class="font-semibold" href="https://seonib.com" target="_blank" rel="noopener">SEONIB</a> and
+      <a class="font-semibold" href="https://videoeditoronline.org" target="_blank" rel="noopener">VideoEditorOnline</a>.
       We label them “Editor’s Pick” and recommend third-party tools on merit.
     </aside>
     ```
