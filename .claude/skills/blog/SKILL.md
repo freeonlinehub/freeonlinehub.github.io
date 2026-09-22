@@ -16,13 +16,12 @@ you only ever edit HTML and commit.
    exists; do not duplicate topics.
 2. Read the newest post under `blog/` as the canonical template (structure,
    header/footer, meta, JSON-LD, prose wrapper).
-3. Confirm the site's own products so you can place them honestly:
-   VEONIB (https://veonib.com, AI product videos), FLOWNIB (https://flownib.com,
-   AI social publishing), Backlink Submit (https://backlinksubmit.com, free
-   backlink database), SocialToPrompt (https://socialtoprompt.com, social video →
-   AI prompt), VideosPrompt (https://videosprompt.org, AI video prompt
-   community), SEONIB (https://seonib.com, AI blog automation) and
-   VideoEditorOnline (https://videoeditoronline.org, browser video editor).
+3. Treat every tool as third-party: write the review from an independent
+   editorial voice. Never claim to have built the tool, never describe the
+   team behind it as yours, and never include a &ldquo;built by the same
+   team&rdquo; disclosure box — readers should see the recommendation as a
+   curation judgement, not ownership. Verify features on the tool's own
+   site before publishing.
 
 ## File & URL rules
 
@@ -62,21 +61,9 @@ you only ever edit HTML and commit.
   (JSON-LD); cite primary sources (official docs, changelogs, pricing pages) —
   these double as your authoritative external links.
 - **Trustworthiness**:
-  - Every post that mentions one of the four own products must include the
-    disclosure box inside the prose block (copy verbatim):
-    ```html
-    <aside class="not-prose my-6 rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-600 dark:border-slate-800 dark:bg-slate-900/40 dark:text-slate-400">
-      <strong>Disclosure:</strong> FreeToolsHub is built by the team behind
-      <a class="font-semibold" href="https://veonib.com" target="_blank" rel="noopener">VEONIB</a>,
-      <a class="font-semibold" href="https://flownib.com" target="_blank" rel="noopener">FLOWNIB</a>,
-      <a class="font-semibold" href="https://backlinksubmit.com" target="_blank" rel="noopener">Backlink Submit</a>,
-      <a class="font-semibold" href="https://socialtoprompt.com" target="_blank" rel="noopener">SocialToPrompt</a>,
-      <a class="font-semibold" href="https://videosprompt.org" target="_blank" rel="noopener">VideosPrompt</a>,
-      <a class="font-semibold" href="https://seonib.com" target="_blank" rel="noopener">SEONIB</a> and
-      <a class="font-semibold" href="https://videoeditoronline.org" target="_blank" rel="noopener">VideoEditorOnline</a>.
-      We label them “Editor’s Pick” and recommend third-party tools on merit.
-    </aside>
-    ```
+  - Never claim to have built, funded or owned the tool you're reviewing,
+    even when the publication and the tool share an operating team. Speak
+    as an independent editor.
   - Never invent statistics, reviews, or quotes. Dates are real; set
     `dateModified` when you revise an old post and update the visible
     "Updated …" line.
@@ -133,7 +120,8 @@ you only ever edit HTML and commit.
    a link to the new post in their prose or "Related reading" grid (also update
    their `dateModified` only if you change body text).
 4. FAQ + FAQPage JSON-LD present and matching; BlogPosting + BreadcrumbList present.
-5. Disclosure box present if own products are mentioned.
+5. Independent editorial voice — never imply ownership of, funding of or
+   insider access to any tool under review.
 6. Verify locally before pushing: serve the folder (`python3 -m http.server`),
    open the post, confirm no console errors, prose renders, TOC anchors jump,
    and every internal link resolves (no 404s). Then `git add`, commit with a
