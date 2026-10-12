@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Download YouTube Captions Without an Extension (No Install)</title>
+  <meta name="description" content="Three ways to get a YouTube caption file with zero browser extensions — a web tool, the transcript panel and yt-dlp — and why extensions are the worst trade.">
+  <link rel="canonical" href="https://freeonlinehub.github.io/blog/youtube-captions-downloader-without-extension/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="FreeToolsHub">
+  <meta property="og:title" content="Download YouTube Captions Without an Extension (No Install)">
+  <meta property="og:description" content="Three ways to get a YouTube caption file with zero browser extensions — a web tool, the transcript panel and yt-dlp — and why extensions are the worst trade.">
+  <meta property="og:url" content="https://freeonlinehub.github.io/blog/youtube-captions-downloader-without-extension/">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script src="../../js/tailwindcss.js"></script>
+  <script src="../../js/site.js"></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BlogPosting","headline":"Download YouTube Captions Without an Extension (No Install)","datePublished":"2026-10-12","dateModified":"2026-10-12","author":{"@type":"Organization","name":"FreeToolsHub"},"publisher":{"@type":"Organization","name":"FreeToolsHub","url":"https://freeonlinehub.github.io/"},"url":"https://freeonlinehub.github.io/blog/youtube-captions-downloader-without-extension/"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://freeonlinehub.github.io/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://freeonlinehub.github.io/blog/"},{"@type":"ListItem","position":3,"name":"Download YouTube Captions Without an Extension (No Install)","item":"https://freeonlinehub.github.io/blog/youtube-captions-downloader-without-extension/"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Can I download YouTube captions without installing an extension?","acceptedAnswer":{"@type":"Answer","text":"Yes. A browser caption downloader needs nothing installed: paste the video URL, choose a track and download SRT, VTT or TXT. YouTube's own transcript panel gives you text by copy-paste, and yt-dlp runs locally from a terminal. None of the three requires an extension."}},
+    {"@type":"Question","name":"Why should I avoid caption-download extensions?","acceptedAnswer":{"@type":"Answer","text":"To work, an extension needs permission to read and change data on the pages it touches, and many request all sites rather than just YouTube. Extensions can also be sold or updated later without the permission list changing. Saving four steps in a browser tool is not worth persistent access to your browsing."}},
+    {"@type":"Question","name":"Is a website safer than an extension for downloading captions?","acceptedAnswer":{"@type":"Answer","text":"Different risk, not zero risk. A web tool sees the URL you paste and nothing else about your session, then the tab closes and the access ends. An extension keeps access the whole time it is installed. Choose a tool that states plainly what it does — ours says no signup and no install on the homepage — and avoid any page that wants a Google sign-in for a public caption file."}},
+    {"@type":"Question","name":"What is the closest thing to an extension without installing one?","acceptedAnswer":{"@type":"Answer","text":"A bookmarklet or a userscript run from a manager such as Tampermonkey gives you a button on the YouTube page without a browser extension. Both are worth doing only if you download captions many times a day; for occasional use a web tool is faster to start and easier to walk away from."}}
+  ]}
+  </script>
+</head>
+<body class="bg-white font-sans text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100">
+
+  <header class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/80 backdrop-blur-md dark:border-slate-800/80 dark:bg-slate-950/80">
+    <div class="wrap flex h-16 items-center justify-between gap-3">
+      <a href="../../" class="flex flex-none items-center gap-2.5 text-lg font-extrabold tracking-tight text-slate-900 no-underline dark:text-white">
+        <span class="grid h-8 w-8 flex-none place-items-center rounded-[9px] bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 text-[13px] font-extrabold text-white shadow-md shadow-indigo-500/25">FT</span>
+        FreeTools<span class="text-indigo-600 dark:text-indigo-400">Hub</span>
+      </a>
+      <button data-nav-toggle aria-label="Toggle navigation" aria-expanded="false"
+        class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-slate-600 md:hidden dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">☰</button>
+      <nav data-nav class="main-nav">
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../ai-tools/">AI Tools</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../seo-tools/">SEO</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-image-tools/">Image</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-video-tools/">Video</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-pdf-tools/">PDF</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../developer-tools/">Developer</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../social-media-tools/">Social</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm font-semibold text-indigo-700 no-underline hover:bg-indigo-50 dark:text-indigo-300 dark:hover:bg-slate-800" href="../../free-tools/">Directory</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <article class="wrap mx-auto max-w-3xl">
+      <p class="crumbs"><a href="../">Blog</a> / Download YouTube Captions Without an Extension</p>
+      <h1 class="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">Download YouTube Captions Without an Extension (No Install Needed)</h1>
+      <p class="mt-2 text-sm text-slate-400 dark:text-slate-500">Published October 12, 2026 · 8 min read</p>
+
+      <div class="prose prose-slate mt-8 max-w-none dark:prose-invert prose-a:text-indigo-600 dark:prose-a:text-indigo-400">
+
+        <p>Somewhere in the search results for caption downloading, a browser extension started looking like the convenient option: a button appears in the YouTube player, you click, you get the file. It is convenient. It is also the only method that asks for permanent access to your browser to solve a problem that takes four steps once. Here are the three ways to download YouTube captions with nothing installed — plus the honest reasons you might still pick the extension anyway.</p>
+
+        <div class="toc not-prose rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm dark:border-slate-800 dark:bg-slate-900/40">
+          <strong class="text-slate-900 dark:text-slate-100">In this guide</strong>
+          <ol class="mt-1 space-y-1 text-slate-600 dark:text-slate-400">
+            <li><a href="#perms">What a caption extension actually asks for</a></li>
+            <li><a href="#web">Route 1: a browser caption downloader</a></li>
+            <li><a href="#panel">Route 2: the transcript panel and Ctrl+C</a></li>
+            <li><a href="#cli">Route 3: yt-dlp, local and no browser access</a></li>
+            <li><a href="#middle">The middle ground: bookmarklets and userscripts</a></li>
+            <li><a href="#choose">Choosing a route, and when an extension wins</a></li>
+            <li><a href="#faq">Frequently asked questions</a></li>
+          </ol>
+        </div>
+
+        <h2 id="perms">What a caption extension actually asks for</h2>
+        <p>Read the install prompt instead of clicking past it. To add a button inside the YouTube player, an extension needs permission to read and change data on the pages it runs on — and <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/host_permissions" target="_blank" rel="noopener">the reference documentation for the <code>host_permissions</code> manifest key</a> is clear about how wide that door is. Two things make the caption-download niche worse than it looks:</p>
+        <ul>
+          <li><strong>Scope creep in the manifest.</strong> A tool that only needs <code>youtube.com</code> often ships with <code>&lt;all_urls&gt;</code> so it can inject UI anywhere, phone home, or check ads. That is read-access to your banking tab, granted to a subtitle button.</li>
+          <li><strong>Ownership changes after install.</strong> Extensions get sold. The reviewed code you approved can be replaced by a new owner&rsquo;s build while the permissions stay exactly as they were, which is why the store started showing &ldquo;this extension has changed&rdquo; warnings at all.</li>
+        </ul>
+        <p>Set against that: the actual job is fetching a small text file that already exists publicly. Persistent access is a strange payment for a one-off download, and it&rsquo;s the reason no route below involves installing anything.</p>
+
+        <h2 id="web">Route 1: a browser caption downloader (the one we use)</h2>
+        <p>Open <a href="https://youtube-caption-downloader.com/" target="_blank" rel="noopener">YouTube Caption Downloader</a> in a tab, paste the video URL, and the page lists every caption track the video exposes — creator-uploaded manual captions, YouTube&rsquo;s auto-generated track, and translated versions — each downloadable as <strong>SRT, VTT or TXT</strong>. No extension, no desktop app, no account. The site states its own terms directly: no signup, free to use, and it works on public videos including Shorts and YouTube Music links. Our <a href="../youtube-caption-downloader-review/">full review</a> scores it and lists what it doesn&rsquo;t do.</p>
+        <p>What it gives you over the extension is containment. The access begins when you paste a URL and ends when you close the tab; there is nothing left running in your browser to update, get sold, or watch other sites. It&rsquo;s also identical on a work laptop where the store is blocked, on a Chromebook, on an iPad, and in a private window.</p>
+        <p>The two real limits of any web route: a single video at a time, and the fact that a third-party page learns which URL you asked about. If either matters to you, Route 2 or Route 3 below. For the four-step version of the workflow, see our guide to <a href="../download-captions-from-youtube-video-free/">downloading captions from a YouTube video for free</a>.</p>
+
+        <h2 id="panel">Route 2: the transcript panel and Ctrl+C</h2>
+        <p>The zero-dependency method. Under the description, <strong>Show transcript</strong> opens the caption text in a side panel; the panel&rsquo;s own menu lets you hide the timestamps, which you want before copying. Then select the text, copy, paste into a document, and you have a transcript with no tool, no site and no sign-in involved — the most private option of the three, because the only party involved is YouTube itself.</p>
+        <p>Why it isn&rsquo;t the default: it produces text, not a caption file. You can&rsquo;t get an SRT out of it, so it&rsquo;s useless for editing; and it degrades badly with length. On a 45-minute interview, copying the panel gives you rolled auto-caption segments repeated where they overlap, sentences split across lines and one speaker merged into another. Our walkthrough of <a href="../copy-all-captions-from-youtube-video/">how to copy all captions from a YouTube video</a> documents the whole manual process and the exact clean-up it needs, so read that before you spend twenty minutes selecting text.</p>
+
+        <h2 id="cli">Route 3: yt-dlp — nothing in the browser, everything on disk</h2>
+        <p>If your objection to extensions is &ldquo;I don&rsquo;t want a third party seeing my links&rdquo;, the answer isn&rsquo;t a web tool, it&rsquo;s a local program. <a href="https://github.com/yt-dlp/yt-dlp" target="_blank" rel="noopener">yt-dlp</a> is the open-source archiver maintained on GitHub; these flags pull captions and only captions:</p>
+        <pre><code>yt-dlp --skip-download --write-subs --write-auto-subs \
+       --sub-langs "en,es,ja" --convert-subs srt "VIDEO_URL"
+</code></pre>
+        <p>Your browser keeps its permissions clean, and this is the only route that does a playlist: point it at a playlist URL and you get a folder of .srt files. The trade-off is the setup — Python plus a terminal, the odd update when YouTube changes something, and no point-and-click interface. Desktop &ldquo;subtitle downloader&rdquo; apps are the same idea with a GUI, but they are a real install, usually a licence after a trial, and worth avoiding for a task you do twice a month.</p>
+
+        <h2 id="middle">The middle ground: bookmarklets and userscripts</h2>
+        <p>For people who genuinely want a button on the YouTube page without granting extension permissions, two things get close:</p>
+        <ul>
+          <li><strong>A bookmarklet</strong> — a snippet of JavaScript saved as a bookmark, run by clicking it on the video page. Nothing installed, nothing persistent, gone when you delete the bookmark. The catch is you have to trust code you pasted yourself, and it can&rsquo;t touch the page&rsquo;s network requests the way an extension can.</li>
+          <li><strong>A userscript</strong> in a manager such as Tampermonkey — more capable and closer to an extension in practice, but the manager itself is an extension with broad access, so you&rsquo;ve traded one permission problem for another.</li>
+        </ul>
+        <p>We&rsquo;d only bother with either if you download captions several times a day and the paste-a-URL step is what&rsquo;s slowing you down.</p>
+
+        <h2 id="choose">Choosing a route, and when an extension wins</h2>
+        <table>
+          <thead>
+            <tr><th scope="col">You want</th><th scope="col">Use</th><th scope="col">What you give up</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>A caption file, now, no install</td><td>Route 1: web tool</td><td>The URL is visible to a third-party page</td></tr>
+            <tr><td>Total privacy, no third party</td><td>Route 2: transcript panel</td><td>No SRT/VTT, and clean-up by hand</td></tr>
+            <tr><td>Whole playlists, local</td><td>Route 3: yt-dlp</td><td>Terminal setup and maintenance</td></tr>
+            <tr><td>A button inside the player</td><td>Extension</td><td>Standing browser permissions</td></tr>
+          </tbody>
+        </table>
+        <p>When does the extension actually win? Only in one shape: you download captions many times a day, you always work on the same browser, you&rsquo;ve read the manifest and it scopes to youtube.com, and you check the update notes. That&rsquo;s a legitimate workflow for a subtitling freelancer. For everyone else, a tab-based tool is faster to start and much easier to walk away from — and if you want the same thing to work beyond YouTube, compare it with the multi-platform extractor in our <a href="../youtube-subtitle-extractor/">YouTube subtitle extractor guide</a>. Everything we rate is in the <a href="../../free-video-tools/">free video tools</a> category and the main <a href="../../free-tools/">directory</a>.</p>
+
+        <h2 id="faq">Frequently asked questions</h2>
+        <h3>Can I download YouTube captions without installing an extension?</h3>
+        <p>Yes. A browser caption downloader needs nothing installed: paste the video URL, choose a track and download SRT, VTT or TXT. YouTube&rsquo;s own transcript panel gives you text by copy-paste, and <a href="https://github.com/yt-dlp/yt-dlp" target="_blank" rel="noopener">yt-dlp</a> runs locally from a terminal. None of the three requires an extension.</p>
+        <h3>Why should I avoid caption-download extensions?</h3>
+        <p>To work, an extension needs permission to read and change data on the pages it touches, and many request all sites rather than just YouTube. Extensions can also be sold or updated later without the permission list changing. Saving four steps in a browser tool is not worth persistent access to your browsing.</p>
+        <h3>Is a website safer than an extension for downloading captions?</h3>
+        <p>Different risk, not zero risk. A web tool sees the URL you paste and nothing else about your session, then the tab closes and the access ends. An extension keeps access the whole time it is installed. Choose a tool that states plainly what it does — <a href="https://youtube-caption-downloader.com/" target="_blank" rel="noopener">ours</a> says no signup and no install on the homepage — and avoid any page that wants a Google sign-in for a public caption file.</p>
+        <h3>What is the closest thing to an extension without installing one?</h3>
+        <p>A bookmarklet or a userscript run from a manager such as Tampermonkey gives you a button on the YouTube page without a browser extension. Both are worth doing only if you download captions many times a day; for occasional use a web tool is faster to start and easier to walk away from.</p>
+
+      </div>
+
+      <section class="mx-auto mt-12 max-w-3xl">
+        <h2 class="text-xl font-extrabold tracking-tight">Related reading</h2>
+        <div class="mt-4 grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <a class="post-card" href="../download-youtube-captions-without-signing-in/">
+            <span class="text-xs font-bold uppercase tracking-wider text-pink-600 dark:text-pink-400">Video Tools</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">Download YouTube Captions Without Signing In to Google</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">The other permission question: why no login is required for public captions, and which sites are quietly harvesting one.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 12, 2026 · 7 min read</span>
+          </a>
+          <a class="post-card" href="../youtube-caption-downloader-review/">
+            <span class="text-xs font-bold uppercase tracking-wider text-pink-600 dark:text-pink-400">Video Tools</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">YouTube Caption Downloader Review: Free SRT, VTT &amp; TXT Downloads</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">The scored review of the no-install tool recommended above, with its real limits spelled out.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 9, 2026 · 7 min read</span>
+          </a>
+          <a class="post-card" href="../free-youtube-caption-downloader-online/">
+            <span class="text-xs font-bold uppercase tracking-wider text-pink-600 dark:text-pink-400">Video Tools</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">Free YouTube Caption Downloader Online: 5 Ways That Work</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">All five methods side by side, including the Data API route almost nobody should use.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 12, 2026 · 9 min read</span>
+          </a>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="mt-14 border-t border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900/40">
+    <div class="wrap flex flex-wrap items-center justify-between gap-2 py-6 text-sm text-slate-400 dark:text-slate-500">
+      <span>© 2026 <a class="text-slate-600 hover:text-indigo-600 dark:text-slate-300" href="../../">FreeToolsHub</a>. All rights reserved.</span>
+      <span>Business inquiries: <a class="text-slate-600 hover:text-indigo-600 dark:text-slate-300" href="mailto:hello@veonib.com">hello@veonib.com</a></span>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>YouTube Caption Extractor With Timestamps (SRT &amp; VTT)</title>
+  <meta name="description" content="Extract YouTube captions with every cue's start and end time intact: SRT vs VTT anatomy, editor import, drift fixes and shifting timings after a re-cut.">
+  <link rel="canonical" href="https://freeonlinehub.github.io/blog/youtube-caption-extractor-with-timestamps/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="FreeToolsHub">
+  <meta property="og:title" content="YouTube Caption Extractor With Timestamps (SRT &amp; VTT)">
+  <meta property="og:description" content="Extract YouTube captions with every cue's start and end time intact: SRT vs VTT anatomy, editor import, drift fixes and shifting timings after a re-cut.">
+  <meta property="og:url" content="https://freeonlinehub.github.io/blog/youtube-caption-extractor-with-timestamps/">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script src="../../js/tailwindcss.js"></script>
+  <script src="../../js/site.js"></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BlogPosting","headline":"YouTube Caption Extractor With Timestamps (SRT & VTT)","datePublished":"2026-10-12","dateModified":"2026-10-12","author":{"@type":"Organization","name":"FreeToolsHub"},"publisher":{"@type":"Organization","name":"FreeToolsHub","url":"https://freeonlinehub.github.io/"},"url":"https://freeonlinehub.github.io/blog/youtube-caption-extractor-with-timestamps/"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://freeonlinehub.github.io/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://freeonlinehub.github.io/blog/"},{"@type":"ListItem","position":3,"name":"YouTube Caption Extractor With Timestamps (SRT & VTT)","item":"https://freeonlinehub.github.io/blog/youtube-caption-extractor-with-timestamps/"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"How do I download YouTube captions with timestamps?","acceptedAnswer":{"@type":"Answer","text":"Choose SRT or VTT instead of TXT when you extract the track. Both keep every cue's start and end time; TXT is the format that throws the timings away. The same caption track is available in all three, so you can download both versions in seconds with a caption extractor."}},
+    {"@type":"Question","name":"What is the difference between SRT and VTT timestamps?","acceptedAnswer":{"@type":"Answer","text":"SRT writes milliseconds after a comma, as 00:01:23,456, and numbers every cue. VTT writes them after a dot, as 00:01:23.456, starts with a WEBVTT header and allows optional cue identifiers plus styling markup. The cue timings mean the same thing; the punctuation and the surrounding syntax differ."}},
+    {"@type":"Question","name":"Why are my extracted captions out of sync in the editor?","acceptedAnswer":{"@type":"Answer","text":"Almost always because the footage you edited is not the same timeline the captions were written against. Cutting material out near the start shifts everything after it, and the drift grows across the video. Shift the whole file by a fixed offset if the cut is at the top, or re-time it against your edit if there are many cuts."}},
+    {"@type":"Question","name":"Do timestamps survive if I convert an SRT to plain text?","acceptedAnswer":{"@type":"Answer","text":"No — that is the point of the conversion. Keep the SRT alongside the TXT so you can always find where something was said, and treat the text file as a working copy rather than the original."}}
+  ]}
+  </script>
+</head>
+<body class="bg-white font-sans text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100">
+
+  <header class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/80 backdrop-blur-md dark:border-slate-800/80 dark:bg-slate-950/80">
+    <div class="wrap flex h-16 items-center justify-between gap-3">
+      <a href="../../" class="flex flex-none items-center gap-2.5 text-lg font-extrabold tracking-tight text-slate-900 no-underline dark:text-white">
+        <span class="grid h-8 w-8 flex-none place-items-center rounded-[9px] bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 text-[13px] font-extrabold text-white shadow-md shadow-indigo-500/25">FT</span>
+        FreeTools<span class="text-indigo-600 dark:text-indigo-400">Hub</span>
+      </a>
+      <button data-nav-toggle aria-label="Toggle navigation" aria-expanded="false"
+        class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-slate-600 md:hidden dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">☰</button>
+      <nav data-nav class="main-nav">
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../ai-tools/">AI Tools</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../seo-tools/">SEO</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-image-tools/">Image</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-video-tools/">Video</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-pdf-tools/">PDF</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../developer-tools/">Developer</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../social-media-tools/">Social</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm font-semibold text-indigo-700 no-underline hover:bg-indigo-50 dark:text-indigo-300 dark:hover:bg-slate-800" href="../../free-tools/">Directory</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <article class="wrap mx-auto max-w-3xl">
+      <p class="crumbs"><a href="../">Blog</a> / YouTube Caption Extractor With Timestamps</p>
+      <h1 class="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">YouTube Caption Extractor With Timestamps: Getting SRT and VTT Files That Line Up</h1>
+      <p class="mt-2 text-sm text-slate-400 dark:text-slate-500">Published October 12, 2026 · 9 min read</p>
+
+      <div class="prose prose-slate mt-8 max-w-none dark:prose-invert prose-a:text-indigo-600 dark:prose-a:text-indigo-400">
+
+        <p>Most caption advice stops at &ldquo;download the SRT&rdquo;. The part that actually costs people time comes after that: why a file with perfect text still lands out of sync in the editor, what <code>00:01:23,456 --&gt; 00:01:25,902</code> is promising you, and how to shift a thousand cues by two seconds without opening a subtitle editor. This is the timestamp side of extraction — the cue format, the import, and the three kinds of drift with their fixes.</p>
+
+        <div class="toc not-prose rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm dark:border-slate-800 dark:bg-slate-900/40">
+          <strong class="text-slate-900 dark:text-slate-100">In this guide</strong>
+          <ol class="mt-1 space-y-1 text-slate-600 dark:text-slate-400">
+            <li><a href="#why">Why the timestamps are the valuable half</a></li>
+            <li><a href="#anatomy">Anatomy of a cue: SRT vs VTT</a></li>
+            <li><a href="#extract">Extracting the timed file</a></li>
+            <li><a href="#import">Getting it into an editor or player</a></li>
+            <li><a href="#drift">Three kinds of drift, and the fix for each</a></li>
+            <li><a href="#hunt">Clip hunting with a timed transcript</a></li>
+            <li><a href="#both">Keeping both versions</a></li>
+            <li><a href="#faq">Frequently asked questions</a></li>
+          </ol>
+        </div>
+
+        <h2 id="why">Why the timestamps are the valuable half</h2>
+        <p>A plain-text transcript tells you <em>what</em> was said. A timed caption file also tells you <em>when</em>, and that turns the file into a tool:</p>
+        <ul>
+          <li><strong>Cue-level search.</strong> Grep the SRT for a phrase, read the line above it, jump straight to that moment — on a two-hour conference talk this is the difference between ten seconds and an afternoon.</li>
+          <li><strong>Editor-ready subtitles.</strong> Nobody hand-types timings any more; you import the file and adjust.</li>
+          <li><strong>Clips and quotes.</strong> Start and end times are the in and out points for the short you want to cut.</li>
+          <li><strong>Citations.</strong> &ldquo;At 14:32&rdquo; is a verifiable reference; &ldquo;somewhere in the middle&rdquo; is not.</li>
+        </ul>
+        <p>That&rsquo;s why we&rsquo;d pick SRT over TXT even for reading, and derive the text when we want it — the timings are the part you can&rsquo;t reconstruct afterwards.</p>
+
+        <h2 id="anatomy">Anatomy of a cue: SRT vs VTT</h2>
+        <p>Both formats are a list of cues. Here&rsquo;s the same moment in each — the whole difference is punctuation and headers:</p>
+        <pre><code>1
+00:01:23,456 --&gt; 00:01:25,902
+So the first thing we had to solve was
+the retry loop.
+
+---
+
+WEBVTT
+
+00:01:23.456 --&gt; 00:01:25.902
+So the first thing we had to solve was
+the retry loop.
+</code></pre>
+        <p><em>The first block is SRT — index line, then the comma-millisecond range. The second is VTT — <code>WEBVTT</code> header, no index, dot-milliseconds.</em></p>
+        <ul>
+          <li><strong>SRT</strong> — a mandatory incrementing index, milliseconds after a <strong>comma</strong>, no header. <a href="https://en.wikipedia.org/wiki/SubRip" target="_blank" rel="noopener">The SubRip format reference</a> covers the dialect variations you&rsquo;ll meet in the wild. Universally accepted by editors and players, which makes it the safe default.</li>
+          <li><strong>VTT</strong> — a required <code>WEBVTT</code> header, milliseconds after a <strong>dot</strong>, optional cue identifiers, and real styling/positioning extensions on top. It&rsquo;s the <a href="https://www.w3.org/TR/webvtt1/" target="_blank" rel="noopener">W3C format designed for the HTML5 &lt;track&gt; element</a>, so it&rsquo;s what a web player wants.</li>
+          <li><strong>TXT</strong> — the words with all of the above deleted. Great to read; useless for timing.</li>
+        </ul>
+        <p>One subtlety that causes real bugs: neither format stores a frame rate. Cue times are wall-clock seconds from the start of the media, so a caption file made against a 25 fps master and dropped onto a 23.976 fps export will drift gradually — see <a href="#drift">drift</a> below.</p>
+
+        <h2 id="extract">Extracting the timed file</h2>
+        <p>Paste the video URL into <a href="https://youtube-caption-downloader.com/" target="_blank" rel="noopener">YouTube Caption Downloader</a>, take the track list, and choose <strong>SRT</strong> or <strong>VTT</strong> rather than TXT. Manual, auto-generated and translated tracks are all available in the timed formats; the tool is free with no signup and no install, and it works on Shorts and YouTube Music links too. If you want the process written out step by step, it&rsquo;s in <a href="../download-captions-from-youtube-video-free/">how to download captions from a YouTube video for free</a>; the tool&rsquo;s strengths and its two deliberate gaps are in our <a href="../youtube-caption-downloader-review/">review</a>.</p>
+        <p>For timed extraction specifically, three checks before you take the file to an editor:</p>
+        <ol>
+          <li><strong>Track kind.</strong> An auto-generated track arrives with cue boundaries that follow the speech recogniser&rsquo;s breathing, not the speaker&rsquo;s. Manual tracks are punctuated and much better behaved in a lower third.</li>
+          <li><strong>Line count sanity.</strong> A 10-minute talk should yield several hundred cues. A handful means you got a partial or translated track — or that something failed silently.</li>
+          <li><strong>First and last timecode.</strong> The last cue should sit near the video&rsquo;s duration. If it stops at 04:12 on a 40-minute video, you have a truncated file and should re-extract.</li>
+        </ol>
+
+        <h2 id="import">Getting it into an editor or player</h2>
+        <ul>
+          <li><strong>Premiere Pro / DaVinci Resolve / Final Cut:</strong> import the SRT as a subtitle/caption track, then convert to burned-in titles or render it as an open caption track. Resolve reads SRT under Audio &gt; Import; Premiere puts it on a new captions track.</li>
+          <li><strong>CapCut and the short-form apps:</strong> all take SRT for auto-caption alignment, which is the fastest path from a long talk to subtitled vertical clips.</li>
+          <li><strong>Browser editors:</strong> no install and no upload of the source footage — our <a href="../videoeditoronline-review/">VideoEditorOnline review</a> covers burning SRTs in from the browser.</li>
+          <li><strong>VLC / mpv / Plex:</strong> drop the SRT next to the media file with a matching name, or load it as a subtitle track.</li>
+          <li><strong>A website:</strong> use VTT and reference it from the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/track" target="_blank" rel="noopener">HTML5 &lt;track&gt; element</a>. Browsers want the .vtt extension and a served <code>text/vtt</code> content type; converting SRT→VTT takes one command with <a href="https://github.com/yt-dlp/yt-dlp" target="_blank" rel="noopener">yt-dlp</a> (<code>--convert-subs vtt</code>) or any subtitle converter.</li>
+        </ul>
+        <p>Note that the video you cut and the captions you extracted both start at zero on <em>their own</em> timelines. If YouTube&rsquo;s version has an intro, sponsor card or a channel bumper that your edit removed, that difference is the whole sync problem — which is the next section.</p>
+
+        <h2 id="drift">Three kinds of drift, and the fix for each</h2>
+        <table>
+          <thead>
+            <tr><th scope="col">Symptom</th><th scope="col">Cause</th><th scope="col">Fix</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Out by the same amount from the first line to the last</td><td>Something added or removed at the very top (bumper, black frames)</td><td>Shift the whole file by a constant offset</td></tr>
+            <tr><td>Perfect at the start, worse as it goes</td><td>Cuts removed from the middle, or a frame-rate mismatch</td><td>Re-time against your edit (two sync points, or re-transcribe)</td></tr>
+            <tr><td>Right text, wrong length on screen</td><td>Auto-caption cues written for reading speed, not your pacing</td><td>Adjust cue durations, or split/merge cues in a subtitle editor</td></tr>
+          </tbody>
+        </table>
+        <p><strong>Constant offset.</strong> The one-liner people reach for is ffmpeg&rsquo;s input offset — test it on a short clip first, since it rewrites the timing lines rather than tagging them:</p>
+        <pre><code>ffmpeg -itsoffset 2.5 -i in.srt out.srt
+</code></pre>
+        <p>Or do it in a subtitle editor with an explicit &ldquo;shift by&rdquo; control: Aegisub and the open-source Subtitle Edit both shift all cues, and Subtitle Edit can point-sync a file against another. If you&rsquo;d rather not install anything for a one-off shift, a few lines of Python over the timecode lines will do it — but keep a copy of the original extract.</p>
+        <p><strong>Growing drift.</strong> A fixed offset can&rsquo;t fix this one, because different parts of the file need different shifts. Two options: re-time against your edit at several sync points (Subtitle Edit&rsquo;s point sync exists for exactly this), or accept the honest answer — captions extracted from the platform&rsquo;s copy of a video are timed for <em>that</em> copy, and a heavily re-cut edit deserves captions re-made against the edit.</p>
+        <p><strong>Frame-rate drift.</strong> If you conform 25 fps source to 23.976 fps, wall-clock timings stretch by about 4%. Long videos show it as a second or two of lag by the end. Conforming the media, not editing the subtitle file, is the clean fix.</p>
+
+        <h2 id="hunt">Clip hunting with a timed transcript</h2>
+        <p>The workflow we use most from this page, because it&rsquo;s the one people don&rsquo;t expect: download the <strong>SRT</strong>, open it in a plain text editor, and search for the phrase rather than the timestamp. Every hit shows you its own in-point on the line above, so a &ldquo;find every moment where the guest mentions pricing&rdquo; pass takes a couple of minutes and gives you a list of candidate clips with start and end times already written down. It&rsquo;s also the fastest way to see a video&rsquo;s structure without watching it — which cue repeats, where the energy is, what got said twice.</p>
+        <p>Pair it with the untimed version for reading: our guide to <a href="../youtube-subtitle-text-extractor-online/">extracting subtitle text</a> covers turning the same track into clean prose, and <a href="../save-youtube-captions-to-text-file/">saving captions to a .txt</a> covers converting an SRT you already have.</p>
+
+        <h2 id="both">Keeping both versions</h2>
+        <p>Extract the timed and untimed files in the same session — it costs ten seconds each and they answer different questions later. Name them as a pair with the video ID so nothing gets mixed across a project: <code>kubecon-keynote-VIDEOID.srt</code> and <code>kubecon-keynote-VIDEOID.txt</code>. If you only keep one, keep the <strong>SRT</strong>: text is derivable from timings, timings are not derivable from text. And if the file is going to burn into a video you&rsquo;ll publish, remember that an automatic track full of mangled names is a public embarrassment — fix the words before you render, or upload a corrected manual track to your own video instead.</p>
+
+        <h2 id="faq">Frequently asked questions</h2>
+        <h3>How do I download YouTube captions with timestamps?</h3>
+        <p>Choose SRT or VTT instead of TXT when you extract the track. Both keep every cue&rsquo;s start and end time; TXT is the format that throws the timings away. The same caption track is available in all three, so you can download both versions in seconds with <a href="https://youtube-caption-downloader.com/" target="_blank" rel="noopener">a caption extractor</a>.</p>
+        <h3>What is the difference between SRT and VTT timestamps?</h3>
+        <p>SRT writes milliseconds after a comma, as 00:01:23,456, and numbers every cue. VTT writes them after a dot, as 00:01:23.456, starts with a WEBVTT header and allows optional cue identifiers plus styling markup. The cue timings mean the same thing; the punctuation and the surrounding syntax differ.</p>
+        <h3>Why are my extracted captions out of sync in the editor?</h3>
+        <p>Almost always because the footage you edited is not the same timeline the captions were written against. Cutting material out near the start shifts everything after it, and the drift grows across the video. Shift the whole file by a fixed offset if the cut is at the top, or re-time it against your edit if there are many cuts.</p>
+        <h3>Do timestamps survive if I convert an SRT to plain text?</h3>
+        <p>No — that is the point of the conversion. Keep the SRT alongside the TXT so you can always find where something was said, and treat the text file as a working copy rather than the original. The <a href="../save-youtube-captions-to-text-file/">text-file guide</a> has the exact find-and-replace patterns.</p>
+
+      </div>
+
+      <section class="mx-auto mt-12 max-w-3xl">
+        <h2 class="text-xl font-extrabold tracking-tight">Related reading</h2>
+        <div class="mt-4 grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <a class="post-card" href="../youtube-caption-downloader-review/">
+            <span class="text-xs font-bold uppercase tracking-wider text-pink-600 dark:text-pink-400">Video Tools</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">YouTube Caption Downloader Review: Free SRT, VTT &amp; TXT Downloads</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">What the extractor returns for each track type, and the two things it deliberately doesn't do.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 9, 2026 · 7 min read</span>
+          </a>
+          <a class="post-card" href="../videoeditoronline-review/">
+            <span class="text-xs font-bold uppercase tracking-wider text-pink-600 dark:text-pink-400">Video Tools</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">VideoEditorOnline Review: A Free Browser Video Editor</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">Where a freshly extracted SRT gets burned into the cut — in the browser, without uploading footage.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Sep 16, 2026 · 8 min read</span>
+          </a>
+          <a class="post-card" href="../extract-captions-from-youtube-video-online/">
+            <span class="text-xs font-bold uppercase tracking-wider text-pink-600 dark:text-pink-400">Video Tools</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">How to Extract Captions From a YouTube Video Online</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">The extraction itself: track inventories, manual vs auto vs translated, and what to do next.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 12, 2026 · 8 min read</span>
+          </a>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="mt-14 border-t border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900/40">
+    <div class="wrap flex flex-wrap items-center justify-between gap-2 py-6 text-sm text-slate-400 dark:text-slate-500">
+      <span>© 2026 <a class="text-slate-600 hover:text-indigo-600 dark:text-slate-300" href="../../">FreeToolsHub</a>. All rights reserved.</span>
+      <span>Business inquiries: <a class="text-slate-600 hover:text-indigo-600 dark:text-slate-300" href="mailto:hello@veonib.com">hello@veonib.com</a></span>
+    </div>
+  </footer>
+
+</body>
+</html>

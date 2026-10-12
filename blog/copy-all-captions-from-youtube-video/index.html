@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How to Copy All Captions From a YouTube Video</title>
+  <meta name="description" content="Every way to copy the complete caption text out of a YouTube video — transcript panel, DevTools, one-click download — and the clean-up each one needs.">
+  <link rel="canonical" href="https://freeonlinehub.github.io/blog/copy-all-captions-from-youtube-video/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="FreeToolsHub">
+  <meta property="og:title" content="How to Copy All Captions From a YouTube Video">
+  <meta property="og:description" content="Every way to copy the complete caption text out of a YouTube video — transcript panel, DevTools, one-click download — and the clean-up each one needs.">
+  <meta property="og:url" content="https://freeonlinehub.github.io/blog/copy-all-captions-from-youtube-video/">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script src="../../js/tailwindcss.js"></script>
+  <script src="../../js/site.js"></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BlogPosting","headline":"How to Copy All Captions From a YouTube Video","datePublished":"2026-10-12","dateModified":"2026-10-12","author":{"@type":"Organization","name":"FreeToolsHub"},"publisher":{"@type":"Organization","name":"FreeToolsHub","url":"https://freeonlinehub.github.io/"},"url":"https://freeonlinehub.github.io/blog/copy-all-captions-from-youtube-video/"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://freeonlinehub.github.io/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://freeonlinehub.github.io/blog/"},{"@type":"ListItem","position":3,"name":"How to Copy All Captions From a YouTube Video","item":"https://freeonlinehub.github.io/blog/copy-all-captions-from-youtube-video/"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"How do I copy all captions from a YouTube video at once?","acceptedAnswer":{"@type":"Answer","text":"Open the transcript under the description, hide timestamps from the panel's own menu, then select the text in the panel and copy it. There is no select-all-and-download inside YouTube, so a long video means scrolling and copying in passes — or downloading the track from a caption tool instead."}},
+    {"@type":"Question","name":"Why did my copied transcript miss part of the video?","acceptedAnswer":{"@type":"Answer","text":"The transcript panel is a scrolling region rather than a document, so a selection can silently stop where the rendered portion ends. Copying in two or three passes and comparing the word count against the video length catches it. That class of silent truncation is the main reason we prefer a download."}},
+    {"@type":"Question","name":"Can I copy captions from an embedded YouTube player?","acceptedAnswer":{"@type":"Answer","text":"Usually not. Many embeds turn off the transcript panel and information buttons, so the caption text isn't exposed in the page. Go to the video on youtube.com itself — click the title or open the embed's video ID — and work from there."}},
+    {"@type":"Question","name":"Is copying captions the same as downloading them?","acceptedAnswer":{"@type":"Answer","text":"You get the same words either way. Copying gives you a block of text in your clipboard that needs cleaning, while downloading gives you a file in TXT, SRT or VTT straight from the track, with timings available if you want them. For anything longer than a few minutes, download."}}
+  ]}
+  </script>
+</head>
+<body class="bg-white font-sans text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100">
+
+  <header class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/80 backdrop-blur-md dark:border-slate-800/80 dark:bg-slate-950/80">
+    <div class="wrap flex h-16 items-center justify-between gap-3">
+      <a href="../../" class="flex flex-none items-center gap-2.5 text-lg font-extrabold tracking-tight text-slate-900 no-underline dark:text-white">
+        <span class="grid h-8 w-8 flex-none place-items-center rounded-[9px] bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 text-[13px] font-extrabold text-white shadow-md shadow-indigo-500/25">FT</span>
+        FreeTools<span class="text-indigo-600 dark:text-indigo-400">Hub</span>
+      </a>
+      <button data-nav-toggle aria-label="Toggle navigation" aria-expanded="false"
+        class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-slate-600 md:hidden dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">☰</button>
+      <nav data-nav class="main-nav">
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../ai-tools/">AI Tools</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../seo-tools/">SEO</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-image-tools/">Image</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-video-tools/">Video</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-pdf-tools/">PDF</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../developer-tools/">Developer</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../social-media-tools/">Social</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm font-semibold text-indigo-700 no-underline hover:bg-indigo-50 dark:text-indigo-300 dark:hover:bg-slate-800" href="../../free-tools/">Directory</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <article class="wrap mx-auto max-w-3xl">
+      <p class="crumbs"><a href="../">Blog</a> / How to Copy All Captions From a YouTube Video</p>
+      <h1 class="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">How to Copy All Captions From a YouTube Video</h1>
+      <p class="mt-2 text-sm text-slate-400 dark:text-slate-500">Published October 12, 2026 · 8 min read</p>
+
+      <div class="prose prose-slate mt-8 max-w-none dark:prose-invert prose-a:text-indigo-600 dark:prose-a:text-indigo-400">
+
+        <p>&ldquo;Copy all captions&rdquo; is the search that starts with the transcript panel and ends with someone scrolling, highlighting and swearing at minute forty of a lecture. The text really is on the page — but it sits in a scrolling region with no select-all, no export and no warning when your selection stops short. Here are the three ways to get the complete caption text out, what each one silently costs you, and the clean-up every method still needs.</p>
+
+        <div class="toc not-prose rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm dark:border-slate-800 dark:bg-slate-900/40">
+          <strong class="text-slate-900 dark:text-slate-100">In this guide</strong>
+          <ol class="mt-1 space-y-1 text-slate-600 dark:text-slate-400">
+            <li><a href="#all">Why &ldquo;all&rdquo; is the hard part</a></li>
+            <li><a href="#panel">Method 1: the transcript panel</a></li>
+            <li><a href="#devtools">Method 2: the browser&rsquo;s network tab</a></li>
+            <li><a href="#tool">Method 3: download the track</a></li>
+            <li><a href="#clean">Cleaning what you copied</a></li>
+            <li><a href="#choose">Which method, by length and situation</a></li>
+            <li><a href="#faq">Frequently asked questions</a></li>
+          </ol>
+        </div>
+
+        <h2 id="all">Why &ldquo;all&rdquo; is the hard part</h2>
+        <p>Copying one caption is easy — you can read them on screen. Copying <em>every</em> caption without losing a chunk is where three things get in the way:</p>
+        <ul>
+          <li><strong>Virtual scrolling.</strong> The transcript panel renders only part of its contents at a time. A selection can end where the rendered portion ends, and nothing tells you. This is the classic &ldquo;my transcript stops at 08:30&rdquo; bug, and it isn&rsquo;t a download failure — it&rsquo;s a clipboard one.</li>
+          <li><strong>Timestamp prefixes.</strong> Leave them on and your pasted text is riddled with <code>0:14</code> fragments that break sentence detection later. There is a toggle in the panel&rsquo;s menu, but it isn&rsquo;t applied consistently by every browser when you copy.</li>
+          <li><strong>Rolling duplicate cues.</strong> Automatic captioning re-sends the tail of a segment as new words arrive, so the copied text repeats clauses two or three times. It looks like a copy error; it&rsquo;s the track as it was made.</li>
+        </ul>
+        <p>All three are mechanical, all three are fixable, and all three are the reason most people end up downloading the track instead. If you just want the words and a video of any length is involved, <a href="#tool">Method 3</a> is the honest recommendation and the rest of this section is for people who need to stay inside YouTube.</p>
+
+        <h2 id="panel">Method 1: the transcript panel (no tools, copy-paste)</h2>
+        <ol>
+          <li>Under the description, expand it and click <strong>Show transcript</strong>. Nothing to install and no third party sees the link.</li>
+          <li>Open the panel&rsquo;s three-dot menu and <strong>turn timestamps off</strong> if the option is present in your browser — it makes the paste far easier to clean.</li>
+          <li><strong>Click into the panel, then select with Shift and the mouse rather than Ctrl/Cmd+A.</strong> Select-all on the page grabs the title, comments and player chrome too; dragging from the first line to the last keeps it to the text you want.</li>
+          <li>For anything over about fifteen minutes, <strong>copy in two or three passes</strong> — top third, middle, bottom — pasting each into a document as you go. Then read the seam: if a sentence ends mid-thought at a paste boundary, you scrolled too fast between passes.</li>
+          <li><strong>Verify completeness by length.</strong> Conversational English is roughly 140–160 words a minute, so a 20-minute talk should land near 3,000 words. If your paste is 900, you have a partial copy — not a short transcript.</li>
+        </ol>
+        <p>Where this method dies: long videos (seam-checking is slow and error-prone), translated tracks (the panel shows one language, reached through a different menu), anything you want timings for, and a lot of embeds — many third-party players switch off the transcript panel and the information buttons entirely, so go to the video on youtube.com itself.</p>
+
+        <h2 id="devtools">Method 2: the browser&rsquo;s network tab</h2>
+        <p>The method that keeps circulating in forum answers: open DevTools, filter the network log for the caption request YouTube&rsquo;s player makes, and read the response. Technically it is the same data the player is drawing from — <a href="https://support.google.com/youtube/answer/2734796" target="_blank" rel="noopener">caption tracks</a> served to the client — and some responses arrive <a href="https://en.wikipedia.org/wiki/Base64" target="_blank" rel="noopener">encoded</a>, which is the second thing people trip on after finding the request.</p>
+        <p>We don&rsquo;t recommend it, for reasons that have nothing to do with difficulty:</p>
+        <ul>
+          <li>The request and its parameters change without notice, and answers written against one version break for everyone else. We&rsquo;ve watched the same recipe stop working between two videos in one sitting.</li>
+          <li>Caption requests are rate-limited, so repeating them while you experiment gets you empty responses that look like &ldquo;this video has no captions&rdquo;.</li>
+          <li>You still end up with raw markup to clean — which is the work Method 3 skips.</li>
+        </ul>
+        <p>Legitimate use case: you&rsquo;re debugging your own player integration and want to see what the page actually loads. Otherwise treat it as a curiosity.</p>
+
+        <h2 id="tool">Method 3: download the whole track (the one that guarantees &ldquo;all&rdquo;)</h2>
+        <p>This is what we actually do, because it&rsquo;s the only method where completeness isn&rsquo;t your problem. Paste the video URL into <a href="https://youtube-caption-downloader.com/" target="_blank" rel="noopener">YouTube Caption Downloader</a>, pick the track — manual, auto-generated or translated — and download <strong>TXT</strong> for the words, or SRT/VTT if you want the times with them. The file contains the whole track, in order, with no seams to check; there&rsquo;s no signup, no install and no download limit, and it handles Shorts and YouTube Music links the same as regular videos. The full assessment is in our <a href="../youtube-caption-downloader-review/">review of the tool</a>, and the underlying why — tracks are separate assets attached to the video — is explained in <a href="../extract-captions-from-youtube-video-online/">how caption extraction works</a>.</p>
+        <p>Pick this route when the video is longer than about ten minutes, when you need a specific language or translation, when you need timestamps, or when you&rsquo;re doing it more than once a week. Method 1 still wins when you want one quote and refuse to involve a third-party page.</p>
+
+        <h2 id="clean">Cleaning what you copied</h2>
+        <p>Whether it came from the panel or a TXT download, pasted caption text needs the same four passes:</p>
+        <ol>
+          <li><strong>Strip stray timestamps</strong> left over from the panel: search and delete patterns like <code>^\d{1,2}:\d{2}$</code> on their own lines.</li>
+          <li><strong>Remove duplicated consecutive lines</strong> — regex <code>^(.+)\n\1$</code> replaced with <code>$1</code>, run until the match count stops falling. This is the rolling-cue artefact, and it&rsquo;s the single biggest readability win.</li>
+          <li><strong>Rejoin the fragments.</strong> Caption cues break lines every few words; join them into paragraphs and break at sentence ends instead.</li>
+          <li><strong>Fix the names.</strong> Scan for the proper nouns, numbers and product names an automatic track got wrong. If the copy is going anywhere public, this is not optional.</li>
+        </ol>
+        <p>More patterns, including the SRT→TXT conversion, are in our <a href="../youtube-subtitle-text-extractor-online/">subtitle text extractor guide</a> and <a href="../save-youtube-captions-to-text-file/">saving captions to a text file</a>.</p>
+
+        <h2 id="choose">Which method, by length and situation</h2>
+        <table>
+          <thead>
+            <tr><th scope="col">Situation</th><th scope="col">Best route</th><th scope="col">Skip because</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>A quote from a 5-minute video</td><td>Transcript panel</td><td>Downloading is overkill</td></tr>
+            <tr><td>Full text of a 40-minute talk</td><td>Download TXT</td><td>Seam-checking a manual copy takes longer than the download</td></tr>
+            <tr><td>Timestamps needed too</td><td>Download SRT</td><td>The panel won&rsquo;t give you a file — see our <a href="../youtube-caption-extractor-with-timestamps/">timestamp guide</a></td></tr>
+            <tr><td>A language not in the panel</td><td>Download the translated track</td><td>Panel shows one language at a time</td></tr>
+            <tr><td>Video is inside someone&rsquo;s embed</td><td>Open it on youtube.com first</td><td>Embeds often disable the panel</td></tr>
+            <tr><td>No third party may see the link</td><td>Panel, or <a href="https://github.com/yt-dlp/yt-dlp" target="_blank" rel="noopener">yt-dlp</a> locally</td><td>A web tool necessarily learns the URL</td></tr>
+          </tbody>
+        </table>
+        <p>Two closing notes. First, if you want the broader picture on where copied text can come from, our comparison of the <a href="../free-youtube-caption-downloader-online/">five caption download methods</a> ranks all of these against each other, including the privacy trade-offs covered in the no-sign-in guide. Second, the words you copied belong to whoever said and published them: quoting with credit and a link is normal, pasting someone&rsquo;s whole transcript up as your own page is not.</p>
+
+        <h2 id="faq">Frequently asked questions</h2>
+        <h3>How do I copy all captions from a YouTube video at once?</h3>
+        <p>Open the transcript under the description, hide timestamps from the panel&rsquo;s own menu, then select the text in the panel and copy it. There is no select-all-and-download inside YouTube, so a long video means scrolling and copying in passes — or downloading the track from a <a href="https://youtube-caption-downloader.com/" target="_blank" rel="noopener">caption tool</a> instead.</p>
+        <h3>Why did my copied transcript miss part of the video?</h3>
+        <p>The transcript panel is a scrolling region rather than a document, so a selection can silently stop where the rendered portion ends. Copying in two or three passes and comparing the word count against the video length catches it. That class of silent truncation is the main reason we prefer a download.</p>
+        <h3>Can I copy captions from an embedded YouTube player?</h3>
+        <p>Usually not. Many embeds turn off the transcript panel and information buttons, so the caption text isn&rsquo;t exposed in the page. Go to the video on youtube.com itself — click the title or open the embed&rsquo;s video ID — and work from there.</p>
+        <h3>Is copying captions the same as downloading them?</h3>
+        <p>You get the same words either way. Copying gives you a block of text in your clipboard that needs cleaning, while downloading gives you a file in TXT, SRT or VTT straight from the track, with timings available if you want them. For anything longer than a few minutes, download.</p>
+
+      </div>
+
+      <section class="mx-auto mt-12 max-w-3xl">
+        <h2 class="text-xl font-extrabold tracking-tight">Related reading</h2>
+        <div class="mt-4 grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <a class="post-card" href="../download-transcript-from-youtube-video-online/">
+            <span class="text-xs font-bold uppercase tracking-wider text-pink-600 dark:text-pink-400">Video Tools</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">How to Download a Transcript From a YouTube Video</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">Why the panel has no export button, and the one-step way to get the full transcript as a file.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 12, 2026 · 8 min read</span>
+          </a>
+          <a class="post-card" href="../youtube-subtitle-text-extractor-online/">
+            <span class="text-xs font-bold uppercase tracking-wider text-pink-600 dark:text-pink-400">Video Tools</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">YouTube Subtitle Text Extractor Online (Plain Text Output)</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">The clean-up patterns for pasted caption text, with the exact find-and-replace regex.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 12, 2026 · 8 min read</span>
+          </a>
+          <a class="post-card" href="../youtube-caption-downloader-review/">
+            <span class="text-xs font-bold uppercase tracking-wider text-pink-600 dark:text-pink-400">Video Tools</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">YouTube Caption Downloader Review: Free SRT, VTT &amp; TXT Downloads</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">The tool that makes the copy-paste method unnecessary, tested and scored.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 9, 2026 · 7 min read</span>
+          </a>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="mt-14 border-t border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900/40">
+    <div class="wrap flex flex-wrap items-center justify-between gap-2 py-6 text-sm text-slate-400 dark:text-slate-500">
+      <span>© 2026 <a class="text-slate-600 hover:text-indigo-600 dark:text-slate-300" href="../../">FreeToolsHub</a>. All rights reserved.</span>
+      <span>Business inquiries: <a class="text-slate-600 hover:text-indigo-600 dark:text-slate-300" href="mailto:hello@veonib.com">hello@veonib.com</a></span>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How to Save YouTube Captions to a Text File (.txt)</title>
+  <meta name="description" content="Save a YouTube caption track as a .txt file that opens cleanly everywhere: format choice, UTF-8 encoding, SRT-to-TXT conversion and line-wrap fixes.">
+  <link rel="canonical" href="https://freeonlinehub.github.io/blog/save-youtube-captions-to-text-file/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="FreeToolsHub">
+  <meta property="og:title" content="How to Save YouTube Captions to a Text File (.txt)">
+  <meta property="og:description" content="Save a YouTube caption track as a .txt file that opens cleanly everywhere: format choice, UTF-8 encoding, SRT-to-TXT conversion and line-wrap fixes.">
+  <meta property="og:url" content="https://freeonlinehub.github.io/blog/save-youtube-captions-to-text-file/">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script src="../../js/tailwindcss.js"></script>
+  <script src="../../js/site.js"></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BlogPosting","headline":"How to Save YouTube Captions to a Text File (.txt)","datePublished":"2026-10-12","dateModified":"2026-10-12","author":{"@type":"Organization","name":"FreeToolsHub"},"publisher":{"@type":"Organization","name":"FreeToolsHub","url":"https://freeonlinehub.github.io/"},"url":"https://freeonlinehub.github.io/blog/save-youtube-captions-to-text-file/"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://freeonlinehub.github.io/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://freeonlinehub.github.io/blog/"},{"@type":"ListItem","position":3,"name":"How to Save YouTube Captions to a Text File (.txt)","item":"https://freeonlinehub.github.io/blog/save-youtube-captions-to-text-file/"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"How do I save YouTube captions as a plain text file?","acceptedAnswer":{"@type":"Answer","text":"Choose TXT when you download the caption track. Paste the video URL into youtube-caption-downloader.com, pick the track you want and select TXT rather than SRT or VTT: the file that lands on your machine contains the spoken words only, with no cue numbers and no timecodes."}},
+    {"@type":"Question","name":"My caption text file shows strange characters instead of accents. What happened?","acceptedAnswer":{"@type":"Answer","text":"That is an encoding mismatch, not a broken download. Re-open or re-save the file as UTF-8. Windows Notepad defaulting to a legacy codepage, or a copy-paste round trip through a browser form, is what normally turns accents into mojibake."}},
+    {"@type":"Question","name":"Can I convert an SRT I already downloaded into a text file?","acceptedAnswer":{"@type":"Answer","text":"Yes. Delete every line that is only a cue number, every line containing an arrow timecode, and the blank separator lines. A two-line regular-expression find-and-replace does it, or a short script if you have a folder full of files to process."}},
+    {"@type":"Question","name":"Should I save the transcript as .txt, .md or .docx?","acceptedAnswer":{"@type":"Answer","text":"Start with .txt because it is the only format every tool on every machine opens without argument. Move to .md when you want headings for a long transcript and .docx when someone else has to edit it — converting later is easy, and going the other way loses formatting."}}
+  ]}
+  </script>
+</head>
+<body class="bg-white font-sans text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100">
+
+  <header class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/80 backdrop-blur-md dark:border-slate-800/80 dark:bg-slate-950/80">
+    <div class="wrap flex h-16 items-center justify-between gap-3">
+      <a href="../../" class="flex flex-none items-center gap-2.5 text-lg font-extrabold tracking-tight text-slate-900 no-underline dark:text-white">
+        <span class="grid h-8 w-8 flex-none place-items-center rounded-[9px] bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 text-[13px] font-extrabold text-white shadow-md shadow-indigo-500/25">FT</span>
+        FreeTools<span class="text-indigo-600 dark:text-indigo-400">Hub</span>
+      </a>
+      <button data-nav-toggle aria-label="Toggle navigation" aria-expanded="false"
+        class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-slate-600 md:hidden dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">☰</button>
+      <nav data-nav class="main-nav">
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../ai-tools/">AI Tools</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../seo-tools/">SEO</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-image-tools/">Image</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-video-tools/">Video</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-pdf-tools/">PDF</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../developer-tools/">Developer</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../social-media-tools/">Social</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm font-semibold text-indigo-700 no-underline hover:bg-indigo-50 dark:text-indigo-300 dark:hover:bg-slate-800" href="../../free-tools/">Directory</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <article class="wrap mx-auto max-w-3xl">
+      <p class="crumbs"><a href="../">Blog</a> / How to Save YouTube Captions to a Text File</p>
+      <h1 class="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">How to Save YouTube Captions to a Text File (.txt)</h1>
+      <p class="mt-2 text-sm text-slate-400 dark:text-slate-500">Published October 12, 2026 · 8 min read</p>
+
+      <div class="prose prose-slate mt-8 max-w-none dark:prose-invert prose-a:text-indigo-600 dark:prose-a:text-indigo-400">
+
+        <p>&ldquo;Save YouTube captions to a text file&rdquo; sounds like one step and is really three: get the track out of the video, get rid of the subtitle machinery around it, and make the resulting .txt open correctly on every machine you and your colleagues own. The first part is trivial. The other two are where people lose an afternoon — usually over a file full of <code>ï¿½ï¿½</code> where accents should be, or an SRT pasted into Word that still has 900 timecodes in it. Here&rsquo;s the whole path, including how to convert files you already downloaded.</p>
+
+        <div class="toc not-prose rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm dark:border-slate-800 dark:bg-slate-900/40">
+          <strong class="text-slate-900 dark:text-slate-100">In this guide</strong>
+          <ol class="mt-1 space-y-1 text-slate-600 dark:text-slate-400">
+            <li><a href="#two">Two ways to end up with a .txt</a></li>
+            <li><a href="#direct">The direct route: download as TXT</a></li>
+            <li><a href="#convert">Converting an SRT or VTT you already have</a></li>
+            <li><a href="#encoding">Encoding: the accent problem</a></li>
+            <li><a href="#wrap">Line wraps, paragraph breaks and duplicates</a></li>
+            <li><a href="#choose">.txt, .md or .docx — which to keep</a></li>
+            <li><a href="#faq">Frequently asked questions</a></li>
+          </ol>
+        </div>
+
+        <h2 id="two">Two ways to end up with a .txt</h2>
+        <ul>
+          <li><strong>Ask for TXT at extraction time.</strong> Caption tools that offer formats usually include plain text; picking it means the timecodes never reach your file. One step, nothing to clean.</li>
+          <li><strong>Take the SRT and strip it.</strong> Necessary when you already have the subtitle file, when the only track you could get was SRT, or when you want both the timed and untimed versions from one download.</li>
+        </ul>
+        <p>If you haven&rsquo;t downloaded anything yet, take the first route and skip the conversion section. If you&rsquo;re here because you grabbed an SRT last week, jump to <a href="#convert">converting</a>. For the difference between the three output formats and when each belongs, see our <a href="../youtube-caption-extractor-with-timestamps/">guide to timestamped caption extraction</a>; if you want readable prose rather than a file per se, the <a href="../youtube-subtitle-text-extractor-online/">subtitle text extractor guide</a> covers the clean-up patterns in more detail.</p>
+
+        <h2 id="direct">The direct route: download as TXT</h2>
+        <ol>
+          <li>Open <a href="https://youtube-caption-downloader.com/" target="_blank" rel="noopener">YouTube Caption Downloader</a> and paste the video URL — watch link, <em>youtu.be</em> link or Shorts link.</li>
+          <li>Pick the track. <strong>Prefer the manual caption if one is listed</strong>: it arrives with punctuation and sane phrasing, so the text file needs almost no editing. Auto-generated and translated tracks work identically; they just need more clean-up afterwards.</li>
+          <li>Choose <strong>TXT</strong> and download. No account, no install — the site is free with no signup and produces SRT, VTT or TXT from the same track.</li>
+          <li>Rename the file to something you&rsquo;ll recognise in six months: <code>2026-10-08-kubecon-keynote.txt</code> beats <code>captions.txt</code>. Keep the video ID or URL in the first line of the file if you might need to re-fetch a better track.</li>
+        </ol>
+        <p>You now have a text file. The rest of this page is about the things that go wrong after that.</p>
+
+        <h2 id="convert">Converting an SRT or VTT you already have</h2>
+        <p>An <a href="https://en.wikipedia.org/wiki/SubRip" target="_blank" rel="noopener">SRT file</a> is four things per cue: an index number, a timecode line with an arrow, the text, and a blank line. Delete the first, second and fourth and you have a transcript. VTT is the same idea with a <code>WEBVTT</code> header, optional cue identifiers and dot-separated milliseconds.</p>
+        <p><strong>In any editor with regex find-and-replace</strong> (VS Code, Notepad++, BBEdit), on a copy of the file:</p>
+        <pre><code>Find:   ^\d+\s*$            Replace: (empty)     # cue index lines
+Find:   ^\d\d:\d\d:\d\d[,.]\d\d\d.*           Replace: (empty)     # timecode lines
+Find:   ^WEBVTT.*$          Replace: (empty)     # VTT header/style blocks
+Find:   \n\n+               Replace: \n          # collapse blank lines
+</code></pre>
+        <p><strong>For a folder of files</strong>, a few lines of Python beat clicking:</p>
+        <pre><code>import pathlib, re
+for p in pathlib.Path(".").glob("*.srt"):
+    lines = [l for l in p.read_text(encoding="utf-8").splitlines()
+             if not re.match(r"^\d+$", l) and "--&gt;" not in l]
+    p.with_suffix(".txt").write_text("\n".join(lines).strip() + "\n", encoding="utf-8")
+</code></pre>
+        <p><strong>On a Mac with no editor to hand</strong>, the shell does it in one pass — <code>grep -v -E '^[0-9]+$|--&gt;|^$' file.srt &gt; file.txt</code>. And if the alternative to converting is re-extracting, the browser tool takes ten seconds per video, which is often the faster answer for one or two files.</p>
+
+        <h2 id="encoding">Encoding: the accent problem</h2>
+        <p>If your transcript of a Spanish, French, German or Japanese video looks like <code>cafÃ©</code> instead of <em>café</em>, the download didn&rsquo;t fail — something opened or re-saved the file with the wrong <a href="https://en.wikipedia.org/wiki/UTF-8" target="_blank" rel="noopener">character encoding</a>. The fix, in order of likelihood:</p>
+        <ul>
+          <li><strong>Windows Notepad:</strong> File → Save as → set Encoding to <strong>UTF-8</strong> and overwrite. On older Notepad versions, choose &ldquo;UTF-8 with BOM&rdquo; if the plain option still misreads the file — see our <a href="https://en.wikipedia.org/wiki/Byte_order_mark" target="_blank" rel="noopener">note on the BOM</a> for why that exists.</li>
+          <li><strong>VS Code:</strong> the encoding name sits in the status bar bottom-right. Click it → Reopen with Encoding → UTF-8, then Save with Encoding → UTF-8.</li>
+          <li><strong>Excel:</strong> importing a .txt is where encoding goes most visibly wrong. Use Import from Text with &ldquo;Original Data Approach&rdquo; set to 65001: Unicode (UTF-8) rather than letting it guess.</li>
+          <li><strong>Copy-paste through a browser form</strong> silently re-encodes. Move files, don&rsquo;t move clipboard text, when the language has accents.</li>
+        </ul>
+        <p>Cyrillic, Chinese, Arabic and Hebrew survive extraction fine as long as the file stays UTF-8 end to end. Right-to-left scripts can <em>look</em> scrambled in editors that don&rsquo;t handle bidi text — that&rsquo;s a display issue, not a corrupt file, and opening it in a proper editor settles it.</p>
+
+        <h2 id="wrap">Line wraps, paragraph breaks and duplicates</h2>
+        <p>Three cosmetic repairs make an auto-track .txt readable, and they belong in this order:</p>
+        <ol>
+          <li><strong>Kill duplicated consecutive lines</strong> — the rolling-caption artefact. Regex <code>^(.+)\n\1$</code> → <code>$1</code>, run until the count stops falling.</li>
+          <li><strong>Join the fragments</strong> into paragraphs: caption cues are one line per breath, so a sentence is often split three ways. Join lines, then break at sentence boundaries or around every 90–110 characters.</li>
+          <li><strong>Separate speakers</strong> in interviews. Automatic tracks don&rsquo;t label who&rsquo;s talking; a paragraph break per turn is the minimum that makes a conversation readable.</li>
+        </ol>
+        <p>That&rsquo;s the difference between &ldquo;a file exists&rdquo; and &ldquo;a transcript I can work from&rdquo;. If your aim is prose rather than a saved file — an article draft, say — <a href="../extract-captions-from-youtube-video-online/">our extraction guide</a> covers the repurposing pipeline built on top of this.</p>
+
+        <h2 id="choose">.txt, .md or .docx — which to keep</h2>
+        <p>Save the raw capture as <strong>.txt</strong> and let derived formats be derived. Plain text opens on every machine in perpetuity, adds nothing to the words, and every tool that consumes transcripts later — editors, summarisers, search — takes it. Move to <strong>.md</strong> when a long transcript needs headings to be navigable, and to <strong>.docx</strong> when a colleague has to comment on it. Never the reverse: converting .docx back to text is how stray formatting and tracked changes leak into your file.</p>
+        <p>Two housekeeping habits that pay off: keep the <em>untouched</em> download alongside the edited copy (so you can always tell what the source actually said), and if the text came from someone else&rsquo;s video, note the URL at the top — caption tracks belong to their creators, and paraphrasing or permission beats republishing. Our <a href="../youtube-caption-downloader-review/">tool review</a> and the <a href="../../free-video-tools/">free video tools</a> category cover the rest of the workflow, including burning a cleaned file back into footage.</p>
+
+        <h2 id="faq">Frequently asked questions</h2>
+        <h3>How do I save YouTube captions as a plain text file?</h3>
+        <p>Choose TXT when you download the caption track. Paste the video URL into <a href="https://youtube-caption-downloader.com/" target="_blank" rel="noopener">youtube-caption-downloader.com</a>, pick the track you want and select TXT rather than SRT or VTT: the file that lands on your machine contains the spoken words only, with no cue numbers and no timecodes.</p>
+        <h3>My caption text file shows strange characters instead of accents. What happened?</h3>
+        <p>That is an encoding mismatch, not a broken download. Re-open or re-save the file as UTF-8. Windows Notepad defaulting to a legacy codepage, or a copy-paste round trip through a browser form, is what normally turns accents into mojibake. <a href="https://en.wikipedia.org/wiki/Mojibake" target="_blank" rel="noopener">There&rsquo;s a whole name for it</a>, and a whole fix in the encoding section above.</p>
+        <h3>Can I convert an SRT I already downloaded into a text file?</h3>
+        <p>Yes. Delete every line that is only a cue number, every line containing an arrow timecode, and the blank separator lines. A two-line regular-expression find-and-replace does it, or a short script if you have a folder full of files to process.</p>
+        <h3>Should I save the transcript as .txt, .md or .docx?</h3>
+        <p>Start with .txt because it is the only format every tool on every machine opens without argument. Move to .md when you want headings for a long transcript and .docx when someone else has to edit it — converting later is easy, and going the other way loses formatting.</p>
+
+      </div>
+
+      <section class="mx-auto mt-12 max-w-3xl">
+        <h2 class="text-xl font-extrabold tracking-tight">Related reading</h2>
+        <div class="mt-4 grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <a class="post-card" href="../youtube-subtitle-text-extractor-online/">
+            <span class="text-xs font-bold uppercase tracking-wider text-pink-600 dark:text-pink-400">Video Tools</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">YouTube Subtitle Text Extractor Online (Plain Text Output)</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">Getting the words out in the first place, plus the six-minute clean-up pass for auto tracks.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 12, 2026 · 8 min read</span>
+          </a>
+          <a class="post-card" href="../youtube-caption-extractor-with-timestamps/">
+            <span class="text-xs font-bold uppercase tracking-wider text-pink-600 dark:text-pink-400">Video Tools</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">YouTube Caption Extractor With Timestamps (SRT &amp; VTT)</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">When you need to keep the timecodes instead: cue anatomy, formats and editor import.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 12, 2026 · 8 min read</span>
+          </a>
+          <a class="post-card" href="../download-captions-from-youtube-video-free/">
+            <span class="text-xs font-bold uppercase tracking-wider text-pink-600 dark:text-pink-400">Video Tools</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">How to Download Captions From a YouTube Video for Free</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">The four-step download with a troubleshooting table for when no tracks come back.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 12, 2026 · 8 min read</span>
+          </a>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="mt-14 border-t border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900/40">
+    <div class="wrap flex flex-wrap items-center justify-between gap-2 py-6 text-sm text-slate-400 dark:text-slate-500">
+      <span>© 2026 <a class="text-slate-600 hover:text-indigo-600 dark:text-slate-300" href="../../">FreeToolsHub</a>. All rights reserved.</span>
+      <span>Business inquiries: <a class="text-slate-600 hover:text-indigo-600 dark:text-slate-300" href="mailto:hello@veonib.com">hello@veonib.com</a></span>
+    </div>
+  </footer>
+
+</body>
+</html>
