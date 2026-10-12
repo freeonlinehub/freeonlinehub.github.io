@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How to Convert a Video to an AI Prompt (Field by Field)</title>
+  <meta name="description" content="A clip becomes a usable prompt in five slots: subject, camera, light, pacing and style. What each means, and how to fix it when generation drifts.">
+  <link rel="canonical" href="https://freeonlinehub.github.io/blog/convert-video-to-ai-prompt/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="FreeToolsHub">
+  <meta property="og:title" content="How to Convert a Video to an AI Prompt (Field by Field)">
+  <meta property="og:description" content="A clip becomes a usable prompt in five slots: subject, camera, light, pacing and style. What each means, and how to fix it when generation drifts.">
+  <meta property="og:url" content="https://freeonlinehub.github.io/blog/convert-video-to-ai-prompt/">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script src="../../js/tailwindcss.js"></script>
+  <script src="../../js/site.js"></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BlogPosting","headline":"How to Convert a Video to an AI Prompt (Field by Field)","datePublished":"2026-10-13","dateModified":"2026-10-13","author":{"@type":"Organization","name":"FreeToolsHub"},"publisher":{"@type":"Organization","name":"FreeToolsHub","url":"https://freeonlinehub.github.io/"},"url":"https://freeonlinehub.github.io/blog/convert-video-to-ai-prompt/"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://freeonlinehub.github.io/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://freeonlinehub.github.io/blog/"},{"@type":"ListItem","position":3,"name":"How to Convert a Video to an AI Prompt (Field by Field)","item":"https://freeonlinehub.github.io/blog/convert-video-to-ai-prompt/"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the difference between describing a video and converting it to a prompt?","acceptedAnswer":{"@type":"Answer","text":"A description is written for someone who has already seen the clip and omits the automatic facts — camera behaviour, light direction, cut rhythm. A prompt is a specification for something that has never seen anything, so those invisible facts have to be named explicitly or the render will not resemble the reference."}},{"@type":"Question","name":"Which fields should a video-to-AI prompt contain?","acceptedAnswer":{"@type":"Answer","text":"Five, in this order: subject and action, camera (size, angle, movement), lighting, pacing, and style or grade. Anything else in the prompt is either a constraint the model needs, like aspect ratio and duration, or noise that competes for attention."}},{"@type":"Question","name":"Can I paste an extracted prompt straight into any video model?","acceptedAnswer":{"@type":"Answer","text":"You can, and it will usually work, but translation beats pasting. Keep the field order, drop prose connectives, reduce the number of beats to what the clip length can afford, and swap mood words for concrete grade language. Each model has its own dialect, which is why we cover Seedance, Veo and Kling separately."}},{"@type":"Question","name":"Why does my generated clip look nothing like the video I extracted the prompt from?","acceptedAnswer":{"@type":"Answer","text":"Most often the camera line is wrong or vague, the grade was described as a feeling rather than a palette, or the prompt contains more beats than the duration can carry. Fix one variable per run and re-test, rather than rewriting the whole prompt at once."}}]}
+  </script>
+</head>
+<body class="bg-white font-sans text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100">
+
+  <header class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/80 backdrop-blur-md dark:border-slate-800/80 dark:bg-slate-950/80">
+    <div class="wrap flex h-16 items-center justify-between gap-3">
+      <a href="../../" class="flex flex-none items-center gap-2.5 text-lg font-extrabold tracking-tight text-slate-900 no-underline dark:text-white">
+        <span class="grid h-8 w-8 flex-none place-items-center rounded-[9px] bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 text-[13px] font-extrabold text-white shadow-md shadow-indigo-500/25">FT</span>
+        FreeTools<span class="text-indigo-600 dark:text-indigo-400">Hub</span>
+      </a>
+      <button data-nav-toggle aria-label="Toggle navigation" aria-expanded="false"
+        class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-slate-600 md:hidden dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">☰</button>
+      <nav data-nav class="main-nav">
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../ai-tools/">AI Tools</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../seo-tools/">SEO</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-image-tools/">Image</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-video-tools/">Video</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-pdf-tools/">PDF</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../developer-tools/">Developer</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../social-media-tools/">Social</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm font-semibold text-indigo-700 no-underline hover:bg-indigo-50 dark:text-indigo-300 dark:hover:bg-slate-800" href="../../free-tools/">Directory</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <article class="wrap mx-auto max-w-3xl">
+      <p class="crumbs"><a href="../">Blog</a> / How to Convert a Video to an AI Prompt</p>
+      <h1 class="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">How to Convert a Video to an AI Prompt, Field by Field</h1>
+      <p class="mt-2 text-sm text-slate-400 dark:text-slate-500">Published October 13, 2026 &middot; 8 min read</p>
+
+      <div class="prose prose-slate mt-8 max-w-none dark:prose-invert prose-a:text-indigo-600 dark:prose-a:text-indigo-400">
+
+        <p>Ask a vision model to &ldquo;describe this video&rdquo; and you get a paragraph. Paste that paragraph into a video generator and you get something vaguely related to the clip you admired — because a description is not a prompt. A prompt is a specification: who or what is in frame, where the camera goes, how it is lit, how fast it moves, what the grade looks like. Converting a video means producing those five fields, in order, with the confidence to delete anything that does not survive a second viewing.</p>
+
+        <p>The fastest way to convert is to let a machine draft the fields and then edit them, which is what <a href="https://socialtoprompt.com/" target="_blank" rel="noopener">SocialToPrompt</a> does: paste a link or upload a file and it returns a structured prompt rather than prose. This guide is about what comes back, why each field matters, and the four things to fix when the regenerated clip misses the original.</p>
+        <div class="toc not-prose rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm dark:border-slate-800 dark:bg-slate-900/40">
+          <strong class="text-slate-900 dark:text-slate-100">In this guide</strong>
+          <ol class="mt-1 space-y-1 text-slate-600 dark:text-slate-400">
+            <li><a href="#why">Why &ldquo;convert&rdquo; beats &ldquo;describe&rdquo;</a></li>
+            <li><a href="#slots">The five slots a real video prompt carries</a></li>
+            <li><a href="#analysis">What the analysis is actually reading</a></li>
+            <li><a href="#example">Worked example: a 12-second product shot</a></li>
+            <li><a href="#dialect">Rewriting the output in your model&rsquo;s dialect</a></li>
+            <li><a href="#drift">When the regen drifts, check these four things</a></li>
+            <li><a href="#faq">Frequently asked questions</a></li>
+          </ol>
+        </div>
+
+        <h2 id="why">Why &ldquo;convert&rdquo; beats &ldquo;describe&rdquo;</h2>
+        <p>The difference is audience. A description is written for a human who has already seen the clip, so it omits everything the viewer took in automatically: that the camera was handheld, that the light came from camera-left, that cuts landed every 1.4 seconds. A prompt is written for something that has never seen anything and must be told all of it.</p>
+        <p>That asymmetry explains most failed video-to-prompt attempts. The paragraph was accurate; it was just silent about the exact properties that made the shot look like the shot. Converting properly means <strong>promoting the invisible facts into named fields</strong> — and the vocabulary to name them. If you want the deeper version of that argument, the <a href="../video-prompt-reverse-engineering-tool/">reverse-engineering method</a> covers how to read a clip in passes rather than in one glance.</p>
+        <h2 id="slots">The five slots a real video prompt carries</h2>
+        <table>
+          <thead><tr><th scope="col">Slot</th><th scope="col">What goes in it</th><th scope="col">If you leave it out</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Subject &amp; action</strong></td><td>Who or what, in one verb phrase: &ldquo;a barista tamps espresso&rdquo;, not &ldquo;a coffee shop scene&rdquo;</td><td>The model invents its own action and usually picks the boring one</td></tr>
+            <tr><td><strong>Camera</strong></td><td>Shot size, angle, and movement — &ldquo;slow dolly in, eye level, 50mm feel&rdquo;</td><td>You get a static frame or a random sweep; the single biggest tell of a generated clip</td></tr>
+            <tr><td><strong>Light</strong></td><td>Source, direction, hardness, time of day</td><td>Flat, midday-looking footage whatever the reference actually was</td></tr>
+            <tr><td><strong>Pacing</strong></td><td>Cut frequency, motion speed, whether anything slows down</td><td>Either dreamlike and sluggish or frenetic; never the original rhythm</td></tr>
+            <tr><td><strong>Style &amp; grade</strong></td><td>Film vs digital, palette, contrast, grain, era references</td><td>Default house style, which is how every AI clip starts looking the same</td></tr>
+          </tbody>
+        </table>
+        <p>Order matters too: generators weight early tokens harder, so subject and camera first, mood last. Anything that does not change the render — the reason you picked this clip, the brand it came from — belongs in your notes, not the prompt.</p>
+        <h2 id="analysis">What the analysis is actually reading</h2>
+        <p>An extraction tool has to solve two problems a captioner never touches: it must describe <em>change over time</em>, and it must do so in the words <a href="https://en.wikipedia.org/wiki/Text-to-video_model" target="_blank" rel="noopener">a generator</a>'s training data was captioned with. <a href="https://socialtoprompt.com/" target="_blank" rel="noopener">SocialToPrompt</a> splits this into visible stages on the page — extracting frames, reading video content, understanding motion, analysing camera and movement, analysing style, detecting visual aesthetics, then generating the prompt — and states that a run typically takes <strong>20&ndash;40 seconds</strong>.</p>
+        <p>Those stage names are worth understanding because they map onto the five slots: the frame pass gives you subject and set, the motion and camera passes give you the field most people cannot name reliably, and the style pass gives you grade and palette. When an output is weak, it is almost always one stage that underdelivered, which is why the same clip can produce a great subject line and a vague camera line. For what each stage contributes and where they break, see <a href="../analyze-video-and-generate-prompt/">how the analysis pipeline works</a>.</p>
+        <h2 id="example">Worked example: a 12-second product shot</h2>
+        <p>Take a short clip every ecommerce team has in their swipe file: a bottle on a turntable, hard rim light, background slowly defocusing, cut to a hand lifting it at second eight. Extracted as a prompt, the useful version reads roughly:</p>
+        <pre><code>Product shot: amber glass bottle on a white marble turntable, slow 180° rotation,
+macro detail on condensation; hard key from camera-right with a soft bounce fill,
+dark falloff at frame edges; shallow depth of field, background gently defocusing;
+hand enters frame at eight seconds and lifts the bottle, camera holds;
+commercial studio grade, high contrast, slight warm bias, fine grain; 12s, no cuts.
+</code></pre>
+        <p>Notice what is <em>not</em> there: no brand, no claim about the product, no adjectives about luxury. All of that is either yours to swap in or noise to the renderer. This is also the moment to check the tool's output against the clip — if the camera line says &ldquo;rotating view&rdquo; when the <em>product</em> rotates and the camera is locked, you have found a real error, and the fix is one line of editing rather than another credit.</p>
+        <h2 id="dialect">Rewriting the output in your model&rsquo;s dialect</h2>
+        <p>Every generator has house style. Some want a single flowing sentence; some reward bracketed shot lists; several accept explicit camera-movement keywords that map to trained captions; a few are audio-aware and want the sound bed described too. The extraction gives you a model-neutral specification, so the last step is translation rather than rewriting:</p>
+        <ul>
+          <li><strong>Keep the field order</strong>, drop the connective prose.</li>
+          <li><strong>Move anything you cannot afford</strong> — a two-camera-move shot in a five-second clip becomes one camera move.</li>
+          <li><strong>Convert timing to length</strong>: &ldquo;cut at eight seconds&rdquo; is meaningless in a 6-second generation; the intent is &ldquo;second action late in the shot&rdquo;.</li>
+          <li><strong>Add only what the model requires and the clip implies</strong> — aspect ratio, duration, and whether dialogue or sound is expected.</li>
+        </ul>
+        <p>Model-specific conversions are covered per target in our <a href="../seedance-prompt-from-video/">Seedance</a>, <a href="../veo-video-to-prompt-generator/">Veo</a> and <a href="../kling-ai-prompt-extractor-from-video/">Kling</a> guides; the general craft of turning a draft into a generation-ready prompt, including the eight-slot template, lives in <a href="../generate-prompt-from-video/">how to generate a prompt from a video</a>.</p>
+        <h2 id="drift">When the regen drifts, check these four things</h2>
+        <ol>
+          <li><strong>Camera verb mismatch.</strong> &ldquo;Tracking shot&rdquo; and &ldquo;following shot&rdquo; are not synonyms to a model. Pick one term per movement and reuse it across your library.</li>
+          <li><strong>Subject competition.</strong> Two nouns early in a prompt fight for attention; if the bottle keeps becoming a person, demote the human to &ldquo;a hand&rdquo;.</li>
+          <li><strong>Grade described as mood.</strong> &ldquo;Cinematic&rdquo; is a weighted average of everything cinematic; write &ldquo;teal shadows, warm highlights, crushed blacks&rdquo; instead.</li>
+          <li><strong>Length contradiction.</strong> More than three beats in a short generation and you get a blur — cut beats before you cut words.</li>
+        </ol>
+        <p>Change one variable per run and keep the prompt text in version control or a .txt per clip; the alternative is discovering that your best shot came from a draft you overwrote. If the cost of those runs is what's holding you back, the credit math is broken down in our free-tier guide.</p>
+        <h2 id="faq">Frequently asked questions</h2>
+        <h3>What is the difference between describing a video and converting it to a prompt?</h3>
+        <p>A description is written for someone who has already seen the clip and omits the automatic facts — <a href="https://en.wikipedia.org/wiki/Cinematography" target="_blank" rel="noopener">camera behaviour</a>, light direction, cut rhythm. A prompt is a specification for something that has never seen anything, so those invisible facts have to be named explicitly or the render will not resemble the reference.</p>
+        <h3>Which fields should a video-to-AI prompt contain?</h3>
+        <p>Five, in this order: subject and action, camera (size, angle, movement), lighting, pacing, and style or grade. Anything else in the prompt is either a constraint the model needs, like aspect ratio and duration, or noise that competes for attention.</p>
+        <h3>Can I paste an extracted prompt straight into any video model?</h3>
+        <p>You can, and it will usually work, but translation beats pasting. Keep the field order, drop prose connectives, reduce the number of beats to what the clip length can afford, and swap mood words for concrete grade language. Each model has its own dialect, which is why we cover Seedance, Veo and Kling separately.</p>
+        <h3>Why does my generated clip look nothing like the video I extracted the prompt from?</h3>
+        <p>Most often the camera line is wrong or vague, the grade was described as a feeling rather than a palette, or the prompt contains more beats than the duration can carry. Fix one variable per run and re-test, rather than rewriting the whole prompt at once.</p>
+
+      </div>
+
+      <section class="mx-auto mt-12 max-w-3xl">
+        <h2 class="text-xl font-extrabold tracking-tight">Related reading</h2>
+        <div class="mt-4 grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <a class="post-card" href="../ai-video-prompt-extractor/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">AI Video Prompt Extractor: What the Tool Actually Returns</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">Extractors, generators and captioners are three different tools. Here is the rubric for judging one.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 13, 2026 · 8 min read</span>
+          </a>
+          <a class="post-card" href="../generate-prompt-from-video/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">Generate a Prompt From a Video: The 8-Slot Template</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">Subject, action, lens, camera move, light, grade, pacing, mood — and one-variable-at-a-time iteration.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 13, 2026 · 8 min read</span>
+          </a>
+          <a class="post-card" href="../video-prompt-reverse-engineering-tool/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">Video Prompt Reverse Engineering: A Tool and 3 Passes</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">Three passes over one clip: structure, shot language, then swap your own subject in.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 13, 2026 · 8 min read</span>
+          </a>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="mt-14 border-t border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900/40">
+    <div class="wrap flex flex-wrap items-center justify-between gap-2 py-6 text-sm text-slate-400 dark:text-slate-500">
+      <span>© 2026 <a class="text-slate-600 hover:text-indigo-600 dark:text-slate-300" href="../../">FreeToolsHub</a>. All rights reserved.</span>
+      <span>Business inquiries: <a class="text-slate-600 hover:text-indigo-600 dark:text-slate-300" href="mailto:hello@veonib.com">hello@veonib.com</a></span>
+    </div>
+  </footer>
+
+</body>
+</html>

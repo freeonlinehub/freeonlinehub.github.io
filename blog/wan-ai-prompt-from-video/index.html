@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wan AI Prompt From a Video (Open Weights)</title>
+  <meta name="description" content="A Wan-family prompt from a reference clip: the caption style it likes, prompt compression, local pipelines, and where extraction still helps.">
+  <link rel="canonical" href="https://freeonlinehub.github.io/blog/wan-ai-prompt-from-video/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="FreeToolsHub">
+  <meta property="og:title" content="Wan AI Prompt From a Video (Open Weights)">
+  <meta property="og:description" content="A Wan-family prompt from a reference clip: the caption style it likes, prompt compression, local pipelines, and where extraction still helps.">
+  <meta property="og:url" content="https://freeonlinehub.github.io/blog/wan-ai-prompt-from-video/">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script src="../../js/tailwindcss.js"></script>
+  <script src="../../js/site.js"></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BlogPosting","headline":"Wan AI Prompt From a Video (Open Weights)","datePublished":"2026-10-13","dateModified":"2026-10-13","author":{"@type":"Organization","name":"FreeToolsHub"},"publisher":{"@type":"Organization","name":"FreeToolsHub","url":"https://freeonlinehub.github.io/"},"url":"https://freeonlinehub.github.io/blog/wan-ai-prompt-from-video/"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://freeonlinehub.github.io/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://freeonlinehub.github.io/blog/"},{"@type":"ListItem","position":3,"name":"Wan AI Prompt From a Video (Open Weights)","item":"https://freeonlinehub.github.io/blog/wan-ai-prompt-from-video/"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I write a Wan prompt from an existing video?","acceptedAnswer":{"@type":"Answer","text":"Extract the clip's fields — subject, camera, lighting, pacing, style — then compress them into one or two present-tense sentences: what the subject does, where, how it is shot with one camera verb, and a single style cue. Open-weights captions were short and observational, so dense prose outperforms long descriptions."}},{"@type":"Question","name":"Can the whole pipeline run locally?","acceptedAnswer":{"@type":"Answer","text":"Yes, and that is the point for confidential footage: download and excerpt with yt-dlp and ffmpeg, describe the clip with a local video model, and generate locally with a frame from the clip as image conditioning. What you give up is the temporal analysis a hosted service does, since sampling still frames cannot measure motion."}},{"@type":"Question","name":"Does image conditioning replace detailed prompts?","acceptedAnswer":{"@type":"Answer","text":"For look and subject, largely. One conditioning frame carries palette, lighting and identity, so your text should stop describing those and instead carry the action and the camera behaviour — which is exactly what a frame cannot express."}},{"@type":"Question","name":"When is a hosted extractor worth paying for in a local workflow?","acceptedAnswer":{"@type":"Answer","text":"When motion and camera language are what you need. Frame-sampling a clip locally gives you content and colour but guesses at movement, so most people run a hybrid: extract the shot description hosted, then generate locally."}}]}
+  </script>
+</head>
+<body class="bg-white font-sans text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100">
+
+  <header class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/80 backdrop-blur-md dark:border-slate-800/80 dark:bg-slate-950/80">
+    <div class="wrap flex h-16 items-center justify-between gap-3">
+      <a href="../../" class="flex flex-none items-center gap-2.5 text-lg font-extrabold tracking-tight text-slate-900 no-underline dark:text-white">
+        <span class="grid h-8 w-8 flex-none place-items-center rounded-[9px] bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 text-[13px] font-extrabold text-white shadow-md shadow-indigo-500/25">FT</span>
+        FreeTools<span class="text-indigo-600 dark:text-indigo-400">Hub</span>
+      </a>
+      <button data-nav-toggle aria-label="Toggle navigation" aria-expanded="false"
+        class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-slate-600 md:hidden dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">☰</button>
+      <nav data-nav class="main-nav">
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../ai-tools/">AI Tools</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../seo-tools/">SEO</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-image-tools/">Image</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-video-tools/">Video</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-pdf-tools/">PDF</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../developer-tools/">Developer</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../social-media-tools/">Social</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm font-semibold text-indigo-700 no-underline hover:bg-indigo-50 dark:text-indigo-300 dark:hover:bg-slate-800" href="../../free-tools/">Directory</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <article class="wrap mx-auto max-w-3xl">
+      <p class="crumbs"><a href="../">Blog</a> / Wan AI Prompt From a Video</p>
+      <h1 class="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">Wan AI Prompt From a Video: Open-Weights Workflow</h1>
+      <p class="mt-2 text-sm text-slate-400 dark:text-slate-500">Published October 13, 2026 &middot; 7 min read</p>
+
+      <div class="prose prose-slate mt-8 max-w-none dark:prose-invert prose-a:text-indigo-600 dark:prose-a:text-indigo-400">
+
+        <p>Wan-family models occupy a different position from the hosted generators: open weights, local or self-hosted runs, and a training set whose captions were written in a particular plain style. That has two consequences for this workflow — the prompts you write look different, and the video-to-prompt step can be done entirely on your own hardware if you want it that way.</p>        <div class="toc not-prose rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm dark:border-slate-800 dark:bg-slate-900/40">
+          <strong class="text-slate-900 dark:text-slate-100">In this guide</strong>
+          <ol class="mt-1 space-y-1 text-slate-600 dark:text-slate-400">
+            <li><a href="#open">Why open weights change the workflow</a></li>
+            <li><a href="#style">The caption style Wan responds to</a></li>
+            <li><a href="#extract">Extracting and compressing</a></li>
+            <li><a href="#pipeline">A local pipeline</a></li>
+            <li><a href="#cost">Cost, privacy and control</a></li>
+            <li><a href="#faq">Frequently asked questions</a></li>
+          </ol>
+        </div>
+
+        <h2 id="open">Why open weights change the workflow</h2>
+        <p>With a hosted generator you pay per generation and accept a queue; with an open model you pay in time and hardware and keep everything. That matters most in three situations: confidential footage that must not leave your machine, volume work where per-credit pricing stops making sense, and long experiments where you want to render forty variants of a shot without counting pennies. <a href="https://en.wikipedia.org/wiki/Text-to-video_model" target="_blank" rel="noopener">Text-to-video models</a> in the open-weights category — Alibaba&rsquo;s Wan family among them — behave like their hosted counterparts for prompting purposes, with a distinct caption dialect.</p>
+        <h2 id="style">The caption style Wan responds to</h2>
+        <p>These models are typically trained on short, dense, observational captions, so prompts work best as one or two sentences with the structure:</p>
+        <pre><code>[what the subject is doing] + [where] + [how it is shot: one camera verb, framing] + [one style cue]
+
+"Barista tamps espresso on a marble counter, shoulders turning into frame; slow push-in from
+ chest height, soft window light, shallow focus."
+</code></pre>
+        <ul>
+          <li>Present-tense action verbs beat noun stacks.</li>
+          <li>One style cue is enough; three fight each other.</li>
+          <li>Do not write negatives — describe the state you want.</li>
+          <li>Movement words behave inconsistently across local implementations, so test the verb once per setup rather than assuming portability.</li>
+        </ul>
+        <h2 id="extract">Extracting and compressing</h2>
+        <p>Reference clips are still the fast path to a good prompt, and extraction is where the hosted tool earns its keep even in a local pipeline: paste a link (27 named platforms) or upload MP4/MOV/WebM into <a href="https://socialtoprompt.com/" target="_blank" rel="noopener">SocialToPrompt</a>, and its analysis returns subject, camera, lighting, pacing and style in a run it states takes 20&ndash;40 seconds. Then cut it down to the two-sentence shape above — most extraction output is roughly twice as long as an open-weights prompt should be.</p>
+        <p>If you want the whole loop local, the DIY version is <a href="../free-video-to-prompt-generator-online/">described in our comparison</a>: <a href="https://socialtoprompt.com/" target="_blank" rel="noopener">SocialToPrompt</a> replaced by a video LLM running locally, at the cost of the temporal reasoning that still-frame sampling cannot do.</p>
+        <h2 id="pipeline">A local pipeline</h2>
+        <pre><code># 1. grab the reference clip (where you are entitled to)
+yt-dlp -f "bv*[height<=720]+ba/b" --output ref.mp4 "URL"
+# 2. excerpt the shot you care about
+ffmpeg -ss 00:00:04 -t 6 -i ref.mp4 -c copy shot.mp4
+# 3. extract the prompt (hosted tool, or a local video-LLM if privacy requires it)
+# 4. generate locally with the two-sentence prompt + shot.mp4 frame as image conditioning
+ffmpeg -i shot.mp4 -vf "select=eq(n\,30)" -vframes 1 cond.png
+</code></pre>
+        <p>The conditioning image is the trick that makes open-weights work feel closer to reference-driven hosted products: one frame carries the look, so your text only has to carry the action. Frame selection and filters are covered in the <a href="https://ffmpeg.org/" target="_blank" rel="noopener">ffmpeg</a> documentation.</p>
+        <h2 id="cost">Cost, privacy and control</h2>
+        <p>Three trade-offs to decide knowingly. <strong>Privacy:</strong> local is unbeatable — nothing leaves the machine, which is the only acceptable answer for unreleased product footage or client material. <strong>Cost shape:</strong> a hosted extractor charges credits (1 extraction + 3 prompt generation, per the site&rsquo;s pricing, with 3 free credits valid 24 hours) while a local run costs electricity and your GPU&rsquo;s time; below roughly thirty clips a month the hosted side is cheaper than the hardware. <strong>Quality ceiling:</strong> hosted models still lead on temporal coherence, so a hybrid is what most people should run — extract and generate locally, and reach for a hosted model only when a shot needs the extra polish.</p>
+        <p>Related: <a href="../hailuo-ai-video-prompt-generator/">Hailuo prompting</a>, <a href="../get-ai-prompt-from-existing-video/">working from files you already own</a>, and <a href="../convert-mp4-to-ai-prompt/">converting MP4 files to prompts</a>.</p>
+        <h2 id="faq">Frequently asked questions</h2>
+        <h3>How do I write a Wan prompt from an existing video?</h3>
+        <p>Extract the clip's fields — subject, camera, lighting, pacing, style — then compress them into one or two present-tense sentences: what the subject does, where, how it is shot with one camera verb, and a single style cue. Open-weights captions were short and observational, so dense prose outperforms long descriptions.</p>
+        <h3>Can the whole pipeline run locally?</h3>
+        <p>Yes, and that is the point for confidential footage: download and excerpt with yt-dlp and ffmpeg, describe the clip with a local video model, and generate locally with a frame from the clip as image conditioning. What you give up is the temporal analysis a hosted service does, since sampling still frames cannot measure motion.</p>
+        <h3>Does image conditioning replace detailed prompts?</h3>
+        <p>For look and subject, largely. One conditioning frame carries palette, lighting and identity, so your text should stop describing those and instead carry the action and the camera behaviour — which is exactly what a frame cannot express.</p>
+        <h3>When is a hosted extractor worth paying for in a local workflow?</h3>
+        <p>When motion and camera language are what you need. Frame-sampling a clip locally gives you content and colour but guesses at movement, so most people run a hybrid: extract the shot description hosted, then generate locally.</p>
+
+      </div>
+
+      <section class="mx-auto mt-12 max-w-3xl">
+        <h2 class="text-xl font-extrabold tracking-tight">Related reading</h2>
+        <div class="mt-4 grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <a class="post-card" href="../hailuo-ai-video-prompt-generator/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">Hailuo AI Video Prompt Generator: Camera Tags</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">Director-style camera tags for another open family.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 13, 2026 · 7 min read</span>
+          </a>
+          <a class="post-card" href="../convert-mp4-to-ai-prompt/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">How to Convert an MP4 to an AI Prompt</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">Trimming, re-encoding and uploading clean working files.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 13, 2026 · 8 min read</span>
+          </a>
+          <a class="post-card" href="../socialtoprompt-review/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">SocialToPrompt Review: Turn Any Video Into a Prompt</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">The scored review: social downloader plus prompt engine in one page, and where each half earns its keep.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Sep 13, 2026 · 8 min read</span>
+          </a>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="mt-14 border-t border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900/40">
+    <div class="wrap flex flex-wrap items-center justify-between gap-2 py-6 text-sm text-slate-400 dark:text-slate-500">
+      <span>© 2026 <a class="text-slate-600 hover:text-indigo-600 dark:text-slate-300" href="../../">FreeToolsHub</a>. All rights reserved.</span>
+      <span>Business inquiries: <a class="text-slate-600 hover:text-indigo-600 dark:text-slate-300" href="mailto:hello@veonib.com">hello@veonib.com</a></span>
+    </div>
+  </footer>
+
+</body>
+</html>

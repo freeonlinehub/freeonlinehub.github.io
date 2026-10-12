@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Generate a Prompt From a Video: The 8-Slot Template</title>
+  <meta name="description" content="Turn any clip into a reusable prompt with eight slots — subject, action, lens, camera move, light, grade, pacing, mood — plus an iteration loop that works.">
+  <link rel="canonical" href="https://freeonlinehub.github.io/blog/generate-prompt-from-video/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="FreeToolsHub">
+  <meta property="og:title" content="Generate a Prompt From a Video: The 8-Slot Template">
+  <meta property="og:description" content="Turn any clip into a reusable prompt with eight slots — subject, action, lens, camera move, light, grade, pacing, mood — plus an iteration loop that works.">
+  <meta property="og:url" content="https://freeonlinehub.github.io/blog/generate-prompt-from-video/">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script src="../../js/tailwindcss.js"></script>
+  <script src="../../js/site.js"></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BlogPosting","headline":"Generate a Prompt From a Video: The 8-Slot Template","datePublished":"2026-10-13","dateModified":"2026-10-13","author":{"@type":"Organization","name":"FreeToolsHub"},"publisher":{"@type":"Organization","name":"FreeToolsHub","url":"https://freeonlinehub.github.io/"},"url":"https://freeonlinehub.github.io/blog/generate-prompt-from-video/"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://freeonlinehub.github.io/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://freeonlinehub.github.io/blog/"},{"@type":"ListItem","position":3,"name":"Generate a Prompt From a Video: The 8-Slot Template","item":"https://freeonlinehub.github.io/blog/generate-prompt-from-video/"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What template should I use to write a prompt from a video?","acceptedAnswer":{"@type":"Answer","text":"An eight-slot skeleton in this order: subject, action, lens and format, camera move, light, grade, pacing, mood — comma-separated, under about 60 words. Early slots carry more weight with the renderer, which is why mood goes last and camera detail goes third or fourth rather than being buried in prose."}},{"@type":"Question","name":"Can a tool generate the prompt for me?","acceptedAnswer":{"@type":"Answer","text":"Yes — an extractor reads the clip and returns most of the fields, typically including camera behaviour, lighting, pacing and style. You still own two slots yourself: lens and format, which depends on where the clip is going, and mood, which is intent rather than observation."}},{"@type":"Question","name":"How do I stop changing five things at once when I iterate?","acceptedAnswer":{"@type":"Answer","text":"Change one slot per run and put the changed value in the filename. Five single-variable runs answer five questions; twenty rewrites answer none, because you cannot tell which edit helped."}},{"@type":"Question","name":"Why do adjectives and negations hurt my renders?","acceptedAnswer":{"@type":"Answer","text":"Stacked intensifiers carry no visual information, so they dilute the concrete words around them. Negations are worse: models frequently render the thing you told them to exclude, because the token is present. Write the positive state instead — 'empty street', not 'no people'."}}]}
+  </script>
+</head>
+<body class="bg-white font-sans text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100">
+
+  <header class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/80 backdrop-blur-md dark:border-slate-800/80 dark:bg-slate-950/80">
+    <div class="wrap flex h-16 items-center justify-between gap-3">
+      <a href="../../" class="flex flex-none items-center gap-2.5 text-lg font-extrabold tracking-tight text-slate-900 no-underline dark:text-white">
+        <span class="grid h-8 w-8 flex-none place-items-center rounded-[9px] bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 text-[13px] font-extrabold text-white shadow-md shadow-indigo-500/25">FT</span>
+        FreeTools<span class="text-indigo-600 dark:text-indigo-400">Hub</span>
+      </a>
+      <button data-nav-toggle aria-label="Toggle navigation" aria-expanded="false"
+        class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-slate-600 md:hidden dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">☰</button>
+      <nav data-nav class="main-nav">
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../ai-tools/">AI Tools</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../seo-tools/">SEO</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-image-tools/">Image</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-video-tools/">Video</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-pdf-tools/">PDF</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../developer-tools/">Developer</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../social-media-tools/">Social</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm font-semibold text-indigo-700 no-underline hover:bg-indigo-50 dark:text-indigo-300 dark:hover:bg-slate-800" href="../../free-tools/">Directory</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <article class="wrap mx-auto max-w-3xl">
+      <p class="crumbs"><a href="../">Blog</a> / Generate a Prompt From a Video</p>
+      <h1 class="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">How to Generate a Prompt From a Video: The Eight-Slot Template</h1>
+      <p class="mt-2 text-sm text-slate-400 dark:text-slate-500">Published October 13, 2026 &middot; 8 min read</p>
+
+      <div class="prose prose-slate mt-8 max-w-none dark:prose-invert prose-a:text-indigo-600 dark:prose-a:text-indigo-400">
+
+        <p>Most people write video prompts as sentences, and most video prompts fail as sentences. A generator does not parse grammar; it pattern-matches on caption-shaped fragments. So the reliable move is to stop writing and start filling in slots — a fixed eight-field skeleton that you complete from the clip in front of you. Here is the template we use, how an extraction tool populates it, and the iteration loop that turns an almost-right render into the one you keep.</p>        <div class="toc not-prose rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm dark:border-slate-800 dark:bg-slate-900/40">
+          <strong class="text-slate-900 dark:text-slate-100">In this guide</strong>
+          <ol class="mt-1 space-y-1 text-slate-600 dark:text-slate-400">
+            <li><a href="#why">Why templates beat prose</a></li>
+            <li><a href="#slots">The eight slots</a></li>
+            <li><a href="#fill">Filling the slots from an extraction</a></li>
+            <li><a href="#iterate">The one-variable iteration loop</a></li>
+            <li><a href="#version">Versioning your prompts</a></li>
+            <li><a href="#mistakes">Common slot mistakes</a></li>
+            <li><a href="#faq">Frequently asked questions</a></li>
+          </ol>
+        </div>
+
+        <h2 id="why">Why templates beat prose</h2>
+        <p>Training captions for <a href="https://en.wikipedia.org/wiki/Text-to-video_model" target="_blank" rel="noopener">text-to-video models</a> are dense, comma-separated and noun-heavy: &ldquo;a wide shot of X, golden hour backlight, slow dolly in, shallow depth of field&rdquo;. When you write flowing prose — &ldquo;I want something that feels like a memory of a beach&rdquo; — you are asking the model to infer a caption from a mood, which it will do inconsistently. A template keeps you on the distribution the model was trained on, and makes every run comparable: same slots, changed values, visible cause.</p>
+        <h2 id="slots">The eight slots</h2>
+        <ol>
+          <li><strong>Subject</strong> — the thing in frame, one noun phrase. &ldquo;A ceramic coffee cup&rdquo;, not &ldquo;a beautiful morning moment&rdquo;.</li>
+          <li><strong>Action</strong> — one verb phrase. &ldquo;steam curling upward&rdquo;. If nothing moves, say so: &ldquo;locked-off, no subject movement&rdquo;.</li>
+          <li><strong>Lens and format</strong> — focal feel and capture medium: 35mm, macro, anamorphic, phone vertical, 16mm grain.</li>
+          <li><strong>Camera move</strong> — exactly one verb: dolly in, whip pan, crane up, handheld drift, static.</li>
+          <li><strong>Light</strong> — source, direction, quality: &ldquo;window key from camera-left, soft, low contrast&rdquo;.</li>
+          <li><strong>Grade</strong> — palette and contrast, as colour words: &ldquo;warm highlights, teal shadows, lifted blacks, fine grain&rdquo;.</li>
+          <li><strong>Pacing</strong> — duration and cut rhythm: &ldquo;8 seconds, single take&rdquo; or &ldquo;three quick cuts on the beat&rdquo;.</li>
+          <li><strong>Mood</strong> — last, and only one or two words: &ldquo;uncanny&rdquo;, &ldquo;cozy&rdquo;. Mood carries the least weight; spend your character budget earlier.</li>
+        </ol>
+        <p>Assemble in that order, comma-separated, and keep it under about 60 words. Slots 3&ndash;6 are where an extracted prompt earns its keep, because they are the ones you cannot see while you are watching the thing.</p>
+        <h2 id="fill">Filling the slots from an extraction</h2>
+        <p>Read the clip yourself, then let <a href="https://socialtoprompt.com/" target="_blank" rel="noopener">SocialToPrompt</a> fill the gaps, then reconcile. Paste the link (or upload MP4, MOV or WebM) and the engine returns the fields it inspected for — motion, camera work, composition, style, lighting and timing — after a run the site says typically takes 20&ndash;40 seconds. Drop its values into the eight slots, and mark anything you disagree with in brackets; that bracket list is your next iteration queue.</p>
+        <p>Two slots resist automation and you should own them. <strong>Lens and format</strong> depends on where your clip is going (a 9:16 phone ad does not want anamorphic bokeh), and <strong>mood</strong> depends on intent the clip cannot tell you. Everything else is fair game for extraction — see <a href="../extract-prompt-from-video-online/">how to extract a prompt online</a> for the mechanics.</p>
+        <h2 id="iterate">The one-variable iteration loop</h2>
+        <p>Change one slot per run, and write the changed value in the filename. The loop that converges:</p>
+        <table>
+          <thead><tr><th scope="col">Run</th><th scope="col">Change</th><th scope="col">What you are testing</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Baseline from template</td><td>Did the subject and framing land?</td></tr>
+            <tr><td>2</td><td>Camera verb only</td><td>Is the movement word the model knows?</td></tr>
+            <tr><td>3</td><td>Light, direction or quality</td><td>Does the mood come from lighting rather than colour?</td></tr>
+            <tr><td>4</td><td>Pacing / duration</td><td>Is the render falling apart because there is too much to do?</td></tr>
+            <tr><td>5</td><td>Grade as explicit palette</td><td>Is the look a palette problem rather than a subject problem?</td></tr>
+          </tbody>
+        </table>
+        <p>Five runs with five single changes will teach you more than twenty rewrites, and it keeps the cost predictable — on a credit-metered tool that matters, which is why we do the arithmetic in <a href="../video-to-prompt-generator-free/">what the free tier buys</a>.</p>
+        <h2 id="version">Versioning your prompts</h2>
+        <p>Download the .txt the tool offers, then rename it into a sortable pattern: <code>2026-10-13_coffee-turntable_v3-dollyin.txt</code>. At the top of the file, keep three lines of context the prompt itself cannot carry: the source link or file, the target model, and what you changed from the last version. Two months later that header is the difference between reusing a good prompt and reverse-engineering your own work.</p>
+        <p>A library of these files also exposes patterns: which camera verbs your model actually obeys, which grade words survive across subjects, which pacing length your audience watches to the end. That is the education hiding inside the tool.</p>
+        <h2 id="mistakes">Common slot mistakes</h2>
+        <ul>
+          <li><strong>Two cameras in one slot.</strong> &ldquo;Dolly in then orbit&rdquo; in four seconds renders as mush; pick one.</li>
+          <li><strong>Adjective stacking.</strong> &ldquo;Stunning, breathtaking, epic cinematic&rdquo; adds weight to nothing. Concrete beats enthusiastic.</li>
+          <li><strong>Describing the reference rather than the recipe.</strong> &ldquo;Like the Nike ad&rdquo; is a request the model cannot fill; describe the mechanism instead.</li>
+          <li><strong>Negations.</strong> &ldquo;No people&rdquo; often invites people. Write the positive: &ldquo;empty street&rdquo;.</li>
+          <li><strong>Ignoring aspect ratio.</strong> A slot-3 problem masquerading as a composition problem — vertical clips need vertical framing words.</li>
+        </ul>
+        <p>For the methodology behind choosing which clips to template in the first place, see <a href="../video-prompt-reverse-engineering-tool/">video prompt reverse engineering</a>, and for the fields themselves, <a href="../convert-video-to-ai-prompt/">converting a video to an AI prompt</a>.</p>
+        <h2 id="faq">Frequently asked questions</h2>
+        <h3>What template should I use to write a prompt from a video?</h3>
+        <p>An eight-slot skeleton in this order: subject, action, lens and format, camera move, light, grade, pacing, mood — comma-separated, under about 60 words. Early slots carry more weight with the renderer, which is why mood goes last and camera detail goes third or fourth rather than being buried in prose.</p>
+        <h3>Can a tool generate the prompt for me?</h3>
+        <p>Yes — an extractor reads the clip and returns most of the fields, typically including camera behaviour, lighting, pacing and style. You still own two slots yourself: lens and format, which depends on where the clip is going, and mood, which is intent rather than observation.</p>
+        <h3>How do I stop changing five things at once when I iterate?</h3>
+        <p>Change one slot per run and put the changed value in the filename. Five single-variable runs answer five questions; twenty rewrites answer none, because you cannot tell which edit helped.</p>
+        <h3>Why do adjectives and negations hurt my renders?</h3>
+        <p>Stacked intensifiers carry no visual information, so they dilute the concrete words around them. Negations are worse: models frequently render the thing you told them to exclude, because the token is present. Write the positive state instead — 'empty street', not 'no people'.</p>
+
+      </div>
+
+      <section class="mx-auto mt-12 max-w-3xl">
+        <h2 class="text-xl font-extrabold tracking-tight">Related reading</h2>
+        <div class="mt-4 grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <a class="post-card" href="../convert-video-to-ai-prompt/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">How to Convert a Video to an AI Prompt (Field by Field)</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">What each slot means in the output, and how to fix it when generation drifts.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 13, 2026 · 8 min read</span>
+          </a>
+          <a class="post-card" href="../socialtoprompt-review/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">SocialToPrompt Review: Turn Any Video Into a Prompt</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">The scored review: social downloader plus prompt engine in one page, and where each half earns its keep.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Sep 13, 2026 · 8 min read</span>
+          </a>
+          <a class="post-card" href="../turn-any-video-into-a-prompt/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">Turn Any Video Into a Prompt: 27 Platforms Plus Files</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">Coverage across 27 platforms plus file upload — and the sources that defeat extraction.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 13, 2026 · 7 min read</span>
+          </a>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="mt-14 border-t border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900/40">
+    <div class="wrap flex flex-wrap items-center justify-between gap-2 py-6 text-sm text-slate-400 dark:text-slate-500">
+      <span>© 2026 <a class="text-slate-600 hover:text-indigo-600 dark:text-slate-300" href="../../">FreeToolsHub</a>. All rights reserved.</span>
+      <span>Business inquiries: <a class="text-slate-600 hover:text-indigo-600 dark:text-slate-300" href="mailto:hello@veonib.com">hello@veonib.com</a></span>
+    </div>
+  </footer>
+
+</body>
+</html>

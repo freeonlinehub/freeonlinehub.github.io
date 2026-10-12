@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Convert a Reference Video to a Kling Prompt</title>
+  <meta name="description" content="Use a reference clip as the source of a Kling prompt: keep camera behaviour and timing, swap subject, setting and palette, and lock the constants across shots.">
+  <link rel="canonical" href="https://freeonlinehub.github.io/blog/convert-reference-video-to-kling-prompt/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="FreeToolsHub">
+  <meta property="og:title" content="Convert a Reference Video to a Kling Prompt">
+  <meta property="og:description" content="Use a reference clip as the source of a Kling prompt: keep camera behaviour and timing, swap subject, setting and palette, and lock the constants across shots.">
+  <meta property="og:url" content="https://freeonlinehub.github.io/blog/convert-reference-video-to-kling-prompt/">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script src="../../js/tailwindcss.js"></script>
+  <script src="../../js/site.js"></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BlogPosting","headline":"Convert a Reference Video to a Kling Prompt","datePublished":"2026-10-13","dateModified":"2026-10-13","author":{"@type":"Organization","name":"FreeToolsHub"},"publisher":{"@type":"Organization","name":"FreeToolsHub","url":"https://freeonlinehub.github.io/"},"url":"https://freeonlinehub.github.io/blog/convert-reference-video-to-kling-prompt/"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://freeonlinehub.github.io/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://freeonlinehub.github.io/blog/"},{"@type":"ListItem","position":3,"name":"Convert a Reference Video to a Kling Prompt","item":"https://freeonlinehub.github.io/blog/convert-reference-video-to-kling-prompt/"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What does it mean to use a reference video for a Kling prompt?","acceptedAnswer":{"@type":"Answer","text":"It means taking the structural decisions someone already made — camera behaviour, light direction, pacing, where the change lands — and refilling them with your own subject, setting and palette. The reference supplies the mechanism; you supply the content."}},{"@type":"Question","name":"How much of the reference should I change?","acceptedAnswer":{"@type":"Answer","text":"Exactly three things: subject, setting and palette. Keep camera, light and timing intact. That split is also the rights boundary, because everything you are allowed to reuse lives in the structural column and everything protected lives in the content column."}},{"@type":"Question","name":"My sequence shots don't match each other. Why?","acceptedAnswer":{"@type":"Answer","text":"Because the constants drifted between prompts. Repeat the subject noun verbatim and restate light source, palette words, format and aspect ratio in every shot; models have no memory of the previous generation."}},{"@type":"Question","name":"How do I know the conversion worked?","acceptedAnswer":{"@type":"Answer","text":"Compare at the same size and answer three questions only: same camera behaviour, same light side, same moment of change. If all three hold, the mechanism transferred and anything you dislike is about the subject rather than the shot."}}]}
+  </script>
+</head>
+<body class="bg-white font-sans text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100">
+
+  <header class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/80 backdrop-blur-md dark:border-slate-800/80 dark:bg-slate-950/80">
+    <div class="wrap flex h-16 items-center justify-between gap-3">
+      <a href="../../" class="flex flex-none items-center gap-2.5 text-lg font-extrabold tracking-tight text-slate-900 no-underline dark:text-white">
+        <span class="grid h-8 w-8 flex-none place-items-center rounded-[9px] bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 text-[13px] font-extrabold text-white shadow-md shadow-indigo-500/25">FT</span>
+        FreeTools<span class="text-indigo-600 dark:text-indigo-400">Hub</span>
+      </a>
+      <button data-nav-toggle aria-label="Toggle navigation" aria-expanded="false"
+        class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-slate-600 md:hidden dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">☰</button>
+      <nav data-nav class="main-nav">
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../ai-tools/">AI Tools</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../seo-tools/">SEO</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-image-tools/">Image</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-video-tools/">Video</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-pdf-tools/">PDF</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../developer-tools/">Developer</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../social-media-tools/">Social</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm font-semibold text-indigo-700 no-underline hover:bg-indigo-50 dark:text-indigo-300 dark:hover:bg-slate-800" href="../../free-tools/">Directory</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <article class="wrap mx-auto max-w-3xl">
+      <p class="crumbs"><a href="../">Blog</a> / Convert a Reference Video to a Kling Prompt</p>
+      <h1 class="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">Convert a Reference Video to a Kling Prompt Without Copying It</h1>
+      <p class="mt-2 text-sm text-slate-400 dark:text-slate-500">Published October 13, 2026 &middot; 7 min read</p>
+
+      <div class="prose prose-slate mt-8 max-w-none dark:prose-invert prose-a:text-indigo-600 dark:prose-a:text-indigo-400">
+
+        <p>A reference video is a brief you did not have to write. Someone already solved the hard parts — where the camera sits, when the movement happens, how the light falls — and your job is to keep those decisions and replace the content with your own. That is the whole craft of reference-driven generation, and <a href="https://klingai.com/" target="_blank" rel="noopener">Kling</a> is a good model to learn it on because it follows motion instructions so literally.</p>        <div class="toc not-prose rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm dark:border-slate-800 dark:bg-slate-900/40">
+          <strong class="text-slate-900 dark:text-slate-100">In this guide</strong>
+          <ol class="mt-1 space-y-1 text-slate-600 dark:text-slate-400">
+            <li><a href="#for">What a reference is for</a></li>
+            <li><a href="#rule">The three-keep, three-swap rule</a></li>
+            <li><a href="#clauses">Converting to Kling clauses</a></li>
+            <li><a href="#constants">Locking constants across shots</a></li>
+            <li><a href="#test">Testing the reference held</a></li>
+            <li><a href="#faq">Frequently asked questions</a></li>
+          </ol>
+        </div>
+
+        <h2 id="for">What a reference is for</h2>
+        <p>People usually bring a reference for one of three reasons: a <strong>look</strong> (a grade and lighting pattern), a <strong>move</strong> (a camera behaviour they cannot describe from memory), or a <strong>rhythm</strong> (where the beats of the shot land). Know which of the three you want before you write anything, because that determines what must survive the swap. If the move is the point, the move is sacred and the subject is interchangeable; if the look is the point, the grade has to be described precisely enough to reproduce.</p>
+        <p>Extraction is what turns that instinct into language: <a href="https://socialtoprompt.com/" target="_blank" rel="noopener">SocialToPrompt</a> reads a clip — from 27 named platforms or an uploaded file — and returns the fields a reference is made of.</p>
+        <h2 id="rule">The three-keep, three-swap rule</h2>
+        <table>
+          <thead><tr><th scope="col">Keep from the reference</th><th scope="col">Swap for your own</th></tr></thead>
+          <tbody>
+            <tr><td>Camera verb, height and stability</td><td>Subject</td></tr>
+            <tr><td>Light direction and quality</td><td>Setting</td></tr>
+            <tr><td>Pacing and where the change lands</td><td>Palette and grade</td></tr>
+          </tbody>
+        </table>
+        <p>The keeps are mechanism; the swaps are content. This is also the ethical line made operational: a person&rsquo;s likeness, script, brand marks and distinctive set design live entirely in the swap column, and if you find yourself unable to describe your output without naming the original, you have copied expression rather than technique. The longer version is in <a href="../video-prompt-reverse-engineering-tool/">the reverse-engineering method</a>.</p>
+        <h2 id="clauses">Converting to Kling clauses</h2>
+        <pre><code>Reference (a 6s perfume ad): black set, bottle rotates on axis, single hard rim from behind-left,
+background falls to pure black, slow, ends with label facing camera.
+
+Kling prompt, your product (a hot sauce bottle):
+A glass hot-sauce bottle rotates slowly on its axis against a deep charcoal set; camera locked-off,
+eye level with the bottle, no drift; single hard rim light from behind-left tracing the glass edge,
+label edge-lit; condensation beads sliding down the shoulder; saturated reds against neutral grey,
+high contrast, blacks crushed; 6 seconds; ends with the label square to camera.
+</code></pre>
+        <p>Every structural decision is inherited — the rotation, the rim position, the locked-off frame, the ending — and nothing about the original subject survives. Two Kling-specific touches: naming the surface behaviour (condensation sliding) and stating that the background falls to near-black, which is what makes the rim light read.</p>
+        <h2 id="constants">Locking constants across shots</h2>
+        <p>Reference work is usually a sequence, so declare the constants once and repeat them verbatim in every shot prompt: the <strong>subject noun</strong>, the <strong>light source and position</strong>, the <strong>palette words</strong>, the <strong>format claim</strong>, the <strong>aspect ratio</strong>. Kling has no memory between generations, so a reworded noun becomes a different bottle by shot three.</p>
+        <p>Keep the constants in a short header block above your prompts and paste it into each one — the same discipline as the multi-shot structure in <a href="../seedance-prompt-from-video/">Seedance prompting</a>. When you have several references in play, that is a library problem: <a href="../extract-shot-list-and-prompts-from-video/">shot-list extraction</a> covers the multi-shot case.</p>
+        <h2 id="test">Testing the reference held</h2>
+        <p>Put the render next to the reference at the same size and ask three narrow questions: did the camera do the same thing; is the light coming from the same side; did the change land at the same moment? If all three are yes, the reference converted correctly and any remaining dissatisfaction is about your subject, not the mechanism.</p>
+        <p>If the camera failed, fix the verb first — that is where extraction and imagination most often disagree, and the corner test in <a href="../extract-camera-movement-from-video-ai/">the camera movement guide</a> settles it in seconds. Then re-run with the one-variable discipline from <a href="../generate-prompt-from-video/">the eight-slot template</a>. Related conversions: <a href="../kling-ai-prompt-extractor-from-video/">Kling field-by-field extraction</a>, Seedance conversion, and Sora prompts from existing video.</p>
+        <h2 id="faq">Frequently asked questions</h2>
+        <h3>What does it mean to use a reference video for a Kling prompt?</h3>
+        <p>It means taking the structural decisions someone already made — camera behaviour, light direction, pacing, where the change lands — and refilling them with your own subject, setting and palette. The reference supplies the mechanism; you supply the content.</p>
+        <h3>How much of the reference should I change?</h3>
+        <p>Exactly three things: subject, setting and palette. Keep camera, light and timing intact. That split is also the rights boundary, because everything you are allowed to reuse lives in the structural column and everything protected lives in the content column.</p>
+        <h3>My sequence shots don't match each other. Why?</h3>
+        <p>Because the constants drifted between prompts. Repeat the subject noun verbatim and restate light source, palette words, format and aspect ratio in every shot; models have no memory of the previous generation.</p>
+        <h3>How do I know the conversion worked?</h3>
+        <p>Compare at the same size and answer three questions only: same camera behaviour, same light side, same moment of change. If all three hold, the mechanism transferred and anything you dislike is about the subject rather than the shot.</p>
+
+      </div>
+
+      <section class="mx-auto mt-12 max-w-3xl">
+        <h2 class="text-xl font-extrabold tracking-tight">Related reading</h2>
+        <div class="mt-4 grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <a class="post-card" href="../kling-ai-prompt-extractor-from-video/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">Kling AI Prompt Extractor From a Video: How To</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">The fields, the verbs and the failure modes.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 13, 2026 · 7 min read</span>
+          </a>
+          <a class="post-card" href="../video-prompt-reverse-engineering-tool/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">Video Prompt Reverse Engineering: A Tool and 3 Passes</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">The three-pass method behind keeping mechanism and swapping content.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 13, 2026 · 8 min read</span>
+          </a>
+          <a class="post-card" href="../socialtoprompt-review/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">SocialToPrompt Review: Turn Any Video Into a Prompt</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">The scored review: social downloader plus prompt engine in one page, and where each half earns its keep.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Sep 13, 2026 · 8 min read</span>
+          </a>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="mt-14 border-t border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900/40">
+    <div class="wrap flex flex-wrap items-center justify-between gap-2 py-6 text-sm text-slate-400 dark:text-slate-500">
+      <span>© 2026 <a class="text-slate-600 hover:text-indigo-600 dark:text-slate-300" href="../../">FreeToolsHub</a>. All rights reserved.</span>
+      <span>Business inquiries: <a class="text-slate-600 hover:text-indigo-600 dark:text-slate-300" href="mailto:hello@veonib.com">hello@veonib.com</a></span>
+    </div>
+  </footer>
+
+</body>
+</html>

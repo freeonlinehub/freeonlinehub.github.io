@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sora Prompt From an Existing Video</title>
+  <meta name="description" content="Turn a reference clip into a Sora-style prompt: scene-first description, shot progression, the physics language it likes — and what an extractor cannot supply.">
+  <link rel="canonical" href="https://freeonlinehub.github.io/blog/sora-prompt-from-existing-video/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="FreeToolsHub">
+  <meta property="og:title" content="Sora Prompt From an Existing Video">
+  <meta property="og:description" content="Turn a reference clip into a Sora-style prompt: scene-first description, shot progression, the physics language it likes — and what an extractor cannot supply.">
+  <meta property="og:url" content="https://freeonlinehub.github.io/blog/sora-prompt-from-existing-video/">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script src="../../js/tailwindcss.js"></script>
+  <script src="../../js/site.js"></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BlogPosting","headline":"Sora Prompt From an Existing Video","datePublished":"2026-10-13","dateModified":"2026-10-13","author":{"@type":"Organization","name":"FreeToolsHub"},"publisher":{"@type":"Organization","name":"FreeToolsHub","url":"https://freeonlinehub.github.io/"},"url":"https://freeonlinehub.github.io/blog/sora-prompt-from-existing-video/"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://freeonlinehub.github.io/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://freeonlinehub.github.io/blog/"},{"@type":"ListItem","position":3,"name":"Sora Prompt From an Existing Video","item":"https://freeonlinehub.github.io/blog/sora-prompt-from-existing-video/"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can I create a Sora prompt from a video I found?","acceptedAnswer":{"@type":"Answer","text":"Yes: extract the clip's structural fields with a video-to-prompt tool, then rewrite them as plain declarative prose that leads with the environment, describes the camera's progression through the shot, and states the duration and ending. Sora responds to briefed sentences far better than to keyword lists."}},{"@type":"Question","name":"What does an extractor miss for a Sora-style prompt?","acceptedAnswer":{"@type":"Answer","text":"Three things: the intent behind the framing, any audio or dialogue, and fast camera movement that falls between sampled frames. Those need a human who watched the reference, which is why the rewrite step is not optional."}},{"@type":"Question","name":"Why should I convert a parameter-style prompt into sentences?","acceptedAnswer":{"@type":"Answer","text":"Because prompt dialects differ. Comma-separated slot lists work well for models trained on short production captions; Sora-class models are stronger when the description establishes space and then moves through it, which reads as prose rather than tags."}},{"@type":"Question","name":"Is using someone's video as a reference a copyright problem?","acceptedAnswer":{"@type":"Answer","text":"Reusing the mechanism — framing, camera progression, pacing, lighting pattern — is not what copyright protects; reproducing their expression, talent, script or brand marks is. Change subject, setting and palette, and ask whether the original creator would recognise their specific work in yours."}}]}
+  </script>
+</head>
+<body class="bg-white font-sans text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100">
+
+  <header class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/80 backdrop-blur-md dark:border-slate-800/80 dark:bg-slate-950/80">
+    <div class="wrap flex h-16 items-center justify-between gap-3">
+      <a href="../../" class="flex flex-none items-center gap-2.5 text-lg font-extrabold tracking-tight text-slate-900 no-underline dark:text-white">
+        <span class="grid h-8 w-8 flex-none place-items-center rounded-[9px] bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 text-[13px] font-extrabold text-white shadow-md shadow-indigo-500/25">FT</span>
+        FreeTools<span class="text-indigo-600 dark:text-indigo-400">Hub</span>
+      </a>
+      <button data-nav-toggle aria-label="Toggle navigation" aria-expanded="false"
+        class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-slate-600 md:hidden dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">☰</button>
+      <nav data-nav class="main-nav">
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../ai-tools/">AI Tools</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../seo-tools/">SEO</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-image-tools/">Image</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-video-tools/">Video</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-pdf-tools/">PDF</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../developer-tools/">Developer</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../social-media-tools/">Social</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm font-semibold text-indigo-700 no-underline hover:bg-indigo-50 dark:text-indigo-300 dark:hover:bg-slate-800" href="../../free-tools/">Directory</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <article class="wrap mx-auto max-w-3xl">
+      <p class="crumbs"><a href="../">Blog</a> / Sora Prompt From an Existing Video</p>
+      <h1 class="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">Sora Prompt From an Existing Video: What Transfers and What Doesn't</h1>
+      <p class="mt-2 text-sm text-slate-400 dark:text-slate-500">Published October 13, 2026 &middot; 7 min read</p>
+
+      <div class="prose prose-slate mt-8 max-w-none dark:prose-invert prose-a:text-indigo-600 dark:prose-a:text-indigo-400">
+
+        <p>Sora prompting is closer to writing a shot list for a camera crew than to typing keywords, and that makes it an interesting destination for a reference video: someone has already directed the shot, and your job is to write down what they directed. Here is the conversion, plus the parts of a reference no extractor can hand you.</p>        <div class="toc not-prose rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm dark:border-slate-800 dark:bg-slate-900/40">
+          <strong class="text-slate-900 dark:text-slate-100">In this guide</strong>
+          <ol class="mt-1 space-y-1 text-slate-600 dark:text-slate-400">
+            <li><a href="#favours">What Sora-style prompting favours</a></li>
+            <li><a href="#steps">The conversion, step by step</a></li>
+            <li><a href="#cannot">What extraction cannot tell you</a></li>
+            <li><a href="#worked">Worked example</a></li>
+            <li><a href="#access">Access, rights and honesty</a></li>
+            <li><a href="#faq">Frequently asked questions</a></li>
+          </ol>
+        </div>
+
+        <h2 id="favours">What Sora-style prompting favours</h2>
+        <ul>
+          <li><strong>Scene first, subject second.</strong> Establish the place, then what happens in it — the model builds space unusually well.</li>
+          <li><strong>Shot progression in words.</strong> &ldquo;Begins wide and settles into a close-up&rdquo; is a direction it can follow; &ldquo;cool camera work&rdquo; is not.</li>
+          <li><strong>Physics and material.</strong> Liquids, fabric, dust, reflections and weight read as the differentiator for this family.</li>
+          <li><strong>Coherence across the clip</strong> — a single sentence describing what stays constant matters as much as what changes.</li>
+          <li><strong>Plain, declarative prose.</strong> No keyword soup, no negative lists, no weighted syntax. Write it the way you would brief a DP.</li>
+        </ul>
+        <p><a href="https://en.wikipedia.org/wiki/Text-to-video_model" target="_blank" rel="noopener">Text-to-video models</a> differ in exactly these habits, which is why a prompt written for one family underperforms on another without a rewrite.</p>
+        <h2 id="steps">The conversion, step by step</h2>
+        <p><strong>1. Extract the structure.</strong> Reference clip into <a href="https://socialtoprompt.com/" target="_blank" rel="noopener">SocialToPrompt</a> — a URL from any of 27 platforms, or an uploaded MP4, MOV or WebM, which skips the extraction credit — and take back subject, camera, light, pacing and style. A full run on a clip up to 20 seconds costs 4 credits per the site&rsquo;s pricing; the free 3-credit signup allowance does not quite cover one, as <a href="../video-to-prompt-generator-free/">that arithmetic</a> explains.</p>
+        <p><strong>2. Reorder for space.</strong> Lead with the environment, then the subject inside it, then the camera&rsquo;s behaviour toward them.</p>
+        <p><strong>3. Convert fields into sentences.</strong> Delete the comma-separated parameter style; Sora reads prose better than tag lists, so the same information becomes two or three clean sentences.</p>
+        <p><strong>4. Add the physical cause.</strong> Where the extraction says &ldquo;steam rises&rdquo;, write why it moves: curling and dissipating in the light shaft.</p>
+        <p><strong>5. Declare duration and ending</strong>, which no extractor ever supplies.</p>
+        <h2 id="cannot">What extraction cannot tell you</h2>
+        <p>Three gaps that need a human on the reference clip, in order of how much they hurt the render:</p>
+        <ol>
+          <li><strong>Intent and continuity.</strong> What the shot is <em>for</em> — the reason the camera waits — is invisible in pixels.</li>
+          <li><strong>Sound and dialogue</strong>, if your generation includes audio: a visual extractor cannot hear the clip. Read the transcript where one exists (our <a href="../youtube-caption-downloader-review/">caption guide</a> covers pulling it as TXT or SRT).</li>
+          <li><strong>What the camera does between samples.</strong> Fast pans and brief whip moves fall between frames, so short, energetic references often come back described as calmer than they were.</li>
+        </ol>
+        <h2 id="worked">Worked example</h2>
+        <pre><code>Reference: 9s travel clip — drone over a coastal road, descends toward a red car, ends on roof.
+
+Extracted fields: coastal road, cliff, ocean, red car driving, drone descending, bright daylight,
+                  vivid colours, fast then slow, ends on the car.
+
+Sora-shaped prompt: A two-lane coastal road carved into a green cliff above a flat grey ocean,
+late morning and clear. A single red car comes into view from the far end and drives toward the
+camera. The shot begins as a high aerial view of the whole curve, then descends steadily, the
+cliff edge sweeping past underneath, until the car fills the frame and the road becomes a strip
+of grey asphalt beside it. The water stays flat and colourless behind. Nine seconds, ending on
+the car's roof as it passes out of frame.
+</code></pre>
+        <p>Notice what changed: parameter language became spatial sentences, the descent was written as a progression with intermediate stages, and the ending got stated. That is roughly a minute of editing per clip.</p>
+        <h2 id="access">Access, rights and honesty</h2>
+        <p>Two practical notes. Access to Sora-class generation sits behind OpenAI&rsquo;s own products and API terms, so a prompt written here is portable but the endpoint is someone else&rsquo;s policy — read it before building a workflow on it. And the rights position on a reference is unchanged by the model you use: describing a shot mechanism is fine, reproducing someone&rsquo;s creative expression, talent or brand marks is not, and the <a href="https://www.copyright.gov/help/faq/faq-fairuse.html" target="_blank" rel="noopener">transformation test</a> is the one that matters. For the model-agnostic version of the conversion, see <a href="../convert-video-to-ai-prompt/">field-by-field conversion</a>; for other destinations, <a href="../wan-ai-prompt-from-video/">Wan</a>, <a href="../hailuo-ai-video-prompt-generator/">Hailuo</a> and <a href="../runway-video-prompt-extractor/">Runway</a>.</p>
+        <h2 id="faq">Frequently asked questions</h2>
+        <h3>Can I create a Sora prompt from a video I found?</h3>
+        <p>Yes: extract the clip's structural fields with a video-to-prompt tool, then rewrite them as plain declarative prose that leads with the environment, describes the camera's progression through the shot, and states the duration and ending. Sora responds to briefed sentences far better than to keyword lists.</p>
+        <h3>What does an extractor miss for a Sora-style prompt?</h3>
+        <p>Three things: the intent behind the framing, any audio or dialogue, and fast camera movement that falls between sampled frames. Those need a human who watched the reference, which is why the rewrite step is not optional.</p>
+        <h3>Why should I convert a parameter-style prompt into sentences?</h3>
+        <p>Because prompt dialects differ. Comma-separated slot lists work well for models trained on short production captions; Sora-class models are stronger when the description establishes space and then moves through it, which reads as prose rather than tags.</p>
+        <h3>Is using someone's video as a reference a copyright problem?</h3>
+        <p>Reusing the mechanism — framing, camera progression, pacing, lighting pattern — is not what copyright protects; reproducing their expression, talent, script or brand marks is. Change subject, setting and palette, and ask whether the original creator would recognise their specific work in yours.</p>
+
+      </div>
+
+      <section class="mx-auto mt-12 max-w-3xl">
+        <h2 class="text-xl font-extrabold tracking-tight">Related reading</h2>
+        <div class="mt-4 grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <a class="post-card" href="../runway-video-prompt-extractor/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">Runway Video Prompt Extractor: Reference to Prompt</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">Runway's prompt dialect and reference-driven generation.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 13, 2026 · 7 min read</span>
+          </a>
+          <a class="post-card" href="../wan-ai-prompt-from-video/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">Wan AI Prompt From a Video (Open Weights)</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">Open-weights pipelines and local prompting habits.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 13, 2026 · 7 min read</span>
+          </a>
+          <a class="post-card" href="../socialtoprompt-review/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">SocialToPrompt Review: Turn Any Video Into a Prompt</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">The scored review: social downloader plus prompt engine in one page, and where each half earns its keep.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Sep 13, 2026 · 8 min read</span>
+          </a>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="mt-14 border-t border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900/40">
+    <div class="wrap flex flex-wrap items-center justify-between gap-2 py-6 text-sm text-slate-400 dark:text-slate-500">
+      <span>© 2026 <a class="text-slate-600 hover:text-indigo-600 dark:text-slate-300" href="../../">FreeToolsHub</a>. All rights reserved.</span>
+      <span>Business inquiries: <a class="text-slate-600 hover:text-indigo-600 dark:text-slate-300" href="mailto:hello@veonib.com">hello@veonib.com</a></span>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Extract a Veo Prompt From a Video (Rewrite Pass)</title>
+  <meta name="description" content="A four-pass rewrite turning any clip's extracted fields into a Veo-ready prompt: camera, light, sound, change — with the clauses to delete and the ones to add.">
+  <link rel="canonical" href="https://freeonlinehub.github.io/blog/extract-veo-prompt-from-video/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="FreeToolsHub">
+  <meta property="og:title" content="Extract a Veo Prompt From a Video (Rewrite Pass)">
+  <meta property="og:description" content="A four-pass rewrite turning any clip's extracted fields into a Veo-ready prompt: camera, light, sound, change — with the clauses to delete and the ones to add.">
+  <meta property="og:url" content="https://freeonlinehub.github.io/blog/extract-veo-prompt-from-video/">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script src="../../js/tailwindcss.js"></script>
+  <script src="../../js/site.js"></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BlogPosting","headline":"Extract a Veo Prompt From a Video (Rewrite Pass)","datePublished":"2026-10-13","dateModified":"2026-10-13","author":{"@type":"Organization","name":"FreeToolsHub"},"publisher":{"@type":"Organization","name":"FreeToolsHub","url":"https://freeonlinehub.github.io/"},"url":"https://freeonlinehub.github.io/blog/extract-veo-prompt-from-video/"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://freeonlinehub.github.io/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://freeonlinehub.github.io/blog/"},{"@type":"ListItem","position":3,"name":"Extract a Veo Prompt From a Video (Rewrite Pass)","item":"https://freeonlinehub.github.io/blog/extract-veo-prompt-from-video/"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can an extractor write a Veo prompt for me?","acceptedAnswer":{"@type":"Answer","text":"Four of the five clauses, yes: scene, camera, light and the change beat come out of a video extraction. Sound does not, because a visual model reads frames rather than audio, and audio is the clause that makes a Veo render feel filmed. Write that one yourself by watching the clip with the sound on."}},{"@type":"Question","name":"What should I delete from an extracted prompt before using it in Veo?","acceptedAnswer":{"@type":"Answer","text":"Genre and quality adjectives, anything describing on-screen text or watermarks, and descriptions of cuts. A single generation handles one continuous shot, so a multi-cut reference needs to be extracted one shot at a time."}},{"@type":"Question","name":"How do I get the light direction right?","acceptedAnswer":{"@type":"Answer","text":"Look at the reference and state source, position and quality as a set-up note: 'hard key from frame right, deep shadow on the left wall, specular on the glaze'. Extractors usually report colour temperature and softness but not direction, because grading hides the shadow geometry they'd infer it from."}},{"@type":"Question","name":"In what order should I iterate a Veo prompt?","acceptedAnswer":{"@type":"Answer","text":"Camera, then light, then the change clause, then sound — and one clause per run. Sound goes last because changing the camera movement changes what the audio needs to sync with."}}]}
+  </script>
+</head>
+<body class="bg-white font-sans text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100">
+
+  <header class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/80 backdrop-blur-md dark:border-slate-800/80 dark:bg-slate-950/80">
+    <div class="wrap flex h-16 items-center justify-between gap-3">
+      <a href="../../" class="flex flex-none items-center gap-2.5 text-lg font-extrabold tracking-tight text-slate-900 no-underline dark:text-white">
+        <span class="grid h-8 w-8 flex-none place-items-center rounded-[9px] bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 text-[13px] font-extrabold text-white shadow-md shadow-indigo-500/25">FT</span>
+        FreeTools<span class="text-indigo-600 dark:text-indigo-400">Hub</span>
+      </a>
+      <button data-nav-toggle aria-label="Toggle navigation" aria-expanded="false"
+        class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-slate-600 md:hidden dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">☰</button>
+      <nav data-nav class="main-nav">
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../ai-tools/">AI Tools</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../seo-tools/">SEO</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-image-tools/">Image</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-video-tools/">Video</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-pdf-tools/">PDF</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../developer-tools/">Developer</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../social-media-tools/">Social</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm font-semibold text-indigo-700 no-underline hover:bg-indigo-50 dark:text-indigo-300 dark:hover:bg-slate-800" href="../../free-tools/">Directory</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <article class="wrap mx-auto max-w-3xl">
+      <p class="crumbs"><a href="../">Blog</a> / Extract a Veo Prompt From a Video</p>
+      <h1 class="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">How to Extract a Veo Prompt From a Video You Admire</h1>
+      <p class="mt-2 text-sm text-slate-400 dark:text-slate-500">Published October 13, 2026 &middot; 7 min read</p>
+
+      <div class="prose prose-slate mt-8 max-w-none dark:prose-invert prose-a:text-indigo-600 dark:prose-a:text-indigo-400">
+
+        <p>Extraction gives you four of the five clauses a <a href="https://deepmind.google/" target="_blank" rel="noopener">Veo</a> prompt needs, and it cannot give you the fifth no matter which tool you use. This is the four-pass rewrite — a fixed order of edits that turns a generic extracted description into something that renders with sound, movement and intent.</p>        <div class="toc not-prose rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm dark:border-slate-800 dark:bg-slate-900/40">
+          <strong class="text-slate-900 dark:text-slate-100">In this guide</strong>
+          <ol class="mt-1 space-y-1 text-slate-600 dark:text-slate-400">
+            <li><a href="#gives">What extraction gives you and what it cannot</a></li>
+            <li><a href="#one">Pass one: camera and framing</a></li>
+            <li><a href="#two">Pass two: light as a diagram</a></li>
+            <li><a href="#three">Pass three: the sound you must write</a></li>
+            <li><a href="#four">Pass four: the change clause</a></li>
+            <li><a href="#faq">Frequently asked questions</a></li>
+          </ol>
+        </div>
+
+        <h2 id="gives">What extraction gives you and what it cannot</h2>
+        <p>Run the reference clip through <a href="https://socialtoprompt.com/" target="_blank" rel="noopener">SocialToPrompt</a> and you get subject, composition, camera behaviour, lighting, pacing and style in structured form, from any of 27 named platforms or an uploaded MP4, MOV or WebM, in the 20&ndash;40 seconds the site states. That maps neatly onto four of the five Veo clauses — SCENE, CAMERA, LIGHT and MOVE.</p>
+                <p>The gap is <strong>SOUND</strong>. A visual extractor cannot hear the clip. That clause is yours to write, and it is the one that most changes the perceived quality of the result, because audio is what makes a generated shot feel filmed rather than rendered. The structure of the five clauses is in <a href="../veo-video-to-prompt-generator/">the Veo prompting guide</a>.</p>
+        <h2 id="one">Pass one: camera and framing</h2>
+        <p>Reduce whatever the extractor said about the camera to <strong>one verb, one height, one framing statement</strong>. Then verify it: scrub two seconds and watch the frame corners for rotation, watch whether the background grows with parallax (dolly) or without (zoom), watch the horizon for a crane.</p>
+        <ul>
+          <li>Replace &ldquo;smooth camera&rdquo; with the actual move, or with &ldquo;locked-off&rdquo;.</li>
+          <li>Replace &ldquo;dynamic&rdquo; with a speed: &ldquo;slow push-in&rdquo;, &ldquo;fast whip pan&rdquo;.</li>
+          <li>Add the height, because it is almost never reported and always changes the shot: &ldquo;camera at bench height&rdquo;.</li>
+        </ul>
+        <h2 id="two">Pass two: light as a diagram</h2>
+        <p>Veo renders light direction explicitly, so write it like a <a href="https://en.wikipedia.org/wiki/Cinematography" target="_blank" rel="noopener">set-up note</a> rather than an adjective: <strong>source, position, quality, and what it does to the surface</strong>. &ldquo;Single hard key from frame right, deep shadow on the left wall, specular highlight on the glaze&rdquo; is a diagram in words. &ldquo;Beautiful warm lighting&rdquo; is nothing.</p>
+        <p>Extraction typically reports colour temperature and softness but not direction — the cues for direction are shadow geometry, which grading obscures. So look at the reference and add the position yourself; it is a five-second edit with an outsized effect.</p>
+        <h2 id="three">Pass three: the sound you must write</h2>
+        <p>Watch the clip with the sound on, then write three things: the room (ambience), the events (one or two, anchored to visible motion), and the absence (no music, no dialogue) if either applies.</p>
+        <pre><code>SOUND  tiled-room reverb; the espresso machine's short hiss; ceramic clink as the cup lands.
+       No music, no dialogue.
+</code></pre>
+        <p>Anchoring matters more than detail: &ldquo;the lid clangs as her hand leaves frame&rdquo; gives the model a moment to aim at, while an unanchored list of sounds lands wherever it can.</p>
+        <h2 id="four">Pass four: the change clause</h2>
+        <p>The last pass is the one that makes the clip a shot rather than a still with jitter. State what changes during the take and what the final frame looks like: <em>&ldquo;flour dust rises into the light shaft and settles; hands leave frame; ends on the dough centred.&rdquo;</em></p>
+        <p>Then delete everything that does not render: genre labels, quality adjectives, anything about on-screen text or watermarks, and any clause describing a cut — a single generation carries one continuous shot, so a multi-cut reference clip means N extractions and N prompts. The batch version of that workflow is <a href="../extract-shot-list-and-prompts-from-video/">extracting shot lists</a>, and the platform-specific rewrite orders are in the <a href="../youtube-video-to-prompt-generator/">YouTube</a> and <a href="../extract-prompt-from-tiktok-video/">TikTok</a> guides.</p>
+        <p>Iteration rule, same as every other family: one clause per run, in the order camera, light, change, sound. The full template is in <a href="../generate-prompt-from-video/">the eight-slot guide</a>, and the rights boundary when the reference is somebody&rsquo;s finished ad is drawn in <a href="../video-prompt-reverse-engineering-tool/">the reverse-engineering method</a>.</p>
+        <h2 id="faq">Frequently asked questions</h2>
+        <h3>Can an extractor write a Veo prompt for me?</h3>
+        <p>Four of the five clauses, yes: scene, camera, light and the change beat come out of a video extraction. Sound does not, because a visual model reads frames rather than audio, and audio is the clause that makes a Veo render feel filmed. Write that one yourself by watching the clip with the sound on.</p>
+        <h3>What should I delete from an extracted prompt before using it in Veo?</h3>
+        <p>Genre and quality adjectives, anything describing on-screen text or watermarks, and descriptions of cuts. A single generation handles one continuous shot, so a multi-cut reference needs to be extracted one shot at a time.</p>
+        <h3>How do I get the light direction right?</h3>
+        <p>Look at the reference and state source, position and quality as a set-up note: 'hard key from frame right, deep shadow on the left wall, specular on the glaze'. Extractors usually report colour temperature and softness but not direction, because grading hides the shadow geometry they'd infer it from.</p>
+        <h3>In what order should I iterate a Veo prompt?</h3>
+        <p>Camera, then light, then the change clause, then sound — and one clause per run. Sound goes last because changing the camera movement changes what the audio needs to sync with.</p>
+
+      </div>
+
+      <section class="mx-auto mt-12 max-w-3xl">
+        <h2 class="text-xl font-extrabold tracking-tight">Related reading</h2>
+        <div class="mt-4 grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <a class="post-card" href="../veo-video-to-prompt-generator/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">Veo Video to Prompt Generator: Audio-Aware Prompting</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">The five-clause structure and audio-aware prompting.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 13, 2026 · 8 min read</span>
+          </a>
+          <a class="post-card" href="../convert-video-to-ai-prompt/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">How to Convert a Video to an AI Prompt (Field by Field)</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">The model-agnostic field-by-field method behind any rewrite.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 13, 2026 · 8 min read</span>
+          </a>
+          <a class="post-card" href="../socialtoprompt-review/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">SocialToPrompt Review: Turn Any Video Into a Prompt</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">The scored review: social downloader plus prompt engine in one page, and where each half earns its keep.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Sep 13, 2026 · 8 min read</span>
+          </a>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="mt-14 border-t border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900/40">
+    <div class="wrap flex flex-wrap items-center justify-between gap-2 py-6 text-sm text-slate-400 dark:text-slate-500">
+      <span>© 2026 <a class="text-slate-600 hover:text-indigo-600 dark:text-slate-300" href="../../">FreeToolsHub</a>. All rights reserved.</span>
+      <span>Business inquiries: <a class="text-slate-600 hover:text-indigo-600 dark:text-slate-300" href="mailto:hello@veonib.com">hello@veonib.com</a></span>
+    </div>
+  </footer>
+
+</body>
+</html>

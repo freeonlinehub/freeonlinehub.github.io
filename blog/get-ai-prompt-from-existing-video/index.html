@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Get an AI Prompt From an Existing Video (File First)</title>
+  <meta name="description" content="Get a generation-ready prompt from an existing clip: which file formats to upload, how to cut to the 20-second window, privacy trade-offs and archive workflow.">
+  <link rel="canonical" href="https://freeonlinehub.github.io/blog/get-ai-prompt-from-existing-video/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="FreeToolsHub">
+  <meta property="og:title" content="Get an AI Prompt From an Existing Video (File First)">
+  <meta property="og:description" content="Get a generation-ready prompt from an existing clip: which file formats to upload, how to cut to the 20-second window, privacy trade-offs and archive workflow.">
+  <meta property="og:url" content="https://freeonlinehub.github.io/blog/get-ai-prompt-from-existing-video/">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script src="../../js/tailwindcss.js"></script>
+  <script src="../../js/site.js"></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BlogPosting","headline":"Get an AI Prompt From an Existing Video (File First)","datePublished":"2026-10-13","dateModified":"2026-10-13","author":{"@type":"Organization","name":"FreeToolsHub"},"publisher":{"@type":"Organization","name":"FreeToolsHub","url":"https://freeonlinehub.github.io/"},"url":"https://freeonlinehub.github.io/blog/get-ai-prompt-from-existing-video/"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://freeonlinehub.github.io/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://freeonlinehub.github.io/blog/"},{"@type":"ListItem","position":3,"name":"Get an AI Prompt From an Existing Video (File First)","item":"https://freeonlinehub.github.io/blog/get-ai-prompt-from-existing-video/"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can I get an AI prompt from a video file instead of a link?","acceptedAnswer":{"@type":"Answer","text":"Yes. SocialToPrompt accepts uploaded MP4, MOV and WebM files alongside links from 27 platforms. Uploading also skips the extraction step, which is billed separately from prompt generation, so you spend credits only on the analysis."}},{"@type":"Question","name":"How long should the clip be?","acceptedAnswer":{"@type":"Answer","text":"Twenty seconds or less, cut on shot boundaries. The stated full-run pricing covers videos up to 20 seconds, and that is also the quality window: long enough for motion and pacing to be measurable, short enough for one prompt to describe one shot honestly."}},{"@type":"Question","name":"Is it safe to upload a video I own?","acceptedAnswer":{"@type":"Answer","text":"Judge it like any file you send to a service. Strip metadata by re-encoding, avoid anything with identifiable people, unreleased products or client material, and use a local pipeline instead if confidentiality matters. Upload gives you speed and skip-a-credit; local gives you control."}},{"@type":"Question","name":"What formats and codecs work best?","acceptedAnswer":{"@type":"Answer","text":"Standard MP4, MOV or WebM with broadly supported codecs — H.264 or H.265 video with AAC audio is the safe combination. Avoid exotic lossless formats, padded aspect ratios and multi-gigabyte masters; make a 1080p, 20-second working copy first."}}]}
+  </script>
+</head>
+<body class="bg-white font-sans text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100">
+
+  <header class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/80 backdrop-blur-md dark:border-slate-800/80 dark:bg-slate-950/80">
+    <div class="wrap flex h-16 items-center justify-between gap-3">
+      <a href="../../" class="flex flex-none items-center gap-2.5 text-lg font-extrabold tracking-tight text-slate-900 no-underline dark:text-white">
+        <span class="grid h-8 w-8 flex-none place-items-center rounded-[9px] bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 text-[13px] font-extrabold text-white shadow-md shadow-indigo-500/25">FT</span>
+        FreeTools<span class="text-indigo-600 dark:text-indigo-400">Hub</span>
+      </a>
+      <button data-nav-toggle aria-label="Toggle navigation" aria-expanded="false"
+        class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-slate-600 md:hidden dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">☰</button>
+      <nav data-nav class="main-nav">
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../ai-tools/">AI Tools</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../seo-tools/">SEO</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-image-tools/">Image</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-video-tools/">Video</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-pdf-tools/">PDF</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../developer-tools/">Developer</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../social-media-tools/">Social</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm font-semibold text-indigo-700 no-underline hover:bg-indigo-50 dark:text-indigo-300 dark:hover:bg-slate-800" href="../../free-tools/">Directory</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <article class="wrap mx-auto max-w-3xl">
+      <p class="crumbs"><a href="../">Blog</a> / Get an AI Prompt From an Existing Video</p>
+      <h1 class="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">How to Get an AI Prompt From a Video You Already Own</h1>
+      <p class="mt-2 text-sm text-slate-400 dark:text-slate-500">Published October 13, 2026 &middot; 7 min read</p>
+
+      <div class="prose prose-slate mt-8 max-w-none dark:prose-invert prose-a:text-indigo-600 dark:prose-a:text-indigo-400">
+
+        <p>The link-paste workflow gets the headlines, but most real work starts from a file you already have: last quarter&rsquo;s ad, a shoot download from the studio, a screen recording of a competitor&rsquo;s onboarding, a clip you saved before it disappeared. Getting a prompt out of an existing video is a slightly different job — formats, trimming and a privacy question that a link never raises. Here is the file-first version.</p>        <div class="toc not-prose rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm dark:border-slate-800 dark:bg-slate-900/40">
+          <strong class="text-slate-900 dark:text-slate-100">In this guide</strong>
+          <ol class="mt-1 space-y-1 text-slate-600 dark:text-slate-400">
+            <li><a href="#why">Why start from a file, not a link</a></li>
+            <li><a href="#formats">Formats, codecs and size</a></li>
+            <li><a href="#window">Cutting to the useful window</a></li>
+            <li><a href="#privacy">Privacy: what an upload reveals</a></li>
+            <li><a href="#archive">Building a prompt archive</a></li>
+            <li><a href="#faq">Frequently asked questions</a></li>
+          </ol>
+        </div>
+
+        <h2 id="why">Why start from a file, not a link</h2>
+        <p>Three good reasons. You hold the only copy — the source was never published or has since been taken down. You want to control exactly which 12 seconds the machine reads, rather than letting it summarise a four-minute video. Or you want to skip the extraction charge: <a href="https://socialtoprompt.com/" target="_blank" rel="noopener">SocialToPrompt</a> bills extraction at 1 credit and prompt generation at 3, and an uploaded file goes straight to the analysis.</p>
+        <p>Existing footage is also where prompt extraction pays the highest dividend, because you own the rights to reuse what it shows. Extracting the mechanism from your own product shoot and pointing it at a new SKU is a completely different situation, legally and ethically, from reverse engineering a competitor&rsquo;s ad — the rights line is drawn properly in <a href="../video-prompt-reverse-engineering-tool/">the reverse-engineering method</a>.</p>
+        <h2 id="formats">Formats, codecs and size</h2>
+        <p>The accepted uploads are <strong>MP4, MOV and WebM</strong> — which in practice covers everything a camera, phone or editor exports. Where people stumble:</p>
+        <ul>
+          <li><strong>Container is not codec.</strong> An .mp4 holding HEVC footage from an iPhone is fine; the same stream wrapped in .mov is fine too. What fails is exotic or lossless camera formats (RAW, ProRes in an .mov some tools refuse), and codecs from 2004.</li>
+          <li><strong>Vertical stays vertical.</strong> Do not pad a 9:16 clip into 16:9 before uploading; you are asking the analysis to describe black bars.</li>
+          <li><strong>Huge files are slow, not better.</strong> Upload the excerpt you care about. If your master is a 4GB export, make a light working copy with <a href="https://ffmpeg.org/" target="_blank" rel="noopener">ffmpeg</a>: <code>ffmpeg -i master.mov -t 20 -vf scale=-2:1080 work.mp4</code></li>
+          <li><strong>Variable frame-rate phone footage</strong> occasionally confuses motion reading; a constant-frame-rate re-encode fixes it.</li>
+        </ul>
+        <p>Full file-specific mechanics, including trimming and re-encoding recipes, are in <a href="../convert-mp4-to-ai-prompt/">how to convert an MP4 to an AI prompt</a>.</p>
+        <h2 id="window">Cutting to the useful window</h2>
+        <p>The site&rsquo;s own pricing describes a full run as 4 credits <strong>for videos up to 20 seconds</strong>, and that is also the quality sweet spot: short enough that one prompt can describe the shot, long enough that motion and pacing are measurable.</p>
+        <p>So cut on shot boundaries, not on duration. A 20-second excerpt spanning three different cameras yields a prompt averaging all three, which is worth nothing. One continuous move — the dolly-in, the whip pan, the reveal — is one prompt. If you have a longer piece you want fully described, run it as a sequence of shot-length clips and stitch the results into a shot list; that is exactly the workflow in <a href="../extract-shot-list-and-prompts-from-video/">extracting a shot list from a video</a>.</p>
+        <h2 id="privacy">Privacy: what an upload reveals</h2>
+        <p>Pasting a link discloses a URL. Uploading a file discloses the file, plus whatever it contains and whatever its metadata carries — GPS from a phone camera, the camera model, the editing app, sometimes the original filename.</p>
+        <p>Decide in that order: is this footage mine to send; does it contain faces, unreleased product, client work or personal data; and can I strip metadata first (<a href="https://ffmpeg.org/" target="_blank" rel="noopener">ffmpeg</a> re-encode removes it as a side effect). Unreleased shoots, client material under NDA and anything containing identifiable people belong in a local pipeline, not an upload — which is a genuine argument for the DIY route our <a href="../free-video-to-prompt-generator-online/">comparison of free options</a> describes. The tool itself advertises its analysis as secure and private, but the conservative rule is simple: <strong>do not upload what you would not paste into a search box.</strong></p>
+        <h2 id="archive">Building a prompt archive</h2>
+        <p>The reason to work from files is that you can systematise it. A structure that holds up over months:</p>
+        <pre><code>clips/2026-10-13_studio-turntable_dolly-in.mp4
+prompts/2026-10-13_studio-turntable_dolly-in.txt   ← downloaded from the tool
+prompts/index.md                                   ← one line per clip: mechanism + target model
+</code></pre>
+        <p>Each .txt gets three header lines: the source, the target generator, and what you changed after generation. Six months later that index tells you which mechanisms work for your subjects — which is the actual asset this workflow produces. If you would rather collect other people&rsquo;s archives than build your own, the gallery model is covered in our <a href="../videosprompt-review/">VideosPrompt review</a>, and the fields worth standardising across your library are in <a href="../convert-video-to-ai-prompt/">converting a video to an AI prompt</a>.</p>
+        <h2 id="faq">Frequently asked questions</h2>
+        <h3>Can I get an AI prompt from a video file instead of a link?</h3>
+        <p>Yes. SocialToPrompt accepts uploaded MP4, MOV and WebM files alongside links from 27 platforms. Uploading also skips the extraction step, which is billed separately from prompt generation, so you spend credits only on the analysis.</p>
+        <h3>How long should the clip be?</h3>
+        <p>Twenty seconds or less, cut on shot boundaries. The stated full-run pricing covers videos up to 20 seconds, and that is also the quality window: long enough for motion and pacing to be measurable, short enough for one prompt to describe one shot honestly.</p>
+        <h3>Is it safe to upload a video I own?</h3>
+        <p>Judge it like any file you send to a service. Strip metadata by re-encoding, avoid anything with identifiable people, unreleased products or client material, and use a local pipeline instead if confidentiality matters. Upload gives you speed and skip-a-credit; local gives you control.</p>
+        <h3>What formats and codecs work best?</h3>
+        <p>Standard MP4, MOV or WebM with broadly supported codecs — H.264 or H.265 video with AAC audio is the safe combination. Avoid exotic lossless formats, padded aspect ratios and multi-gigabyte masters; make a 1080p, 20-second working copy first.</p>
+
+      </div>
+
+      <section class="mx-auto mt-12 max-w-3xl">
+        <h2 class="text-xl font-extrabold tracking-tight">Related reading</h2>
+        <div class="mt-4 grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <a class="post-card" href="../convert-mp4-to-ai-prompt/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">How to Convert an MP4 to an AI Prompt</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">Trimming, re-encoding and uploading a clean working file.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 13, 2026 · 8 min read</span>
+          </a>
+          <a class="post-card" href="../socialtoprompt-review/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">SocialToPrompt Review: Turn Any Video Into a Prompt</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">The scored review: social downloader plus prompt engine in one page, and where each half earns its keep.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Sep 13, 2026 · 8 min read</span>
+          </a>
+          <a class="post-card" href="../extract-shot-list-and-prompts-from-video/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">Extract a Shot List and Prompts From a Video</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">Turn a long piece into per-shot prompts instead of one averaged paragraph.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 13, 2026 · 8 min read</span>
+          </a>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="mt-14 border-t border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900/40">
+    <div class="wrap flex flex-wrap items-center justify-between gap-2 py-6 text-sm text-slate-400 dark:text-slate-500">
+      <span>© 2026 <a class="text-slate-600 hover:text-indigo-600 dark:text-slate-300" href="../../">FreeToolsHub</a>. All rights reserved.</span>
+      <span>Business inquiries: <a class="text-slate-600 hover:text-indigo-600 dark:text-slate-300" href="mailto:hello@veonib.com">hello@veonib.com</a></span>
+    </div>
+  </footer>
+
+</body>
+</html>

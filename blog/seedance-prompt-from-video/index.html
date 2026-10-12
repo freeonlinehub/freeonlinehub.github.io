@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Seedance Prompt From a Video: The Prompt Grammar</title>
+  <meta name="description" content="Write Seedance-style prompts from real footage: subject-state-motion ordering, one camera verb, explicit end states, and the multi-shot shape.">
+  <link rel="canonical" href="https://freeonlinehub.github.io/blog/seedance-prompt-from-video/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="FreeToolsHub">
+  <meta property="og:title" content="Seedance Prompt From a Video: The Prompt Grammar">
+  <meta property="og:description" content="Write Seedance-style prompts from real footage: subject-state-motion ordering, one camera verb, explicit end states, and the multi-shot shape.">
+  <meta property="og:url" content="https://freeonlinehub.github.io/blog/seedance-prompt-from-video/">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script src="../../js/tailwindcss.js"></script>
+  <script src="../../js/site.js"></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BlogPosting","headline":"Seedance Prompt From a Video: The Prompt Grammar","datePublished":"2026-10-13","dateModified":"2026-10-13","author":{"@type":"Organization","name":"FreeToolsHub"},"publisher":{"@type":"Organization","name":"FreeToolsHub","url":"https://freeonlinehub.github.io/"},"url":"https://freeonlinehub.github.io/blog/seedance-prompt-from-video/"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://freeonlinehub.github.io/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://freeonlinehub.github.io/blog/"},{"@type":"ListItem","position":3,"name":"Seedance Prompt From a Video: The Prompt Grammar","item":"https://freeonlinehub.github.io/blog/seedance-prompt-from-video/"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I write a Seedance prompt from an existing video?","acceptedAnswer":{"@type":"Answer","text":"Extract the clip's visual fields — subject, camera behaviour, lighting, pacing, style — then reformat them as one sentence per shot in subject, camera, change order. Add the physical details the extractor cannot know: camera height, stability, and what the frame ends on."}},{"@type":"Question","name":"What structure works best with Seedance-family models?","acceptedAnswer":{"@type":"Answer","text":"Three ordered clauses: subject plus framing, exactly one camera verb, then what changes and how the shot ends. Light, palette and material go last as short qualifying clauses. Multiple camera moves in one prompt is the most common cause of an unstable render."}},{"@type":"Question","name":"How do I keep several generated shots looking the same?","acceptedAnswer":{"@type":"Answer","text":"Repeat the subject noun verbatim in every shot prompt and restate the constants — light source, palette, aspect ratio, format — each time. Models have no memory between generations, so any drift in your wording becomes drift in the footage."}},{"@type":"Question","name":"Does a video extractor replace writing Seedance prompts?","acceptedAnswer":{"@type":"Answer","text":"It replaces the drafting, not the editing. Extraction returns the observable fields quickly, but it will understate or invent camera movement on stabilised or tripod footage and summarise grades as mood words, so those lines need a human check."}}]}
+  </script>
+</head>
+<body class="bg-white font-sans text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100">
+
+  <header class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/80 backdrop-blur-md dark:border-slate-800/80 dark:bg-slate-950/80">
+    <div class="wrap flex h-16 items-center justify-between gap-3">
+      <a href="../../" class="flex flex-none items-center gap-2.5 text-lg font-extrabold tracking-tight text-slate-900 no-underline dark:text-white">
+        <span class="grid h-8 w-8 flex-none place-items-center rounded-[9px] bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 text-[13px] font-extrabold text-white shadow-md shadow-indigo-500/25">FT</span>
+        FreeTools<span class="text-indigo-600 dark:text-indigo-400">Hub</span>
+      </a>
+      <button data-nav-toggle aria-label="Toggle navigation" aria-expanded="false"
+        class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-slate-600 md:hidden dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">☰</button>
+      <nav data-nav class="main-nav">
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../ai-tools/">AI Tools</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../seo-tools/">SEO</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-image-tools/">Image</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-video-tools/">Video</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-pdf-tools/">PDF</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../developer-tools/">Developer</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../social-media-tools/">Social</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm font-semibold text-indigo-700 no-underline hover:bg-indigo-50 dark:text-indigo-300 dark:hover:bg-slate-800" href="../../free-tools/">Directory</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <article class="wrap mx-auto max-w-3xl">
+      <p class="crumbs"><a href="../">Blog</a> / Seedance Prompt From a Video</p>
+      <h1 class="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">Seedance Prompt From a Video: A Grammar That Renders</h1>
+      <p class="mt-2 text-sm text-slate-400 dark:text-slate-500">Published October 13, 2026 &middot; 8 min read</p>
+
+      <div class="prose prose-slate mt-8 max-w-none dark:prose-invert prose-a:text-indigo-600 dark:prose-a:text-indigo-400">
+
+        <p>Seedance-family models respond to prompts the way a cinematographer responds to a brief: state the subject, state what the camera does, state what changes. Everything else — mood words, genre labels, adjectives about quality — is decoration the model was never trained to prioritise. Here is the grammar, and how a video reference supplies almost all of it.</p>        <div class="toc not-prose rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm dark:border-slate-800 dark:bg-slate-900/40">
+          <strong class="text-slate-900 dark:text-slate-100">In this guide</strong>
+          <ol class="mt-1 space-y-1 text-slate-600 dark:text-slate-400">
+            <li><a href="#reward">What Seedance-family prompts reward</a></li>
+            <li><a href="#sentence">The three-part sentence</a></li>
+            <li><a href="#notinfer">Describing shots it will not infer</a></li>
+            <li><a href="#multishot">Multi-shot prompting</a></li>
+            <li><a href="#extract">Extraction as the drafting step</a></li>
+            <li><a href="#faq">Frequently asked questions</a></li>
+          </ol>
+        </div>
+
+        <h2 id="reward">What Seedance-family prompts reward</h2>
+        <p>ByteDance&rsquo;s video models are captioned on production-style descriptions rather than on poetic prose, so three properties consistently improve renders: <strong>observable statements</strong> (what a camera operator would write, not what a viewer would feel), <strong>single-movement shots</strong>, and <strong>explicit end states</strong>. It is also strong on camera physics — the parallax change that distinguishes a <a href="https://en.wikipedia.org/wiki/Dolly_(filmmaking)" target="_blank" rel="noopener">dolly</a> from a zoom is rendered as a real difference, provided you asked for it.</p>
+        <p><a href="https://socialtoprompt.com/" target="_blank" rel="noopener">SocialToPrompt</a> lists Seedance among the models its extracted prompts are written to serve, which is why the drafting step below takes two minutes rather than twenty.</p>
+        <h2 id="sentence">The three-part sentence</h2>
+        <p>Build each shot as one sentence with three ordered clauses:</p>
+        <pre><code>[subject + framing]  +  [camera behaviour]  +  [what changes / end state]
+
+Close-up of a glass bottle on wet slate, camera low and static  →  slow push-in from chest height
+   →  condensation fills frame as the label comes into focus.
+</code></pre>
+        <ul>
+          <li><strong>Clause one is nouns and geometry.</strong> What is in frame and how much of it.</li>
+          <li><strong>Clause two is exactly one verb.</strong> Push in, pull back, track, pan, tilt, crane, orbit, handheld, locked-off. If you need &ldquo;and&rdquo;, you need two shots.</li>
+          <li><strong>Clause three is the delta.</strong> Models handle &ldquo;state A becomes state B&rdquo; far better than an instruction to be interesting.</li>
+        </ul>
+        <p>Light, grade and material ride on the end as short trailing clauses, because they qualify the shot rather than driving it.</p>
+        <h2 id="notinfer">Describing shots it will not infer</h2>
+        <p>Four things a Seedance-class model will not guess, and where renders usually fail:</p>
+        <ul>
+          <li><strong>Stability.</strong> If you do not say &ldquo;locked-off, tripod-stable&rdquo;, it adds motion, because most training footage has some.</li>
+          <li><strong>Contact physics.</strong> &ldquo;Liquid pours and splashes on impact&rdquo; beats &ldquo;pours elegantly&rdquo;.</li>
+          <li><strong>Camera height.</strong> The single most under-described property; a 20cm difference changes the whole shot.</li>
+          <li><strong>What the frame ends on.</strong> Without an end state, the last second becomes a random walk.</li>
+        </ul>
+        <p>The vocabulary for the movement clauses is the same as any other model&rsquo;s — see <a href="../extract-camera-movement-from-video-ai/">extracting camera movement from a video</a>, which covers the dolly-versus-zoom distinction this family renders most visibly.</p>
+        <h2 id="multishot">Multi-shot prompting</h2>
+        <p>Where this family earns its reputation is sequence coherence: several shots that share a subject and a look. Two rules make it work. <strong>Repeat the subject noun verbatim</strong> in every shot description — a model has no memory between generations, so &ldquo;the bottle&rdquo; becoming &ldquo;a glass container&rdquo; is how a sequence stops matching. <strong>Declare the constants</strong> once per shot: light source, palette, format, aspect ratio.</p>
+        <pre><code>SHOT 1 (9:16, 3s): macro of condensation on a dark glass bottle, locked-off, hard rim light right.
+SHOT 2 (9:16, 3s): same bottle on wet slate, slow push-in, identical hard rim light right.
+SHOT 3 (9:16, 2s): same bottle, hand lifts it out of frame left, camera stays locked-off.
+</code></pre>
+        <p>That shape is a shot list, and the extraction workflow that builds one from a longer video is in <a href="../extract-shot-list-and-prompts-from-video/">extracting shot lists and prompts</a>.</p>
+        <h2 id="extract">Extraction as the drafting step</h2>
+        <p>Write the grammar by hand once, then stop: extract the reference clip and reformat its fields into the three-part shape. Paste a link — 27 platforms including TikTok, Reels and YouTube — or upload MP4, MOV or WebM, and <a href="https://socialtoprompt.com/" target="_blank" rel="noopener">SocialToPrompt</a> returns the subject, camera, lighting, pacing and style lines its analysis read off the frames, in 20&ndash;40 seconds per the site, in around 20 output languages. Cost, stated plainly: 1 credit to extract, 3 to generate the prompt, so a full run on a clip up to 20 seconds is 4 credits, and new accounts get 3 credits valid for 24 hours.</p>
+        <p>Then do the two edits only you can do: confirm the camera verb against the source, and replace any inherited mood word with the physical clause above. The step-by-step conversion is in <a href="../convert-video-to-seedance-prompt/">converting a video to a Seedance prompt</a>, and the platform-specific version for short-form is <a href="../tiktok-to-seedance-prompt/">TikTok to Seedance</a>.</p>
+        <h2 id="faq">Frequently asked questions</h2>
+        <h3>How do I write a Seedance prompt from an existing video?</h3>
+        <p>Extract the clip's visual fields — subject, camera behaviour, lighting, pacing, style — then reformat them as one sentence per shot in subject, camera, change order. Add the physical details the extractor cannot know: camera height, stability, and what the frame ends on.</p>
+        <h3>What structure works best with Seedance-family models?</h3>
+        <p>Three ordered clauses: subject plus framing, exactly one camera verb, then what changes and how the shot ends. Light, palette and material go last as short qualifying clauses. Multiple camera moves in one prompt is the most common cause of an unstable render.</p>
+        <h3>How do I keep several generated shots looking the same?</h3>
+        <p>Repeat the subject noun verbatim in every shot prompt and restate the constants — light source, palette, aspect ratio, format — each time. Models have no memory between generations, so any drift in your wording becomes drift in the footage.</p>
+        <h3>Does a video extractor replace writing Seedance prompts?</h3>
+        <p>It replaces the drafting, not the editing. Extraction returns the observable fields quickly, but it will understate or invent camera movement on stabilised or tripod footage and summarise grades as mood words, so those lines need a human check.</p>
+
+      </div>
+
+      <section class="mx-auto mt-12 max-w-3xl">
+        <h2 class="text-xl font-extrabold tracking-tight">Related reading</h2>
+        <div class="mt-4 grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <a class="post-card" href="../convert-video-to-seedance-prompt/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">Convert a Video to a Seedance Prompt, Step by Step</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">The step-by-step conversion from reference clip to shot list.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 13, 2026 · 7 min read</span>
+          </a>
+          <a class="post-card" href="../tiktok-to-seedance-prompt/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">TikTok to Seedance Prompt: Convert a Clip Step by Step</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">Turning short-form viral clips into Seedance shot descriptions.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 13, 2026 · 7 min read</span>
+          </a>
+          <a class="post-card" href="../socialtoprompt-review/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">SocialToPrompt Review: Turn Any Video Into a Prompt</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">The scored review: social downloader plus prompt engine in one page, and where each half earns its keep.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Sep 13, 2026 · 8 min read</span>
+          </a>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="mt-14 border-t border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900/40">
+    <div class="wrap flex flex-wrap items-center justify-between gap-2 py-6 text-sm text-slate-400 dark:text-slate-500">
+      <span>© 2026 <a class="text-slate-600 hover:text-indigo-600 dark:text-slate-300" href="../../">FreeToolsHub</a>. All rights reserved.</span>
+      <span>Business inquiries: <a class="text-slate-600 hover:text-indigo-600 dark:text-slate-300" href="mailto:hello@veonib.com">hello@veonib.com</a></span>
+    </div>
+  </footer>
+
+</body>
+</html>

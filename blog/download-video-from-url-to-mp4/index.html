@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Download a Video From a URL to MP4 (Formats)</title>
+  <meta name="description" content="URL to MP4 done right: format selection, resolution and codec realities, ffmpeg post-processing, and the two reasons a file is the wrong deliverable.">
+  <link rel="canonical" href="https://freeonlinehub.github.io/blog/download-video-from-url-to-mp4/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="FreeToolsHub">
+  <meta property="og:title" content="Download a Video From a URL to MP4 (Formats)">
+  <meta property="og:description" content="URL to MP4 done right: format selection, resolution and codec realities, ffmpeg post-processing, and the two reasons a file is the wrong deliverable.">
+  <meta property="og:url" content="https://freeonlinehub.github.io/blog/download-video-from-url-to-mp4/">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script src="../../js/tailwindcss.js"></script>
+  <script src="../../js/site.js"></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BlogPosting","headline":"Download a Video From a URL to MP4 (Formats)","datePublished":"2026-10-13","dateModified":"2026-10-13","author":{"@type":"Organization","name":"FreeToolsHub"},"publisher":{"@type":"Organization","name":"FreeToolsHub","url":"https://freeonlinehub.github.io/"},"url":"https://freeonlinehub.github.io/blog/download-video-from-url-to-mp4/"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://freeonlinehub.github.io/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://freeonlinehub.github.io/blog/"},{"@type":"ListItem","position":3,"name":"Download a Video From a URL to MP4 (Formats)","item":"https://freeonlinehub.github.io/blog/download-video-from-url-to-mp4/"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I download a video from a URL to MP4?","acceptedAnswer":{"@type":"Answer","text":"Three routes: the platform's own download button where it exists, a web tool that accepts the URL and lets you choose a rendition, or yt-dlp locally. All three give you a container rather than a guarantee — check the codec and frame rate with ffprobe before assuming it will import into an editor."}},{"@type":"Question","name":"Why does my downloaded video have no audio?","acceptedAnswer":{"@type":"Answer","text":"Most services deliver video-only and audio-only streams, and a tool that saves only the video rendition gives you exactly that symptom. Re-download with both streams merged, or mux them yourself with ffmpeg."}},{"@type":"Question","name":"What resolution should I download?","acceptedAnswer":{"@type":"Answer","text":"Match the purpose: 720p for study, highest you're permitted for editing, native for reposting to another platform, and 720 to 1080p for prompt analysis, which reads structure rather than pixel count. Remember social platforms usually cap what they serve at all."}},{"@type":"Question","name":"When is a prompt a better deliverable than a file?","acceptedAnswer":{"@type":"Answer","text":"Whenever you wanted the technique rather than the footage. A structured description captures the shot idea in a form you can reuse on any generator, takes 60 words instead of 60MB, and doesn't carry the copyright and platform-terms obligations that somebody else's video file does."}}]}
+  </script>
+</head>
+<body class="bg-white font-sans text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100">
+
+  <header class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/80 backdrop-blur-md dark:border-slate-800/80 dark:bg-slate-950/80">
+    <div class="wrap flex h-16 items-center justify-between gap-3">
+      <a href="../../" class="flex flex-none items-center gap-2.5 text-lg font-extrabold tracking-tight text-slate-900 no-underline dark:text-white">
+        <span class="grid h-8 w-8 flex-none place-items-center rounded-[9px] bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 text-[13px] font-extrabold text-white shadow-md shadow-indigo-500/25">FT</span>
+        FreeTools<span class="text-indigo-600 dark:text-indigo-400">Hub</span>
+      </a>
+      <button data-nav-toggle aria-label="Toggle navigation" aria-expanded="false"
+        class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-slate-600 md:hidden dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">☰</button>
+      <nav data-nav class="main-nav">
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../ai-tools/">AI Tools</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../seo-tools/">SEO</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-image-tools/">Image</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-video-tools/">Video</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-pdf-tools/">PDF</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../developer-tools/">Developer</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../social-media-tools/">Social</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm font-semibold text-indigo-700 no-underline hover:bg-indigo-50 dark:text-indigo-300 dark:hover:bg-slate-800" href="../../free-tools/">Directory</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <article class="wrap mx-auto max-w-3xl">
+      <p class="crumbs"><a href="../">Blog</a> / Download a Video From a URL to MP4</p>
+      <h1 class="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">How to Download a Video From a URL to MP4, Properly</h1>
+      <p class="mt-2 text-sm text-slate-400 dark:text-slate-500">Published October 13, 2026 &middot; 8 min read</p>
+
+      <div class="prose prose-slate mt-8 max-w-none dark:prose-invert prose-a:text-indigo-600 dark:prose-a:text-indigo-400">
+
+        <p>&ldquo;Download this URL to MP4&rdquo; looks like a trivial instruction and hides four decisions: which stream, which codec, which container, and what you will do with the file afterwards. Get those wrong and you end up with a 720p clip that will not import into your editor, or a 2GB download for a shot you only wanted to look at. Here is the version where you decide instead of accepting.</p>        <div class="toc not-prose rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm dark:border-slate-800 dark:bg-slate-900/40">
+          <strong class="text-slate-900 dark:text-slate-100">In this guide</strong>
+          <ol class="mt-1 space-y-1 text-slate-600 dark:text-slate-400">
+            <li><a href="#means">What &quot;to MP4&quot; actually means</a></li>
+            <li><a href="#ways">Three ways to get the file</a></li>
+            <li><a href="#choose">Choosing resolution and codec</a></li>
+            <li><a href="#post">Post-processing for use</a></li>
+            <li><a href="#reasons">The two reasons you wanted a prompt instead</a></li>
+            <li><a href="#faq">Frequently asked questions</a></li>
+          </ol>
+        </div>
+
+        <h2 id="means">What &ldquo;to MP4&rdquo; actually means</h2>
+        <p>An <a href="https://en.wikipedia.org/wiki/MP4" target="_blank" rel="noopener">MP4</a> is a container — a box holding a video stream, an audio stream and timing. What is inside matters more than the extension: usually H.264 or H.265 video with AAC audio. Platforms serve several renditions of the same clip, so &ldquo;download the MP4&rdquo; is really a set of choices:</p>
+        <ul>
+          <li><strong>Resolution</strong> — capped by what was uploaded and what the platform still serves; often 1080p maximum on social sources.</li>
+          <li><strong>Codec</strong> — H.264 imports everywhere; HEVC/H.265 is smaller and fussier.</li>
+          <li><strong>Separate versus merged streams</strong> — many services deliver video-only and audio-only strands that must be muxed, which is why &ldquo;my download has no sound&rdquo; is the most common complaint in this niche.</li>
+          <li><strong>Frame rate and scanning</strong> — variable frame rate from phones breaks timeline editors even when the file &ldquo;plays fine&rdquo;.</li>
+        </ul>
+        <h2 id="ways">Three ways to get the file</h2>
+        <ol>
+          <li><strong>Native download</strong> — the platform&rsquo;s own button, where it exists (Reddit for hosted clips, TikTok and YouTube for your own uploads or where the app offers it). Simplest and most compliant.</li>
+          <li><strong>A web tool</strong> — paste the URL, pick a rendition, get the file. <a href="https://socialtoprompt.com/" target="_blank" rel="noopener">SocialToPrompt</a> does this across 27 named platforms plus anything <a href="https://github.com/yt-dlp/yt-dlp" target="_blank" rel="noopener">yt-dlp</a> resolves, at 1 credit per download on its metered model (3 free credits with a new account, valid 24 hours), and returns the source-quality stream the platform serves rather than a re-encoded copy.</li>
+          <li><strong>Command line</strong> — <code>yt-dlp "URL"</code> locally: free, scriptable, and the only option at real volume. Its downside is that it needs maintaining whenever a platform changes something.</li>
+        </ol>
+        <p>The web tool is right for one or two clips and for people who do not want a terminal; the command line is right for batches and for footage you would rather not send anywhere.</p>
+        <h2 id="choose">Choosing resolution and codec</h2>
+        <p>Three situations, three answers:</p>
+        <table>
+          <thead><tr><th scope="col">Purpose</th><th scope="col">Pick</th><th scope="col">Why</th></tr></thead>
+          <tbody>
+            <tr><td>Reference / study</td><td>720p, H.264</td><td>Small, opens everywhere, plenty for reading a shot</td></tr>
+            <tr><td>Editing into a project</td><td>Highest you are permitted, then transcode to an editing codec</td><td>Delivery codecs decode badly on timelines</td></tr>
+            <tr><td>Uploading to another platform</td><td>Native resolution, matching aspect</td><td>Every recompression costs detail</td></tr>
+            <tr><td>Analysing into a prompt</td><td>720&ndash;1080p, short segment</td><td>The analysis reads structure, not pixel count</td></tr>
+          </tbody>
+        </table>
+        <p>To inspect what a file actually holds, <code>ffprobe -v error -show_streams -of default=nw=1 file.mp4</code> tells you codec, resolution, frame rate and whether audio is present.</p>
+        <h2 id="post">Post-processing for use</h2>
+        <pre><code># constant frame rate + 1080p, the combination editors tolerate
+ffmpeg -i in.mp4 -vf "scale=-2:1080,fps=30" -c:v libx264 -crf 20 -preset slow -c:a aac -b:a 160k out.mp4
+
+# make a clean MP4 from a webm
+ffmpeg -i in.webm -c:v libx264 -crf 20 -pix_fmt yuv420p out.mp4
+
+# extract one 8-second shot for prompt analysis
+ffmpeg -ss 4 -t 8 -i in.mp4 -c:v libx264 -crf 20 shot.mp4
+</code></pre>
+        <p>The <code>-pix_fmt yuv420p</code> flag is the classic fix for &ldquo;plays in QuickTime, black in Premiere&rdquo;, and re-encoding also strips camera GPS and device metadata, which matters if the file is going to leave your machine. Full flag reference is in the <a href="https://ffmpeg.org/ffmpeg.html" target="_blank" rel="noopener">ffmpeg documentation</a>, and the prompt-side preparation is <a href="../convert-mp4-to-ai-prompt/">converting an MP4 to a prompt</a>.</p>
+        <h2 id="reasons">The two reasons you wanted a prompt instead</h2>
+        <p>First: <strong>the file is not the information.</strong> If you saved a clip to work out why it worked — the reveal at second four, the hip-height camera, the hard rim light — a structured prompt captures that in 60 words you can act on, and it is portable across every generator you try afterwards. Second: <strong>the file carries obligations.</strong> Someone else&rsquo;s clip in your drive is a copyright and platform-terms object (see <a href="../download-social-media-videos-online/">the rights discussion</a>), while a description of its camera technique is not the same kind of thing at all.</p>
+        <p>Neither is a rule: keep files when you need pixels — offline editing, frame inspection, archiving your own uploads. But most of the time the deliverable is a sentence about a shot, and that is <a href="../extract-prompt-from-video-online/">what an extraction pass gives you in under a minute</a>. Related reading: <a href="../extract-shot-list-and-prompts-from-video/">shot lists from long videos</a>, and <a href="../turn-viral-videos-into-ai-prompts/">turning viral videos into prompts</a>.</p>
+        <h2 id="faq">Frequently asked questions</h2>
+        <h3>How do I download a video from a URL to MP4?</h3>
+        <p>Three routes: the platform's own download button where it exists, a web tool that accepts the URL and lets you choose a rendition, or yt-dlp locally. All three give you a container rather than a guarantee — check the codec and frame rate with ffprobe before assuming it will import into an editor.</p>
+        <h3>Why does my downloaded video have no audio?</h3>
+        <p>Most services deliver video-only and audio-only streams, and a tool that saves only the video rendition gives you exactly that symptom. Re-download with both streams merged, or mux them yourself with ffmpeg.</p>
+        <h3>What resolution should I download?</h3>
+        <p>Match the purpose: 720p for study, highest you're permitted for editing, native for reposting to another platform, and 720 to 1080p for prompt analysis, which reads structure rather than pixel count. Remember social platforms usually cap what they serve at all.</p>
+        <h3>When is a prompt a better deliverable than a file?</h3>
+        <p>Whenever you wanted the technique rather than the footage. A structured description captures the shot idea in a form you can reuse on any generator, takes 60 words instead of 60MB, and doesn't carry the copyright and platform-terms obligations that somebody else's video file does.</p>
+
+      </div>
+
+      <section class="mx-auto mt-12 max-w-3xl">
+        <h2 class="text-xl font-extrabold tracking-tight">Related reading</h2>
+        <div class="mt-4 grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <a class="post-card" href="../download-social-media-videos-online/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">Download Social Media Videos Online: Honest Guide</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">Platform-by-platform behaviour and the rights line.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 13, 2026 · 9 min read</span>
+          </a>
+          <a class="post-card" href="../convert-mp4-to-ai-prompt/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">How to Convert an MP4 to an AI Prompt</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">Trimming, codecs and uploading the file you just made.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 13, 2026 · 8 min read</span>
+          </a>
+          <a class="post-card" href="../socialtoprompt-review/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">SocialToPrompt Review: Turn Any Video Into a Prompt</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">The scored review: social downloader plus prompt engine in one page, and where each half earns its keep.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Sep 13, 2026 · 8 min read</span>
+          </a>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="mt-14 border-t border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900/40">
+    <div class="wrap flex flex-wrap items-center justify-between gap-2 py-6 text-sm text-slate-400 dark:text-slate-500">
+      <span>© 2026 <a class="text-slate-600 hover:text-indigo-600 dark:text-slate-300" href="../../">FreeToolsHub</a>. All rights reserved.</span>
+      <span>Business inquiries: <a class="text-slate-600 hover:text-indigo-600 dark:text-slate-300" href="mailto:hello@veonib.com">hello@veonib.com</a></span>
+    </div>
+  </footer>
+
+</body>
+</html>

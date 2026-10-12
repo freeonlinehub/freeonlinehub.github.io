@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Video Prompt Reverse Engineering: A Tool and 3 Passes</title>
+  <meta name="description" content="Reverse engineer any clip into a reusable AI prompt in three passes — structure, shot language, then subject swap — with the rights line drawn clearly.">
+  <link rel="canonical" href="https://freeonlinehub.github.io/blog/video-prompt-reverse-engineering-tool/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="FreeToolsHub">
+  <meta property="og:title" content="Video Prompt Reverse Engineering: A Tool and 3 Passes">
+  <meta property="og:description" content="Reverse engineer any clip into a reusable AI prompt in three passes — structure, shot language, then subject swap — with the rights line drawn clearly.">
+  <meta property="og:url" content="https://freeonlinehub.github.io/blog/video-prompt-reverse-engineering-tool/">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script src="../../js/tailwindcss.js"></script>
+  <script src="../../js/site.js"></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BlogPosting","headline":"Video Prompt Reverse Engineering: A Tool and 3 Passes","datePublished":"2026-10-13","dateModified":"2026-10-13","author":{"@type":"Organization","name":"FreeToolsHub"},"publisher":{"@type":"Organization","name":"FreeToolsHub","url":"https://freeonlinehub.github.io/"},"url":"https://freeonlinehub.github.io/blog/video-prompt-reverse-engineering-tool/"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://freeonlinehub.github.io/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://freeonlinehub.github.io/blog/"},{"@type":"ListItem","position":3,"name":"Video Prompt Reverse Engineering: A Tool and 3 Passes","item":"https://freeonlinehub.github.io/blog/video-prompt-reverse-engineering-tool/"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What does it mean to reverse engineer a video into a prompt?","acceptedAnswer":{"@type":"Answer","text":"It means extracting the formal properties of a finished clip — hook length, cut rhythm, camera behaviour, lighting, grade, reveal timing — and writing them as a specification you can refill with your own subject. The output describes the mechanism rather than the content."}},{"@type":"Question","name":"Do I need a tool, or can I do it by hand?","acceptedAnswer":{"@type":"Answer","text":"Structure and intent you can do by hand with a notepad. Shot language is where a tool earns its place: frame-level motion analysis is tedious and error-prone for humans, and camera verbs are the field people most often get wrong."}},{"@type":"Question","name":"Is reverse engineering someone's video legal?","acceptedAnswer":{"@type":"Answer","text":"Technique is not owned: pacing, framing and lighting are transferable. Script, characters, brand marks, music, talent likeness and highly distinctive set design are. The practical test is whether the original creator would recognise their specific expression in your output — if yes, you have moved past studying form."}},{"@type":"Question","name":"What should I keep in a prompt library?","acceptedAnswer":{"@type":"Answer","text":"One text file per clip: the transferable idea in one sentence, the source link, and the extracted prompt with the slots you did not change marked. Over time that file set becomes a personal pattern language you can request by name."}}]}
+  </script>
+</head>
+<body class="bg-white font-sans text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100">
+
+  <header class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/80 backdrop-blur-md dark:border-slate-800/80 dark:bg-slate-950/80">
+    <div class="wrap flex h-16 items-center justify-between gap-3">
+      <a href="../../" class="flex flex-none items-center gap-2.5 text-lg font-extrabold tracking-tight text-slate-900 no-underline dark:text-white">
+        <span class="grid h-8 w-8 flex-none place-items-center rounded-[9px] bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 text-[13px] font-extrabold text-white shadow-md shadow-indigo-500/25">FT</span>
+        FreeTools<span class="text-indigo-600 dark:text-indigo-400">Hub</span>
+      </a>
+      <button data-nav-toggle aria-label="Toggle navigation" aria-expanded="false"
+        class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-slate-600 md:hidden dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">☰</button>
+      <nav data-nav class="main-nav">
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../ai-tools/">AI Tools</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../seo-tools/">SEO</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-image-tools/">Image</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-video-tools/">Video</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-pdf-tools/">PDF</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../developer-tools/">Developer</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../social-media-tools/">Social</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm font-semibold text-indigo-700 no-underline hover:bg-indigo-50 dark:text-indigo-300 dark:hover:bg-slate-800" href="../../free-tools/">Directory</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <article class="wrap mx-auto max-w-3xl">
+      <p class="crumbs"><a href="../">Blog</a> / Video Prompt Reverse Engineering Tool</p>
+      <h1 class="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">Video Prompt Reverse Engineering: The Three-Pass Method</h1>
+      <p class="mt-2 text-sm text-slate-400 dark:text-slate-500">Published October 13, 2026 &middot; 8 min read</p>
+
+      <div class="prose prose-slate mt-8 max-w-none dark:prose-invert prose-a:text-indigo-600 dark:prose-a:text-indigo-400">
+
+        <p>Reverse engineering a video is not copying it. It is reading a finished piece the way an engineer reads a product: what is it made of, why is each part there, and which parts would still work with your material in them. The output is a prompt that describes a <em>mechanism</em> — pacing, camera behaviour, light, structure — rather than the specific content you admired. Here is the three-pass method, and where a tool saves you the two passes that require a frame-by-frame pause button.</p>        <div class="toc not-prose rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm dark:border-slate-800 dark:bg-slate-900/40">
+          <strong class="text-slate-900 dark:text-slate-100">In this guide</strong>
+          <ol class="mt-1 space-y-1 text-slate-600 dark:text-slate-400">
+            <li><a href="#what">What is being reverse engineered</a></li>
+            <li><a href="#pass1">Pass 1 — structure</a></li>
+            <li><a href="#pass2">Pass 2 — shot language</a></li>
+            <li><a href="#pass3">Pass 3 — swap your subject in</a></li>
+            <li><a href="#rights">The rights line, drawn honestly</a></li>
+            <li><a href="#library">Building a reference library</a></li>
+            <li><a href="#faq">Frequently asked questions</a></li>
+          </ol>
+        </div>
+
+        <h2 id="what">What is being reverse engineered</h2>
+        <p>Every clip that works has a small number of load-bearing decisions. A product ad works because the reveal lands at second six, not because of the bottle. A street interview works because the cut is on a breath, not a word. Those decisions are <strong>formal properties</strong> — timing, framing, movement, light, rhythm — and unlike subject matter they are transferable: the same reveal beat sells headphones and hot sauce.</p>
+        <p>Reverse engineering is the discipline of extracting those properties and writing them down in language a generator accepts. Description captures what is there; a specification captures what is doing the work. That distinction is the whole subject of <a href="../convert-video-to-ai-prompt/">converting a video to an AI prompt</a>, and the tooling side is covered in our <a href="../ai-video-prompt-extractor/">AI video prompt extractor</a> buyer&rsquo;s guide.</p>
+        <h2 id="pass1">Pass 1 — structure, watched twice with the sound off</h2>
+        <p>First pass: no analysis tool, no notes app, just watching. Answer four questions in one line each.</p>
+        <ul>
+          <li><strong>How long is the hook?</strong> Seconds before the clip stops promising and starts paying.</li>
+          <li><strong>How many cuts, and where do they fall?</strong> On movement, on speech, or on the beat.</li>
+          <li><strong>What is the reveal or turn?</strong> The moment the clip changes state.</li>
+          <li><strong>What does it end on?</strong> Product, face, text, or a hard cut to nothing.</li>
+        </ul>
+        <p>Mute it on the second pass. Sound hides weak structure constantly — a clip that feels good with a trending audio bed may be three static shots and a jump cut.</p>
+        <h2 id="pass2">Pass 2 — shot language, with the machine reading frames</h2>
+        <p>This is the pass that used to mean screenshotting frames and guessing. Feed the clip to <a href="https://socialtoprompt.com/" target="_blank" rel="noopener">SocialToPrompt</a> — a link from any of the 27 platforms it names, or an uploaded MP4, MOV or WebM — and the analysis stages do the frame reading for you: extracting frames, reading content, understanding motion, analysing camera and movement, then style, aesthetics and the prompt itself, in a run the site puts at 20&ndash;40 seconds.</p>
+        <p>Now verify rather than accept. Check the camera verb against what you actually saw (<a href="https://en.wikipedia.org/wiki/Dolly_(filmmaking)" target="_blank" rel="noopener">dolly moves</a> change perspective; a zoom does not — a distinction models and captioners both blur). Count the cuts. Look at the light direction with the thumbnail open in a new tab. The output is a draft you fact-check, and every correction you make is vocabulary you keep.</p>
+        <h2 id="pass3">Pass 3 — swap your subject in</h2>
+        <p>Hold the mechanism, replace the matter. Write the extracted prompt as slots, then change exactly three values: subject, setting, and palette. Everything else — camera behaviour, timing of the reveal, cut rhythm, light quality — stays, because that is the part that was doing the work.</p>
+        <pre><code>Extracted:    macro of espresso dripping, slow dolly in, hard side light, 6s single take,
+              reveal at 4s, warm grade, tight crop on cup
+Your ad:      macro of serum dropping onto skin, slow dolly in, hard side light, 6s single take,
+              reveal at 4s, cool grade, tight crop on bottle
+</code></pre>
+        <p>Two reminders from experience: keep the pacing honest to your target model&rsquo;s clip length, and if your version feels wrong, the culprit is almost always that you swapped something structural along with the subject. Our <a href="../generate-prompt-from-video/">eight-slot template</a> makes that boundary explicit.</p>
+        <h2 id="rights">The rights line, drawn honestly</h2>
+        <p>Reverse engineering technique is legitimate; reproducing someone&rsquo;s work is not, and the two are separated by what you copy rather than by how polite the prompt is. Structure, camera behaviour and lighting are not owned by anyone. Script, characters, brand marks, music, talent likeness and a distinctive set design are. If the test &ldquo;would the original creator recognise their clip in mine?&rdquo; produces an uncomfortable yes, you are no longer studying form.</p>
+        <p>Also note the platform layer: downloading clips sits under each platform&rsquo;s terms — <a href="https://www.youtube.com/t/terms" target="_blank" rel="noopener">YouTube&rsquo;s terms of service</a> being the most-cited example — and the <a href="https://www.copyright.gov/help/faq/faq-fairuse.html" target="_blank" rel="noopener">fair-use guidance</a> question turns on transformation, not on how the file got to your drive. The extraction tool gives you language; the judgement call stays yours.</p>
+        <h2 id="library">Building a reference library</h2>
+        <p>The compounding version of this habit is boring and effective: one .txt per clip, named <code>date_source_mechanism.txt</code>, first line = the transferable idea in one sentence, second line = the source link, third = the extracted prompt. After thirty files you will have a private pattern language — &ldquo;late reveal, locked camera, hard light&rdquo; becomes a thing you can ask for by name, on the models you use most (<a href="../seedance-prompt-from-video/">Seedance</a>, <a href="../kling-ai-prompt-extractor-from-video/">Kling</a>, <a href="../veo-video-to-prompt-generator/">Veo</a>).</p>
+        <p>If you would rather publish than hoard, the gallery model is covered in our VideosPrompt review, where prompts sit next to the clips they produced — which is, in effect, other people&rsquo;s reverse engineering done for you.</p>
+        <h2 id="faq">Frequently asked questions</h2>
+        <h3>What does it mean to reverse engineer a video into a prompt?</h3>
+        <p>It means extracting the formal properties of a finished clip — hook length, cut rhythm, camera behaviour, lighting, grade, reveal timing — and writing them as a specification you can refill with your own subject. The output describes the mechanism rather than the content.</p>
+        <h3>Do I need a tool, or can I do it by hand?</h3>
+        <p>Structure and intent you can do by hand with a notepad. Shot language is where a tool earns its place: frame-level motion analysis is tedious and error-prone for humans, and camera verbs are the field people most often get wrong.</p>
+        <h3>Is reverse engineering someone's video legal?</h3>
+        <p>Technique is not owned: pacing, framing and lighting are transferable. Script, characters, brand marks, music, talent likeness and highly distinctive set design are. The practical test is whether the original creator would recognise their specific expression in your output — if yes, you have moved past studying form.</p>
+        <h3>What should I keep in a prompt library?</h3>
+        <p>One text file per clip: the transferable idea in one sentence, the source link, and the extracted prompt with the slots you did not change marked. Over time that file set becomes a personal pattern language you can request by name.</p>
+
+      </div>
+
+      <section class="mx-auto mt-12 max-w-3xl">
+        <h2 class="text-xl font-extrabold tracking-tight">Related reading</h2>
+        <div class="mt-4 grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <a class="post-card" href="../extract-camera-movement-from-video-ai/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">Extract Camera Movement From a Video With AI</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">The vocabulary and the verification pass that make shot language usable.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 13, 2026 · 9 min read</span>
+          </a>
+          <a class="post-card" href="../socialtoprompt-review/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">SocialToPrompt Review: Turn Any Video Into a Prompt</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">The scored review: social downloader plus prompt engine in one page, and where each half earns its keep.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Sep 13, 2026 · 8 min read</span>
+          </a>
+          <a class="post-card" href="../turn-viral-videos-into-ai-prompts/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">Turn Viral Videos Into AI Prompts: A System</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">A repeatable system for reverse engineering many clips without drowning in them.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 13, 2026 · 8 min read</span>
+          </a>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="mt-14 border-t border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900/40">
+    <div class="wrap flex flex-wrap items-center justify-between gap-2 py-6 text-sm text-slate-400 dark:text-slate-500">
+      <span>© 2026 <a class="text-slate-600 hover:text-indigo-600 dark:text-slate-300" href="../../">FreeToolsHub</a>. All rights reserved.</span>
+      <span>Business inquiries: <a class="text-slate-600 hover:text-indigo-600 dark:text-slate-300" href="mailto:hello@veonib.com">hello@veonib.com</a></span>
+    </div>
+  </footer>
+
+</body>
+</html>

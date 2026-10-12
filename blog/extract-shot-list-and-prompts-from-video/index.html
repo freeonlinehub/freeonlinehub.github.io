@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Extract a Shot List and Prompts From a Video</title>
+  <meta name="description" content="Break an edited video into a numbered shot list with a prompt per shot: segmentation, timecodes, per-shot extraction, and a constants block.">
+  <link rel="canonical" href="https://freeonlinehub.github.io/blog/extract-shot-list-and-prompts-from-video/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="FreeToolsHub">
+  <meta property="og:title" content="Extract a Shot List and Prompts From a Video">
+  <meta property="og:description" content="Break an edited video into a numbered shot list with a prompt per shot: segmentation, timecodes, per-shot extraction, and a constants block.">
+  <meta property="og:url" content="https://freeonlinehub.github.io/blog/extract-shot-list-and-prompts-from-video/">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script src="../../js/tailwindcss.js"></script>
+  <script src="../../js/site.js"></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BlogPosting","headline":"Extract a Shot List and Prompts From a Video","datePublished":"2026-10-13","dateModified":"2026-10-13","author":{"@type":"Organization","name":"FreeToolsHub"},"publisher":{"@type":"Organization","name":"FreeToolsHub","url":"https://freeonlinehub.github.io/"},"url":"https://freeonlinehub.github.io/blog/extract-shot-list-and-prompts-from-video/"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://freeonlinehub.github.io/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://freeonlinehub.github.io/blog/"},{"@type":"ListItem","position":3,"name":"Extract a Shot List and Prompts From a Video","item":"https://freeonlinehub.github.io/blog/extract-shot-list-and-prompts-from-video/"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can I get a shot list from an existing video?","acceptedAnswer":{"@type":"Answer","text":"Yes, in two passes: segment the video at its cuts — manually for short clips or with a shot detector for longer ones — then extract a prompt per segment. The result is a numbered list with timecodes, a description per shot, and a header block stating the constants that unify them."}},{"@type":"Question","name":"Why can't I extract one prompt for a whole video?","acceptedAnswer":{"@type":"Answer","text":"Because analysis summarises across scenes and generation cannot render several camera setups in a few seconds. A multi-scene clip produces an averaged description that matches none of its shots, and a generator turns that into a morphing blur."}},{"@type":"Question","name":"What should a shot list entry contain?","acceptedAnswer":{"@type":"Answer","text":"Timecode range, role in the edit (hook, reveal, demonstration, end card), one line of shot description, and the paste-ready prompt. Plus a header with the constants — subject noun, light direction, palette, format, aspect ratio — repeated in every entry so the sequence looks like one film."}},{"@type":"Question","name":"Does uploading each shot as a file cost fewer credits?","acceptedAnswer":{"@type":"Answer","text":"Yes. SocialToPrompt bills extraction separately from prompt generation, so uploading a segment you cut yourself pays only the generation credits rather than the 4 credits a full link run costs on a clip up to 20 seconds."}}]}
+  </script>
+</head>
+<body class="bg-white font-sans text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100">
+
+  <header class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/80 backdrop-blur-md dark:border-slate-800/80 dark:bg-slate-950/80">
+    <div class="wrap flex h-16 items-center justify-between gap-3">
+      <a href="../../" class="flex flex-none items-center gap-2.5 text-lg font-extrabold tracking-tight text-slate-900 no-underline dark:text-white">
+        <span class="grid h-8 w-8 flex-none place-items-center rounded-[9px] bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 text-[13px] font-extrabold text-white shadow-md shadow-indigo-500/25">FT</span>
+        FreeTools<span class="text-indigo-600 dark:text-indigo-400">Hub</span>
+      </a>
+      <button data-nav-toggle aria-label="Toggle navigation" aria-expanded="false"
+        class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-slate-600 md:hidden dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">☰</button>
+      <nav data-nav class="main-nav">
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../ai-tools/">AI Tools</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../seo-tools/">SEO</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-image-tools/">Image</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-video-tools/">Video</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-pdf-tools/">PDF</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../developer-tools/">Developer</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../social-media-tools/">Social</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm font-semibold text-indigo-700 no-underline hover:bg-indigo-50 dark:text-indigo-300 dark:hover:bg-slate-800" href="../../free-tools/">Directory</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <article class="wrap mx-auto max-w-3xl">
+      <p class="crumbs"><a href="../">Blog</a> / Extract a Shot List and Prompts From a Video</p>
+      <h1 class="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">Extract a Shot List and Prompts From a Video</h1>
+      <p class="mt-2 text-sm text-slate-400 dark:text-slate-500">Published October 13, 2026 &middot; 8 min read</p>
+
+      <div class="prose prose-slate mt-8 max-w-none dark:prose-invert prose-a:text-indigo-600 dark:prose-a:text-indigo-400">
+
+        <p>An eight-minute video is not one shot and never will be one prompt. The useful unit is the shot — one continuous recording with one camera idea — and the work is segmentation followed by extraction. Done properly you end up with something a production team would recognise: a numbered shot list, a prompt per line, and timecodes to check them against.</p>        <div class="toc not-prose rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm dark:border-slate-800 dark:bg-slate-900/40">
+          <strong class="text-slate-900 dark:text-slate-100">In this guide</strong>
+          <ol class="mt-1 space-y-1 text-slate-600 dark:text-slate-400">
+            <li><a href="#never">Why one prompt per video never works</a></li>
+            <li><a href="#bounds">Step one: find the shot boundaries</a></li>
+            <li><a href="#per">Step two: extract per shot</a></li>
+            <li><a href="#format">The shot list format</a></li>
+            <li><a href="#rebuild">Reassembling as a buildable sequence</a></li>
+            <li><a href="#faq">Frequently asked questions</a></li>
+          </ol>
+        </div>
+
+        <h2 id="never">Why one prompt per video never works</h2>
+        <p>Two reasons, one technical and one physical. Technically, an analysis pass summarises: give it a multi-scene clip and it averages the framing, the movement and the grade into a description that matches none of the shots. Physically, a generator cannot render five camera setups in eight seconds — a prompt describes <em>one</em> continuous shot, so a merged description produces a morphing smear.</p>
+        <p>The fix is the opposite of the reflex: more passes, each over a smaller window. Which means you need shot boundaries before you need prompts.</p>
+        <h2 id="bounds">Step one: find the shot boundaries</h2>
+        <p>Pick whichever fits your setup:</p>
+        <ul>
+          <li><strong>Manual, for short clips.</strong> Scrub with the arrow keys and write timecodes. Twenty seconds of footage is five minutes of work.</li>
+          <li><strong>Shot detection, for anything longer.</strong> Scene-change detectors find cuts automatically — the tool ecosystem includes dedicated shot detectors, and the same vendor family links one from its tools menu.</li>
+          <li><strong>By file, when you have a project export.</strong> If each shot is already a separate clip, you have nothing to segment; skip to extraction.</li>
+        </ul>
+        <p>Output of this step is a plain list: <code>0:00–0:04 A · 0:04–0:07 B · 0:07–0:12 C</code>. Ignore transitions shorter than half a second — they belong to the boundary, not to a shot.</p>
+        <h2 id="per">Step two: extract per shot</h2>
+        <p>Now run each segment as its own job. Cut the segment to a file (ffmpeg's <code>-ss</code> and <code>-t</code> flags make this a one-liner; see the <a href="https://ffmpeg.org/" target="_blank" rel="noopener">ffmpeg documentation</a>), upload the MP4, MOV or WebM to <a href="https://socialtoprompt.com/" target="_blank" rel="noopener">SocialToPrompt</a>, and take the structured prompt back. Working from files rather than the original link also skips the 1-credit extraction step, since upload goes straight to prompt generation at 3 credits per the site&rsquo;s pricing.</p>
+        <p>Three habits keep the batch sane: process segments in order so the description vocabulary stays consistent; verify each camera verb against the source before accepting it (a shot list inherits every error you let through); and mark which shots are the mechanism — usually one or two of them are why you picked the video at all.</p>
+        <h2 id="format">The shot list format</h2>
+        <pre><code>#  reference: competitor ad, 22s, coffee category
+#  constants: warm practical light · oatmeal/amber palette · 35mm feel · 9:16 · handheld-locked hybrid
+
+1  0:00–0:03  HOOK      macro, condensation on cold-glass side, no camera move, hard rim from right
+                        → prompt: Extreme macro of water beading on a cold glass, camera locked-off,
+                          hard rim light from right, dark background, 3s, no subject movement.
+2  0:03–0:06  REVEAL    slow pull back to a full can on marble, one hand enters frame left
+                        → prompt: Slow pull-back from the can to a full product on white marble;
+                          a hand enters from frame left and stops short of touching it; 4s.
+3  0:06–0:11  USE       pour in close-up, ice shifts, liquid highlights the foam
+                        → prompt: Macro pour over ice, camera static at glass height, ice cubes
+                          shift as liquid lands, foam builds; ends with the glass full; 5s.
+</code></pre>
+        <p>The header block is the important part: it is what makes shots 1 through 3 look like the same film, because a generator has no memory between runs. Roles (HOOK, REVEAL, USE) make the list re-usable across products — you can rebuild any ad in your library by substituting role for role.</p>
+        <h2 id="rebuild">Reassembling as a buildable sequence</h2>
+        <p>Generate in shot order, then check the three constants that break sequences most often: subject noun consistency, light direction, and palette wording. Where a join looks wrong, the fix is nearly always in one of the two adjacent prompts rather than in the edit — models will not hide a continuity break for you.</p>
+        <p>Transitions are a separate design problem, solved by describing a shared visual state at the boundary; that technique is in <a href="../extract-video-transition-prompt-with-ai/">extracting video transition prompts</a>. For long-form sources, the <a href="../youtube-video-to-prompt-generator/">YouTube workflow</a> covers timecode-based excerpting, and the <a href="../free-video-to-prompt-generator-online/">free options comparison</a> covers the batch case where credit pricing stops making sense. The general conversion logic sits in <a href="../convert-video-to-ai-prompt/">converting a video to an AI prompt</a>.</p>
+        <p>One last thing a shot list gives you that a prompt never will: a legible answer to <em>why this ad worked</em>. Count the roles — most effective short-form has a macro hook, a reveal by second four, and one demonstration beat. That pattern is the asset, and it is the subject of <a href="../turn-viral-videos-into-ai-prompts/">turning viral videos into prompts</a>.</p>
+        <h2 id="faq">Frequently asked questions</h2>
+        <h3>Can I get a shot list from an existing video?</h3>
+        <p>Yes, in two passes: segment the video at its cuts — manually for short clips or with a shot detector for longer ones — then extract a prompt per segment. The result is a numbered list with timecodes, a description per shot, and a header block stating the constants that unify them.</p>
+        <h3>Why can't I extract one prompt for a whole video?</h3>
+        <p>Because analysis summarises across scenes and generation cannot render several camera setups in a few seconds. A multi-scene clip produces an averaged description that matches none of its shots, and a generator turns that into a morphing blur.</p>
+        <h3>What should a shot list entry contain?</h3>
+        <p>Timecode range, role in the edit (hook, reveal, demonstration, end card), one line of shot description, and the paste-ready prompt. Plus a header with the constants — subject noun, light direction, palette, format, aspect ratio — repeated in every entry so the sequence looks like one film.</p>
+        <h3>Does uploading each shot as a file cost fewer credits?</h3>
+        <p>Yes. SocialToPrompt bills extraction separately from prompt generation, so uploading a segment you cut yourself pays only the generation credits rather than the 4 credits a full link run costs on a clip up to 20 seconds.</p>
+
+      </div>
+
+      <section class="mx-auto mt-12 max-w-3xl">
+        <h2 class="text-xl font-extrabold tracking-tight">Related reading</h2>
+        <div class="mt-4 grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <a class="post-card" href="../analyze-video-and-generate-prompt/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">Analyze a Video and Generate a Prompt: Inside It</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">Why the analysis pipeline needs short windows.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 13, 2026 · 8 min read</span>
+          </a>
+          <a class="post-card" href="../extract-video-transition-prompt-with-ai/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">Extract Video Transition Prompts With AI</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">Designing the seams between generated shots.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 13, 2026 · 7 min read</span>
+          </a>
+          <a class="post-card" href="../socialtoprompt-review/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">SocialToPrompt Review: Turn Any Video Into a Prompt</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">The scored review: social downloader plus prompt engine in one page, and where each half earns its keep.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Sep 13, 2026 · 8 min read</span>
+          </a>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="mt-14 border-t border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900/40">
+    <div class="wrap flex flex-wrap items-center justify-between gap-2 py-6 text-sm text-slate-400 dark:text-slate-500">
+      <span>© 2026 <a class="text-slate-600 hover:text-indigo-600 dark:text-slate-300" href="../../">FreeToolsHub</a>. All rights reserved.</span>
+      <span>Business inquiries: <a class="text-slate-600 hover:text-indigo-600 dark:text-slate-300" href="mailto:hello@veonib.com">hello@veonib.com</a></span>
+    </div>
+  </footer>
+
+</body>
+</html>

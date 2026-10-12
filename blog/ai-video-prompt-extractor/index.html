@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Video Prompt Extractor: What the Tool Actually Returns</title>
+  <meta name="description" content="An AI video prompt extractor reads a clip and writes a generation-ready spec. The three tool types, the output fields to expect, and a rubric to judge any.">
+  <link rel="canonical" href="https://freeonlinehub.github.io/blog/ai-video-prompt-extractor/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="FreeToolsHub">
+  <meta property="og:title" content="AI Video Prompt Extractor: What the Tool Actually Returns">
+  <meta property="og:description" content="An AI video prompt extractor reads a clip and writes a generation-ready spec. The three tool types, the output fields to expect, and a rubric to judge any.">
+  <meta property="og:url" content="https://freeonlinehub.github.io/blog/ai-video-prompt-extractor/">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script src="../../js/tailwindcss.js"></script>
+  <script src="../../js/site.js"></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Video Prompt Extractor: What the Tool Actually Returns","datePublished":"2026-10-13","dateModified":"2026-10-13","author":{"@type":"Organization","name":"FreeToolsHub"},"publisher":{"@type":"Organization","name":"FreeToolsHub","url":"https://freeonlinehub.github.io/"},"url":"https://freeonlinehub.github.io/blog/ai-video-prompt-extractor/"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://freeonlinehub.github.io/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://freeonlinehub.github.io/blog/"},{"@type":"ListItem","position":3,"name":"AI Video Prompt Extractor: What the Tool Actually Returns","item":"https://freeonlinehub.github.io/blog/ai-video-prompt-extractor/"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is an AI video prompt extractor?","acceptedAnswer":{"@type":"Answer","text":"A tool that reads an existing clip and outputs a generation-ready specification — subject, shot size, camera movement, lighting, pacing and style — instead of a human-oriented description. It differs from a prompt generator, which works from a text idea, and from a captioner, which writes for readers rather than renderers."}},{"@type":"Question","name":"What should the output contain?","acceptedAnswer":{"@type":"Answer","text":"Six fields, ideally as separable parameters rather than one flowing sentence: subject and action, shot size and angle, camera movement, lighting, pacing and duration, and style or grade. If any of those are missing or vague, that is the field you will have to write yourself."}},{"@type":"Question","name":"How do I judge whether an extractor is any good?","acceptedAnswer":{"@type":"Answer","text":"Run one clip you know cold and score six things: is the camera verb right, is the light named by direction and quality, is the cut count accurate, is the grade described as a palette, are the fields editable separately, and does the same clip produce a similar prompt twice. Camera correctness matters most because it is the field other tools get wrong."}},{"@type":"Question","name":"Where do prompt extractors fail?","acceptedAnswer":{"@type":"Answer","text":"On screen recordings and text-heavy clips, on genuinely static shots, on heavily stylised animation, and on long videos where a single prompt cannot carry eight minutes of shot detail. Expect to edit those cases yourself regardless of vendor."}}]}
+  </script>
+</head>
+<body class="bg-white font-sans text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100">
+
+  <header class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/80 backdrop-blur-md dark:border-slate-800/80 dark:bg-slate-950/80">
+    <div class="wrap flex h-16 items-center justify-between gap-3">
+      <a href="../../" class="flex flex-none items-center gap-2.5 text-lg font-extrabold tracking-tight text-slate-900 no-underline dark:text-white">
+        <span class="grid h-8 w-8 flex-none place-items-center rounded-[9px] bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 text-[13px] font-extrabold text-white shadow-md shadow-indigo-500/25">FT</span>
+        FreeTools<span class="text-indigo-600 dark:text-indigo-400">Hub</span>
+      </a>
+      <button data-nav-toggle aria-label="Toggle navigation" aria-expanded="false"
+        class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-slate-600 md:hidden dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">☰</button>
+      <nav data-nav class="main-nav">
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../ai-tools/">AI Tools</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../seo-tools/">SEO</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-image-tools/">Image</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-video-tools/">Video</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-pdf-tools/">PDF</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../developer-tools/">Developer</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../social-media-tools/">Social</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm font-semibold text-indigo-700 no-underline hover:bg-indigo-50 dark:text-indigo-300 dark:hover:bg-slate-800" href="../../free-tools/">Directory</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <article class="wrap mx-auto max-w-3xl">
+      <p class="crumbs"><a href="../">Blog</a> / AI Video Prompt Extractor</p>
+      <h1 class="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">AI Video Prompt Extractor: What It Is and What It Returns</h1>
+      <p class="mt-2 text-sm text-slate-400 dark:text-slate-500">Published October 13, 2026 &middot; 8 min read</p>
+
+      <div class="prose prose-slate mt-8 max-w-none dark:prose-invert prose-a:text-indigo-600 dark:prose-a:text-indigo-400">
+
+        <p>&ldquo;AI video prompt extractor&rdquo; covers three different machines, and people buy the wrong one every week because the marketing uses the words interchangeably. One describes a video, one writes you a fresh prompt from a text idea, and one does the actual extraction: reads a specific clip and outputs a specification you can feed back into a generator. This page is a buyer&rsquo;s guide to the third kind — what its output should contain, why motion analysis is the field that separates tools, and a rubric you can run against any of them in ten minutes.</p>        <div class="toc not-prose rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm dark:border-slate-800 dark:bg-slate-900/40">
+          <strong class="text-slate-900 dark:text-slate-100">In this guide</strong>
+          <ol class="mt-1 space-y-1 text-slate-600 dark:text-slate-400">
+            <li><a href="#types">Three tools that get called one name</a></li>
+            <li><a href="#fields">The output fields a real extractor returns</a></li>
+            <li><a href="#motion">Why motion is the hard part</a></li>
+            <li><a href="#rubric">A six-point rubric for judging any extractor</a></li>
+            <li><a href="#fails">Where extractors reliably fail</a></li>
+            <li><a href="#next">What to do with the prompt next</a></li>
+            <li><a href="#faq">Frequently asked questions</a></li>
+          </ol>
+        </div>
+
+        <h2 id="types">Three tools that get called one name</h2>
+        <table>
+          <thead><tr><th scope="col">Tool type</th><th scope="col">Input</th><th scope="col">Output</th><th scope="col">Use it when</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Video describer / captioner</strong></td><td>A clip</td><td>Prose for a human reader, or subtitles for a viewer</td><td>Accessibility, search, summarising what was said</td></tr>
+            <tr><td><strong>Prompt generator</strong></td><td>A text idea (&ldquo;a cat astronaut&rdquo;)</td><td>A prompt for an idea you have not visualised</td><td>You know the concept, not the look</td></tr>
+            <tr><td><strong>Prompt extractor</strong></td><td>A clip you want to recreate or remix</td><td>A structured spec: subject, camera, light, pacing, style</td><td>You already know what good looks like — you have it in a file</td></tr>
+          </tbody>
+        </table>
+        <p>Only the third one closes the loop from reference to reproduction. The describer output reads well and generates badly; the generator has nothing to be faithful to. <a href="https://socialtoprompt.com/" target="_blank" rel="noopener">SocialToPrompt</a> sits in the extractor column — its stated job is to inspect every frame for motion, camera work, composition, style, lighting and timing, then emit a structured prompt, and the same page also handles the download step for 27 named platforms.</p>
+        <h2 id="fields">The output fields a real extractor returns</h2>
+        <p>A usable extraction is skimmable as a list of parameters, not a story. Six fields should be present or explicitly absent:</p>
+        <ol>
+          <li><strong>Subject and action</strong> — one noun phrase and one verb phrase. &ldquo;A potter centres clay&rdquo;, not &ldquo;a scene of craftsmanship&rdquo;.</li>
+          <li><strong>Shot size and angle</strong> — macro / close / medium / wide, and whether the camera is at eye level, low, overhead.</li>
+          <li><strong>Camera movement</strong> — the specific verb: dolly, pan, tilt, crane, handheld drift, static lock. This is the field a describer never gets right.</li>
+          <li><strong>Lighting</strong> — source, direction, quality (hard or soft), time of day if implied.</li>
+          <li><strong>Pacing and duration</strong> — cut count, movement speed, whether time is manipulated.</li>
+          <li><strong>Style and grade</strong> — palette, contrast, grain, medium (film, digital, animation, 3D render), era.</li>
+        </ol>
+        <p>If a tool returns a paragraph, it has given you raw material rather than a prompt; the conversion is then your job, which is exactly the work we cover in <a href="../convert-video-to-ai-prompt/">converting a video to an AI prompt field by field</a>.</p>
+        <h2 id="motion">Why motion is the hard part</h2>
+        <p>Describing a still frame is a solved problem — vision models are excellent at it. Describing change is different, because the model must compare across time and name the relationship: is the camera moving, or is the subject moving while the camera sits still? Both look similar in a single frame.</p>
+        <p>This is where frame-sampling DIY pipelines fall down. Pull twelve stills from a clip and a strong vision model will confidently tell you it is a &ldquo;push in&rdquo; when the subject simply walked toward the lens. Tools that ingest the clip can read parallax, background compression and perspective shift, which are the actual cues for camera movement. <a href="https://en.wikipedia.org/wiki/Cinematography" target="_blank" rel="noopener">cinematography</a> is a decent refresher on the vocabulary if you want to check the tool&rsquo;s camera line by hand.</p>
+        <p>Pacing has the same problem in miniature: cut frequency is measurable, but only if something counted the cuts. That is why our guide to <a href="../extract-camera-movement-from-video-ai/">extracting camera movement with AI</a> treats the camera field as the one to verify first — it is the most valuable and the most often wrong.</p>
+        <h2 id="rubric">A six-point rubric for judging any extractor</h2>
+        <p>Run these against one clip you know cold, and you can score any tool in a single sitting:</p>
+        <ul>
+          <li><strong>Camera verb correct?</strong> Pass/fail. A wrong movement word disqualifies the output for reuse.</li>
+          <li><strong>Named the light?</strong> Direction and quality, not just &ldquo;bright&rdquo;.</li>
+          <li><strong>Cut count within one?</strong> Count them yourself; an extractor that says &ldquo;single continuous shot&rdquo; about a three-cut clip is guessing.</li>
+          <li><strong>Grade as palette, not mood?</strong> &ldquo;Warm highlights, crushed blacks&rdquo; beats &ldquo;cinematic&rdquo;.</li>
+          <li><strong>Editable structure?</strong> Are fields separable, so you can swap the subject without rewriting the sentence?</li>
+          <li><strong>Reproducible?</strong> Run the same clip twice; if the prompt is wildly different each time, you cannot build a library on it.</li>
+        </ul>
+        <p>Score out of six, then weigh that against cost per run and privacy. On the tool we link to above, the vendor claims the highest prompt fidelity in the category after benchmarking against competitors — that is their marketing claim, not our measurement, and the rubric exists so you never have to take that kind of sentence on trust.</p>
+        <h2 id="fails">Where extractors reliably fail</h2>
+        <p>Four cases where you should expect to edit the output, no matter whose tool you use:</p>
+        <ul>
+          <li><strong>Text-heavy and screen-recording clips.</strong> UI footage is mostly layout and type; the prompt degenerates into &ldquo;a software interface&rdquo;.</li>
+          <li><strong>Fully static footage.</strong> Nothing moves, so the motion field becomes a guess between &ldquo;locked-off&rdquo; and &ldquo;subtle drift&rdquo;.</li>
+          <li><strong>Heavily graded or stylised work.</strong> Animation, rotoscope and heavy LUTs make the style field overfit to the look and lose the shot.</li>
+          <li><strong>Long videos.</strong> Summarising eight minutes into one prompt destroys exactly the per-shot detail you wanted; segment first, extract per segment.</li>
+        </ul>
+        <p>And one limit that is about money rather than pixels: extraction is metered here. A full link-to-prompt run costs 4 credits per the site&rsquo;s own FAQ (1 extraction + 3 prompt) against 3 free signup credits valid 24 hours, so judge a tool on cost-per-good-prompt, not cost-per-try.</p>
+        <h2 id="next">What to do with the prompt next</h2>
+        <p>An extracted prompt has three productive futures. Translate it into your target model&rsquo;s dialect — covered per model in our <a href="../seedance-prompt-from-video/">Seedance</a>, <a href="../veo-video-to-prompt-generator/">Veo</a> and <a href="../kling-ai-prompt-extractor-from-video/">Kling</a> guides. Remix it by swapping subject, product and palette while keeping camera and light, which is the legitimate way to steal a look. Or bank it: a folder of prompt .txt files describing shots that worked is a compounding asset, and it is the raw material for a personal style library rather than a pile of one-off clips (the community gallery angle is in our <a href="../videosprompt-review/">VideosPrompt review</a>).</p>
+        <p>Everything we rate in this space is indexed under AI tools and the free video tools category.</p>
+        <h2 id="faq">Frequently asked questions</h2>
+        <h3>What is an AI video prompt extractor?</h3>
+        <p>A tool that reads an existing clip and outputs a generation-ready specification — subject, shot size, camera movement, lighting, pacing and style — instead of a human-oriented description. It differs from a prompt generator, which works from a text idea, and from a captioner, which writes for readers rather than renderers.</p>
+        <h3>What should the output contain?</h3>
+        <p>Six fields, ideally as separable parameters rather than one flowing sentence: subject and action, shot size and angle, camera movement, lighting, pacing and duration, and style or grade. If any of those are missing or vague, that is the field you will have to write yourself.</p>
+        <h3>How do I judge whether an extractor is any good?</h3>
+        <p>Run one clip you know cold and score six things: is the camera verb right, is the light named by direction and quality, is the cut count accurate, is the grade described as a palette, are the fields editable separately, and does the same clip produce a similar prompt twice. Camera correctness matters most because it is the field other tools get wrong.</p>
+        <h3>Where do prompt extractors fail?</h3>
+        <p>On screen recordings and text-heavy clips, on genuinely static shots, on heavily stylised animation, and on long videos where a single prompt cannot carry eight minutes of shot detail. Expect to edit those cases yourself regardless of vendor.</p>
+
+      </div>
+
+      <section class="mx-auto mt-12 max-w-3xl">
+        <h2 class="text-xl font-extrabold tracking-tight">Related reading</h2>
+        <div class="mt-4 grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <a class="post-card" href="../socialtoprompt-review/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">SocialToPrompt Review: Turn Any Video Into a Prompt</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">The scored review: social downloader plus prompt engine in one page, and where each half earns its keep.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Sep 13, 2026 · 8 min read</span>
+          </a>
+          <a class="post-card" href="../video-prompt-reverse-engineering-tool/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">Video Prompt Reverse Engineering: A Tool and 3 Passes</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">Three passes over one clip — structure, shot language, then swap your subject in.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 13, 2026 · 8 min read</span>
+          </a>
+          <a class="post-card" href="../analyze-video-and-generate-prompt/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">Analyze a Video and Generate a Prompt: Inside It</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">Inside the analysis pipeline: what each stage contributes and what degrades it.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 13, 2026 · 8 min read</span>
+          </a>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="mt-14 border-t border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900/40">
+    <div class="wrap flex flex-wrap items-center justify-between gap-2 py-6 text-sm text-slate-400 dark:text-slate-500">
+      <span>© 2026 <a class="text-slate-600 hover:text-indigo-600 dark:text-slate-300" href="../../">FreeToolsHub</a>. All rights reserved.</span>
+      <span>Business inquiries: <a class="text-slate-600 hover:text-indigo-600 dark:text-slate-300" href="mailto:hello@veonib.com">hello@veonib.com</a></span>
+    </div>
+  </footer>
+
+</body>
+</html>

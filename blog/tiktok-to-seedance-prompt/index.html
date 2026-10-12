@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TikTok to Seedance Prompt: Convert a Clip Step by Step</title>
+  <meta name="description" content="Convert any TikTok into a Seedance-ready prompt: extract the recipe, split it into shots, write subject-camera-motion lines, and keep the pacing that worked.">
+  <link rel="canonical" href="https://freeonlinehub.github.io/blog/tiktok-to-seedance-prompt/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="FreeToolsHub">
+  <meta property="og:title" content="TikTok to Seedance Prompt: Convert a Clip Step by Step">
+  <meta property="og:description" content="Convert any TikTok into a Seedance-ready prompt: extract the recipe, split it into shots, write subject-camera-motion lines, and keep the pacing that worked.">
+  <meta property="og:url" content="https://freeonlinehub.github.io/blog/tiktok-to-seedance-prompt/">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script src="../../js/tailwindcss.js"></script>
+  <script src="../../js/site.js"></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BlogPosting","headline":"TikTok to Seedance Prompt: Convert a Clip Step by Step","datePublished":"2026-10-13","dateModified":"2026-10-13","author":{"@type":"Organization","name":"FreeToolsHub"},"publisher":{"@type":"Organization","name":"FreeToolsHub","url":"https://freeonlinehub.github.io/"},"url":"https://freeonlinehub.github.io/blog/tiktok-to-seedance-prompt/"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://freeonlinehub.github.io/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://freeonlinehub.github.io/blog/"},{"@type":"ListItem","position":3,"name":"TikTok to Seedance Prompt: Convert a Clip Step by Step","item":"https://freeonlinehub.github.io/blog/tiktok-to-seedance-prompt/"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can I turn a TikTok directly into a Seedance prompt?","acceptedAnswer":{"@type":"Answer","text":"Yes, in two moves: extract the clip's visual fields from the URL, then reformat them as ordered shot descriptions. Seedance-family models respond best to observable stage direction — subject, camera behaviour, movement, end state — rather than to mood language."}},{"@type":"Question","name":"How many shots should one Seedance prompt describe?","acceptedAnswer":{"@type":"Answer","text":"One. A short generation cannot carry multiple camera moves or a fast-cut sequence; describe a single move and a single action, then generate the shots separately and cut them together yourself."}},{"@type":"Question","name":"Why do my generated shots not match each other?","acceptedAnswer":{"@type":"Answer","text":"Because the nouns and the lighting drifted between prompts. Repeat the subject description verbatim across shots and restate the key light in each one; models have no memory of the previous generation."}},{"@type":"Question","name":"Should I describe the on-screen text from the TikTok?","acceptedAnswer":{"@type":"Answer","text":"No. Burned-in captions and stickers are the most-extracted and least-useful part of a short-form clip: they produce prompts about graphics rather than about shots, and a renderer will attempt to draw them."}}]}
+  </script>
+</head>
+<body class="bg-white font-sans text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100">
+
+  <header class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/80 backdrop-blur-md dark:border-slate-800/80 dark:bg-slate-950/80">
+    <div class="wrap flex h-16 items-center justify-between gap-3">
+      <a href="../../" class="flex flex-none items-center gap-2.5 text-lg font-extrabold tracking-tight text-slate-900 no-underline dark:text-white">
+        <span class="grid h-8 w-8 flex-none place-items-center rounded-[9px] bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 text-[13px] font-extrabold text-white shadow-md shadow-indigo-500/25">FT</span>
+        FreeTools<span class="text-indigo-600 dark:text-indigo-400">Hub</span>
+      </a>
+      <button data-nav-toggle aria-label="Toggle navigation" aria-expanded="false"
+        class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-slate-600 md:hidden dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">☰</button>
+      <nav data-nav class="main-nav">
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../ai-tools/">AI Tools</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../seo-tools/">SEO</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-image-tools/">Image</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-video-tools/">Video</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-pdf-tools/">PDF</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../developer-tools/">Developer</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../social-media-tools/">Social</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm font-semibold text-indigo-700 no-underline hover:bg-indigo-50 dark:text-indigo-300 dark:hover:bg-slate-800" href="../../free-tools/">Directory</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <article class="wrap mx-auto max-w-3xl">
+      <p class="crumbs"><a href="../">Blog</a> / TikTok to Seedance Prompt</p>
+      <h1 class="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">TikTok to Seedance Prompt: Turning a Viral Clip Into a Shot List</h1>
+      <p class="mt-2 text-sm text-slate-400 dark:text-slate-500">Published October 13, 2026 &middot; 7 min read</p>
+
+      <div class="prose prose-slate mt-8 max-w-none dark:prose-invert prose-a:text-indigo-600 dark:prose-a:text-indigo-400">
+
+        <p>Seedance-class models reward a different prompt shape from the one most people copy out of TikTok breakdowns: less adjectives, more stage direction. The good news is that a viral clip already <em>is</em> a piece of stage direction — someone decided what the camera does, when the reveal lands, and what the frame ends on. Converting a TikTok into a Seedance prompt is mostly transcription, plus one structural decision about how many shots a single generation can carry.</p>        <div class="toc not-prose rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm dark:border-slate-800 dark:bg-slate-900/40">
+          <strong class="text-slate-900 dark:text-slate-100">In this guide</strong>
+          <ol class="mt-1 space-y-1 text-slate-600 dark:text-slate-400">
+            <li><a href="#why">Why Seedance wants shot language</a></li>
+            <li><a href="#extract">Extract the TikTok first</a></li>
+            <li><a href="#split">Splitting into shots Seedance can hold</a></li>
+            <li><a href="#write">Writing the Seedance prompt</a></li>
+            <li><a href="#iter">Iteration and pitfalls</a></li>
+            <li><a href="#faq">Frequently asked questions</a></li>
+          </ol>
+        </div>
+
+        <h2 id="why">Why Seedance wants shot language</h2>
+                <p><a href="https://en.wikipedia.org/wiki/ByteDance" target="_blank" rel="noopener">ByteDance</a>'s video models are trained on captions that read like shot descriptions rather than like stories, which means the prompt works best as an ordered set of observable facts: what is in frame, how the camera behaves, how the subject moves, and what changes. That is the same five-slot structure we describe in <a href="../convert-video-to-ai-prompt">converting a video to an AI prompt</a>, but Seedance is unusually sensitive to <em>order</em> — describe the shot, then the movement, then the change, and the render follows that sequence.</p><p>The site lists Seedance among the models its extracted prompts are written to serve, so the mechanical part of the job is already done; what remains is formatting and restraint.</p>
+        <h2 id="extract">Extract the TikTok first</h2>
+        <p>Paste the video URL into <a href="https://socialtoprompt.com/" target="_blank" rel="noopener">SocialToPrompt</a> and take <em>Extract prompt</em>. It reads the clip through its stated stages — frames, content, motion, camera, style, aesthetics — and returns a structured description in 20&ndash;40 seconds per the site, from any of the 27 platforms it names, TikTok included. Set your output language before running if you write prompts in something other than English.</p>
+        <p>Two TikTok-specific edits before you go any further: delete every clause about burned-in text and stickers, and confirm the camera verb with a two-second corner check. Those are the fields that most often mislead a downstream render — details in <a href="../extract-prompt-from-tiktok-video/">extracting a prompt from a TikTok</a>.</p>
+        <h2 id="split">Splitting into shots a single generation can hold</h2>
+        <p>Short-form models render a handful of seconds coherently; a nine-second clip with five cuts is five generations, not one. So partition the extraction:</p>
+        <ul>
+          <li><strong>One shot per generation.</strong> One camera verb, one subject action, one lighting statement.</li>
+          <li><strong>Name the connective tissue.</strong> If two shots join on a whip pan or a match cut, end shot A and start shot B with the same motion so they seam cleanly in the edit.</li>
+          <li><strong>Keep the hook shot.</strong> The first 1.5 seconds of a viral clip is the most transferable asset, and it is usually a single framing decision.</li>
+          <li><strong>Preserve the end state.</strong> Whatever the clip arrives at — product filling frame, face to camera — state it as the last clause of that shot&rsquo;s prompt.</li>
+        </ul>
+        <h2 id="write">Writing the Seedance prompt</h2>
+        <p>A shape that holds up:</p>
+        <pre><code>SHOT 1 (vertical 9:16, 3s): low-angle macro of a sneaker on wet concrete, camera locked off,
+hard single key from upper right, deep shadow, rain droplets bouncing off the toe cap,
+subject fills lower two thirds of frame; ends as a foot steps into frame from the left.
+SHOT 2 (vertical 9:16, 3s): same sneaker, camera now tracking left-to-right alongside it,
+handheld with slight shake, same hard key, background compressing with parallax.
+</code></pre>
+        <ul>
+          <li><strong>Consistent nouns across shots.</strong> &ldquo;Same sneaker&rdquo; beats a fresh description that drifts into a different shoe.</li>
+          <li><strong>Perspective cues spelled out.</strong> &ldquo;Background compressing with parallax&rdquo; is what separates a dolly from a zoom — a distinction the model will not infer for you.</li>
+          <li><strong>Light repeated, not implied.</strong> Every shot re-declares its key, or the shots will not cut together.</li>
+        </ul>
+        <h2 id="iter">Iteration and pitfalls</h2>
+        <p>Three failure patterns and the single change that fixes each: the render is stable but boring (your camera verb is missing or buried — move it earlier); the two shots do not match (nouns and light drifted — restate them verbatim); the clip ends somewhere random (no end state declared).</p>
+        <p>Because a full link-to-prompt run costs 4 credits on videos up to 20 seconds, and Seedance iterations are cheap in comparison, the economical order is: <strong>extract once, split yourself, iterate on the renderer.</strong> Change one variable per run and keep a .txt per shot, as described in <a href="../generate-prompt-from-video/">the eight-slot template</a>. For the equivalent conversion aimed at Kuaishou&rsquo;s model, see <a href="../tiktok-to-kling-ai-prompt/">TikTok to Kling</a>; for the general multi-model view, the <a href="../ai-video-prompt-extractor/">prompt extractor rubric</a> covers what any tool&rsquo;s output should contain.</p>
+        <h2 id="faq">Frequently asked questions</h2>
+        <h3>Can I turn a TikTok directly into a Seedance prompt?</h3>
+        <p>Yes, in two moves: extract the clip's visual fields from the URL, then reformat them as ordered shot descriptions. Seedance-family models respond best to observable stage direction — subject, camera behaviour, movement, end state — rather than to mood language.</p>
+        <h3>How many shots should one Seedance prompt describe?</h3>
+        <p>One. A short generation cannot carry multiple camera moves or a fast-cut sequence; describe a single move and a single action, then generate the shots separately and cut them together yourself.</p>
+        <h3>Why do my generated shots not match each other?</h3>
+        <p>Because the nouns and the lighting drifted between prompts. Repeat the subject description verbatim across shots and restate the key light in each one; models have no memory of the previous generation.</p>
+        <h3>Should I describe the on-screen text from the TikTok?</h3>
+        <p>No. Burned-in captions and stickers are the most-extracted and least-useful part of a short-form clip: they produce prompts about graphics rather than about shots, and a renderer will attempt to draw them.</p>
+
+      </div>
+
+      <section class="mx-auto mt-12 max-w-3xl">
+        <h2 class="text-xl font-extrabold tracking-tight">Related reading</h2>
+        <div class="mt-4 grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <a class="post-card" href="../seedance-prompt-from-video/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">Seedance Prompt From a Video: The Prompt Grammar</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">Seedance-specific prompt grammar, from any reference clip.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 13, 2026 · 8 min read</span>
+          </a>
+          <a class="post-card" href="../tiktok-video-to-prompt-generator/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">TikTok Video to Prompt Generator: What Works, What Doesn&#x27;t</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">Link forms, credits and what a TikTok extraction will not capture.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 13, 2026 · 8 min read</span>
+          </a>
+          <a class="post-card" href="../socialtoprompt-review/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">SocialToPrompt Review: Turn Any Video Into a Prompt</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">The scored review: social downloader plus prompt engine in one page, and where each half earns its keep.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Sep 13, 2026 · 8 min read</span>
+          </a>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="mt-14 border-t border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900/40">
+    <div class="wrap flex flex-wrap items-center justify-between gap-2 py-6 text-sm text-slate-400 dark:text-slate-500">
+      <span>© 2026 <a class="text-slate-600 hover:text-indigo-600 dark:text-slate-300" href="../../">FreeToolsHub</a>. All rights reserved.</span>
+      <span>Business inquiries: <a class="text-slate-600 hover:text-indigo-600 dark:text-slate-300" href="mailto:hello@veonib.com">hello@veonib.com</a></span>
+    </div>
+  </footer>
+
+</body>
+</html>

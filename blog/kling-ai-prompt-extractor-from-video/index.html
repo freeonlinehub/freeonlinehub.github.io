@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kling AI Prompt Extractor From a Video: How To</title>
+  <meta name="description" content="Extract a Kling-compatible prompt from any reference clip: subject and motion clauses, camera verbs Kling parses, image-plus-text starting points, and fixes.">
+  <link rel="canonical" href="https://freeonlinehub.github.io/blog/kling-ai-prompt-extractor-from-video/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="FreeToolsHub">
+  <meta property="og:title" content="Kling AI Prompt Extractor From a Video: How To">
+  <meta property="og:description" content="Extract a Kling-compatible prompt from any reference clip: subject and motion clauses, camera verbs Kling parses, image-plus-text starting points, and fixes.">
+  <meta property="og:url" content="https://freeonlinehub.github.io/blog/kling-ai-prompt-extractor-from-video/">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script src="../../js/tailwindcss.js"></script>
+  <script src="../../js/site.js"></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BlogPosting","headline":"Kling AI Prompt Extractor From a Video: How To","datePublished":"2026-10-13","dateModified":"2026-10-13","author":{"@type":"Organization","name":"FreeToolsHub"},"publisher":{"@type":"Organization","name":"FreeToolsHub","url":"https://freeonlinehub.github.io/"},"url":"https://freeonlinehub.github.io/blog/kling-ai-prompt-extractor-from-video/"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://freeonlinehub.github.io/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://freeonlinehub.github.io/blog/"},{"@type":"ListItem","position":3,"name":"Kling AI Prompt Extractor From a Video: How To","item":"https://freeonlinehub.github.io/blog/kling-ai-prompt-extractor-from-video/"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can I extract a prompt from a video that works in Kling?","acceptedAnswer":{"@type":"Answer","text":"Yes, with a short rewrite. Extraction returns subject, motion, camera, lighting, pacing and style fields; Kling wants them compressed into front-loaded clauses with one dominant action, an explicit camera verb and a stated end state — the last of which no extractor supplies."}},{"@type":"Question","name":"What camera words does Kling respond to?","acceptedAnswer":{"@type":"Answer","text":"Plain movement verbs with height and stability: push in, pull back, track left or right, pan, tilt, crane up, orbit, follow behind, locked-off, handheld drift. One per prompt. Timing words like slow, abrupt or accelerating work better than frame counts."}},{"@type":"Question","name":"Why do hands and faces distort in my Kling renders?","acceptedAnswer":{"@type":"Answer","text":"Almost always because the prompt asked for more than one simultaneous action. Kling handles a single dominant motion cleanly; competing verbs produce warping around hands, hair and jaws. Cut an action before you tweak the wording."}},{"@type":"Question","name":"What does an extractor not tell me for Kling?","acceptedAnswer":{"@type":"Answer","text":"Duration and end state, light direction, and how much of the shot is motion rather than composition. Those four are the difference between a Kling prompt that renders and one that merely describes."}}]}
+  </script>
+</head>
+<body class="bg-white font-sans text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100">
+
+  <header class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/80 backdrop-blur-md dark:border-slate-800/80 dark:bg-slate-950/80">
+    <div class="wrap flex h-16 items-center justify-between gap-3">
+      <a href="../../" class="flex flex-none items-center gap-2.5 text-lg font-extrabold tracking-tight text-slate-900 no-underline dark:text-white">
+        <span class="grid h-8 w-8 flex-none place-items-center rounded-[9px] bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 text-[13px] font-extrabold text-white shadow-md shadow-indigo-500/25">FT</span>
+        FreeTools<span class="text-indigo-600 dark:text-indigo-400">Hub</span>
+      </a>
+      <button data-nav-toggle aria-label="Toggle navigation" aria-expanded="false"
+        class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-slate-600 md:hidden dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">☰</button>
+      <nav data-nav class="main-nav">
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../ai-tools/">AI Tools</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../seo-tools/">SEO</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-image-tools/">Image</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-video-tools/">Video</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-pdf-tools/">PDF</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../developer-tools/">Developer</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../social-media-tools/">Social</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm font-semibold text-indigo-700 no-underline hover:bg-indigo-50 dark:text-indigo-300 dark:hover:bg-slate-800" href="../../free-tools/">Directory</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <article class="wrap mx-auto max-w-3xl">
+      <p class="crumbs"><a href="../">Blog</a> / Kling AI Prompt Extractor From a Video</p>
+      <h1 class="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">Kling AI Prompt Extractor From a Video, Field by Field</h1>
+      <p class="mt-2 text-sm text-slate-400 dark:text-slate-500">Published October 13, 2026 &middot; 7 min read</p>
+
+      <div class="prose prose-slate mt-8 max-w-none dark:prose-invert prose-a:text-indigo-600 dark:prose-a:text-indigo-400">
+
+        <p>Kling — <a href="https://en.wikipedia.org/wiki/Kuaishou" target="_blank" rel="noopener">Kuaishou</a>&rsquo;s video model, and one of the most-used generators for short-form work — has a particular appetite: it renders explicit motion well and punishes ambiguity about who or what is moving. An extractor gets you most of the way; the last 20% is knowing which fields to keep, which to compress and which to write yourself. Here is the field-by-field version.</p>        <div class="toc not-prose rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm dark:border-slate-800 dark:bg-slate-900/40">
+          <strong class="text-slate-900 dark:text-slate-100">In this guide</strong>
+          <ol class="mt-1 space-y-1 text-slate-600 dark:text-slate-400">
+            <li><a href="#rewards">What Kling rewards in a prompt</a></li>
+            <li><a href="#extract">Extracting the fields</a></li>
+            <li><a href="#assemble">Assembling a Kling prompt</a></li>
+            <li><a href="#verbs">Camera and motion verb list</a></li>
+            <li><a href="#fails">Common Kling prompt failures</a></li>
+            <li><a href="#faq">Frequently asked questions</a></li>
+          </ol>
+        </div>
+
+        <h2 id="rewards">What Kling rewards in a prompt</h2>
+        <ul>
+          <li><strong>Motion specificity.</strong> Not &ldquo;she walks&rdquo; but &ldquo;she walks toward camera, coat swinging, three steps&rdquo;. Motion is where this family shines.</li>
+          <li><strong>One dominant action.</strong> Competing actions produce warping, especially around hands and hair.</li>
+          <li><strong>Physical camera language.</strong> Named moves and heights; vague adjectives about &ldquo;cinematic feel&rdquo; do nothing.</li>
+          <li><strong>Material and light behaviour.</strong> Wet surfaces, glass, fabric and skin are rendered convincingly when described as surfaces.</li>
+          <li><strong>Short, front-loaded clauses.</strong> Subject, then motion, then camera, then light — not a paragraph.</li>
+        </ul>
+        <h2 id="extract">Extracting the fields</h2>
+        <p>Paste the reference clip&rsquo;s URL into <a href="https://socialtoprompt.com/" target="_blank" rel="noopener">SocialToPrompt</a> — or upload MP4, MOV or WebM, which skips the 1-credit extraction step and goes straight to prompt generation at 3 credits — and the analysis returns the fields below after a run the site puts at 20&ndash;40 seconds. TikTok and Reels are frequent Kling sources, and their specifics are covered in <a href="../tiktok-to-kling-ai-prompt/">TikTok to Kling</a> and <a href="../extract-prompt-from-instagram-reels/">Reels extraction</a>.</p>
+        <table>
+          <thead><tr><th scope="col">Kling field</th><th scope="col">From extraction</th><th scope="col">Your job</th></tr></thead>
+          <tbody>
+            <tr><td>Subject</td><td>Usually accurate</td><td>Shorten to one noun phrase, repeated verbatim</td></tr>
+            <tr><td>Action / motion</td><td>Present but soft</td><td>Add magnitude and direction: three steps, coat swinging</td></tr>
+            <tr><td>Camera</td><td>Often wrong on gimbal footage</td><td>Verify with a corner check, then write one verb</td></tr>
+            <tr><td>Light</td><td>Colour reported, direction missing</td><td>State source and position</td></tr>
+            <tr><td>Style / grade</td><td>Decent</td><td>Replace mood words with palette words</td></tr>
+            <tr><td>Duration &amp; ending</td><td>Never reported</td><td>Write both explicitly</td></tr>
+          </tbody>
+        </table>
+        <h2 id="assemble">Assembling a Kling prompt</h2>
+        <pre><code>[subject], [one action with direction and magnitude], [camera: one verb + height + stability],
+[light: source + direction + quality], [surface/material cues], [palette + contrast],
+[duration], [end state]
+
+Example:
+A barista in a dark apron presses a portafilter, two-handed and firm; camera locked-off at
+counter height with slight handheld drift; hard key from a window camera-left, deep shadow
+right; steel and ceramic surfaces with specular highlights; muted warm grade, moderate contrast;
+5 seconds; ends on the tamper lifted, steam beginning.
+</code></pre>
+        <p>Four clauses that Kling particularly rewards: the two-handed action detail (hands are a known failure point), camera height, specular surface behaviour, and the end state.</p>
+        <h2 id="verbs">Camera and motion verb list</h2>
+        <p>Use one camera verb and one or two subject-motion verbs per prompt. The set that behaves predictably: <strong>push in / pull back</strong>, <strong>track left / right</strong>, <strong>pan</strong>, <strong>tilt</strong>, <strong>crane up</strong>, <strong>orbit</strong>, <strong>follow behind</strong>, <strong>locked-off</strong>, <strong>handheld drift</strong>. For the physics behind them — why a dolly and a zoom render differently — see <a href="../extract-camera-movement-from-video-ai/">extracting camera movement with AI</a>, and <a href="https://en.wikipedia.org/wiki/Dolly_(filmmaking)" target="_blank" rel="noopener">dolly moves</a> for the underlying technique.</p>
+        <p>Motion modifiers that scale reliably: <em>slow, steady, abrupt, gentle, accelerating</em>. Avoid frame counts and timecodes; describe timing as behaviour instead (&ldquo;as the door opens&rdquo;).</p>
+        <h2 id="fails">Common Kling prompt failures</h2>
+        <ul>
+          <li><strong>Warping hands and faces</strong> → too many simultaneous actions; cut one.</li>
+          <li><strong>Background swimming</strong> → a camera verb without a height or stability statement.</li>
+          <li><strong>Flat, generic look</strong> → inherited mood words from the extractor; replace with palette and light direction.</li>
+          <li><strong>Subject morphs mid-shot</strong> → the noun changed between clauses; repeat it verbatim.</li>
+          <li><strong>Nothing happens</strong> → the prompt described a scene, not an event. Every Kling prompt needs a verb the render can execute.</li>
+        </ul>
+        <p>If your goal is specifically to clone a reference&rsquo;s mechanism rather than to write from scratch, the reference-driven workflow is <a href="../convert-reference-video-to-kling-prompt/">converting a reference video to a Kling prompt</a>; the extraction mechanics behind both are in <a href="../extract-prompt-from-video-online/">extracting a prompt online</a>, and the general conversion in <a href="../convert-video-to-ai-prompt/">converting a video to an AI prompt</a>.</p>
+        <h2 id="faq">Frequently asked questions</h2>
+        <h3>Can I extract a prompt from a video that works in Kling?</h3>
+        <p>Yes, with a short rewrite. Extraction returns subject, motion, camera, lighting, pacing and style fields; Kling wants them compressed into front-loaded clauses with one dominant action, an explicit camera verb and a stated end state — the last of which no extractor supplies.</p>
+        <h3>What camera words does Kling respond to?</h3>
+        <p>Plain movement verbs with height and stability: push in, pull back, track left or right, pan, tilt, crane up, orbit, follow behind, locked-off, handheld drift. One per prompt. Timing words like slow, abrupt or accelerating work better than frame counts.</p>
+        <h3>Why do hands and faces distort in my Kling renders?</h3>
+        <p>Almost always because the prompt asked for more than one simultaneous action. Kling handles a single dominant motion cleanly; competing verbs produce warping around hands, hair and jaws. Cut an action before you tweak the wording.</p>
+        <h3>What does an extractor not tell me for Kling?</h3>
+        <p>Duration and end state, light direction, and how much of the shot is motion rather than composition. Those four are the difference between a Kling prompt that renders and one that merely describes.</p>
+
+      </div>
+
+      <section class="mx-auto mt-12 max-w-3xl">
+        <h2 class="text-xl font-extrabold tracking-tight">Related reading</h2>
+        <div class="mt-4 grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <a class="post-card" href="../convert-reference-video-to-kling-prompt/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">Convert a Reference Video to a Kling Prompt</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">Reference-driven conversion that keeps the mechanism and swaps the subject.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 13, 2026 · 7 min read</span>
+          </a>
+          <a class="post-card" href="../tiktok-to-kling-ai-prompt/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">TikTok to Kling AI Prompt: Convert Short-Form Clips</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">Short-form specifics: overlays, fast cuts and gimbal misreads.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 13, 2026 · 7 min read</span>
+          </a>
+          <a class="post-card" href="../socialtoprompt-review/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">SocialToPrompt Review: Turn Any Video Into a Prompt</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">The scored review: social downloader plus prompt engine in one page, and where each half earns its keep.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Sep 13, 2026 · 8 min read</span>
+          </a>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="mt-14 border-t border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900/40">
+    <div class="wrap flex flex-wrap items-center justify-between gap-2 py-6 text-sm text-slate-400 dark:text-slate-500">
+      <span>© 2026 <a class="text-slate-600 hover:text-indigo-600 dark:text-slate-300" href="../../">FreeToolsHub</a>. All rights reserved.</span>
+      <span>Business inquiries: <a class="text-slate-600 hover:text-indigo-600 dark:text-slate-300" href="mailto:hello@veonib.com">hello@veonib.com</a></span>
+    </div>
+  </footer>
+
+</body>
+</html>

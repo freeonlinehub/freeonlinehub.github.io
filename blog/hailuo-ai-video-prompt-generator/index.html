@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hailuo AI Video Prompt Generator: Camera Tags</title>
+  <meta name="description" content="Build Hailuo-family prompts from a reference clip: director camera tags, one move per shot, subject first, and what a video extractor supplies.">
+  <link rel="canonical" href="https://freeonlinehub.github.io/blog/hailuo-ai-video-prompt-generator/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="FreeToolsHub">
+  <meta property="og:title" content="Hailuo AI Video Prompt Generator: Camera Tags">
+  <meta property="og:description" content="Build Hailuo-family prompts from a reference clip: director camera tags, one move per shot, subject first, and what a video extractor supplies.">
+  <meta property="og:url" content="https://freeonlinehub.github.io/blog/hailuo-ai-video-prompt-generator/">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script src="../../js/tailwindcss.js"></script>
+  <script src="../../js/site.js"></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BlogPosting","headline":"Hailuo AI Video Prompt Generator: Camera Tags","datePublished":"2026-10-13","dateModified":"2026-10-13","author":{"@type":"Organization","name":"FreeToolsHub"},"publisher":{"@type":"Organization","name":"FreeToolsHub","url":"https://freeonlinehub.github.io/"},"url":"https://freeonlinehub.github.io/blog/hailuo-ai-video-prompt-generator/"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://freeonlinehub.github.io/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://freeonlinehub.github.io/blog/"},{"@type":"ListItem","position":3,"name":"Hailuo AI Video Prompt Generator: Camera Tags","item":"https://freeonlinehub.github.io/blog/hailuo-ai-video-prompt-generator/"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I write a prompt for a Hailuo-family model from a video?","acceptedAnswer":{"@type":"Answer","text":"Extract the clip's fields and convert them into a compact tag block: shot size, angle, one movement, stability, optics, then light and grade. Lead with the subject and action, keep the tags early and literal, and add the duration and ending yourself, because no extractor supplies those."}},{"@type":"Question","name":"How many camera tags should one prompt contain?","acceptedAnswer":{"@type":"Answer","text":"One per category and, critically, only one movement. This family follows camera instructions unusually literally, so two movements in a short clip produce an averaged smear rather than a sequence."}},{"@type":"Question","name":"Why is my generated shot static when the reference wasn't?","acceptedAnswer":{"@type":"Answer","text":"Because stabilised gimbal movement often extracts as no movement — the background shifts so smoothly that the motion reading reports a locked camera. Watch the frame edges on the reference and write the movement tag by hand."}},{"@type":"Question","name":"Do mood words help with this model family?","acceptedAnswer":{"@type":"Answer","text":"Minimal value. Named techniques and physical light descriptions do the work; adjectives about atmosphere are the least-weighted content in the prompt. Spend your words on optics, direction of light, and what changes."}}]}
+  </script>
+</head>
+<body class="bg-white font-sans text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100">
+
+  <header class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/80 backdrop-blur-md dark:border-slate-800/80 dark:bg-slate-950/80">
+    <div class="wrap flex h-16 items-center justify-between gap-3">
+      <a href="../../" class="flex flex-none items-center gap-2.5 text-lg font-extrabold tracking-tight text-slate-900 no-underline dark:text-white">
+        <span class="grid h-8 w-8 flex-none place-items-center rounded-[9px] bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 text-[13px] font-extrabold text-white shadow-md shadow-indigo-500/25">FT</span>
+        FreeTools<span class="text-indigo-600 dark:text-indigo-400">Hub</span>
+      </a>
+      <button data-nav-toggle aria-label="Toggle navigation" aria-expanded="false"
+        class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-slate-600 md:hidden dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">☰</button>
+      <nav data-nav class="main-nav">
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../ai-tools/">AI Tools</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../seo-tools/">SEO</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-image-tools/">Image</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-video-tools/">Video</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-pdf-tools/">PDF</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../developer-tools/">Developer</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../social-media-tools/">Social</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm font-semibold text-indigo-700 no-underline hover:bg-indigo-50 dark:text-indigo-300 dark:hover:bg-slate-800" href="../../free-tools/">Directory</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <article class="wrap mx-auto max-w-3xl">
+      <p class="crumbs"><a href="../">Blog</a> / Hailuo AI Video Prompt Generator</p>
+      <h1 class="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">Hailuo AI Video Prompt Generator: Directing With Camera Tags</h1>
+      <p class="mt-2 text-sm text-slate-400 dark:text-slate-500">Published October 13, 2026 &middot; 7 min read</p>
+
+      <div class="prose prose-slate mt-8 max-w-none dark:prose-invert prose-a:text-indigo-600 dark:prose-a:text-indigo-400">
+
+        <p>MiniMax&rsquo;s Hailuo models are unusually explicit about <a href="https://en.wikipedia.org/wiki/Cinematography" target="_blank" rel="noopener">cinematography</a>: the family is known for responding to named camera techniques, which makes it the best destination for a reference clip you want to imitate, because a reference already contains nothing but named camera techniques. Here is the tag vocabulary and how to extract it from footage.</p>        <div class="toc not-prose rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm dark:border-slate-800 dark:bg-slate-900/40">
+          <strong class="text-slate-900 dark:text-slate-100">In this guide</strong>
+          <ol class="mt-1 space-y-1 text-slate-600 dark:text-slate-400">
+            <li><a href="#tags">Why this family is camera-tag driven</a></li>
+            <li><a href="#vocab">The tag vocabulary</a></li>
+            <li><a href="#extract">Extracting tags from a reference</a></li>
+            <li><a href="#assemble">Assembling the prompt</a></li>
+            <li><a href="#fails">Hailuo-specific failures</a></li>
+            <li><a href="#faq">Frequently asked questions</a></li>
+          </ol>
+        </div>
+
+        <h2 id="tags">Why this family is camera-tag driven</h2>
+        <p>Most models let you describe a shot in ordinary language and hope. This one documents and rewards a director&rsquo;s vocabulary: specific movement names, <a href="https://en.wikipedia.org/wiki/Shot_(filmmaking)" target="_blank" rel="noopener">shot size</a>s and angles behave like switches. The practical consequence for our workflow is excellent — a reference clip converted into a tag list becomes a prompt that reads as instructions rather than as wishful description. The trade-off is that a vague prompt wastes the model&rsquo;s strongest capability.</p>
+        <h2 id="vocab">The tag vocabulary</h2>
+        <table>
+          <thead><tr><th scope="col">Category</th><th scope="col">Tags that behave</th></tr></thead>
+          <tbody>
+            <tr><td>Shot size</td><td>extreme close-up, close-up, medium, wide, establishing</td></tr>
+            <tr><td>Angle</td><td>low angle, high angle, eye level, overhead, dutch tilt</td></tr>
+            <tr><td>Movement</td><td>push in, pull back, pan left/right, tilt up/down, tracking shot, aerial, orbit, crane</td></tr>
+            <tr><td>Stability</td><td>handheld, steady gimbal, locked-off</td></tr>
+            <tr><td>Pacing</td><td>slow motion, time-lapse, single continuous shot</td></tr>
+            <tr><td>Optics</td><td>shallow depth of field, wide-angle distortion, macro, anamorphic flare</td></tr>
+          </tbody>
+        </table>
+        <p>One tag per category, and never two movements — that rule matters more here than anywhere, precisely because the model obeys the tags so literally. The physics behind the words is in <a href="../extract-camera-movement-from-video-ai/">extracting camera movement with AI</a>.</p>
+        <h2 id="extract">Extracting tags from a reference</h2>
+        <p>This is the shortest conversion of any model family, because an extractor&rsquo;s output maps almost one-to-one onto the tag list. Paste the clip URL into <a href="https://socialtoprompt.com/" target="_blank" rel="noopener">SocialToPrompt</a> (27 platforms, or upload MP4/MOV/WebM to skip the extraction credit) and read back the camera, composition, lighting and pacing fields; the run takes the stated 20&ndash;40 seconds.</p>
+        <p>Then convert to tags and verify the movement by eye. On a reference of a coffee commercial shot, that looks like: <code>close-up, low angle, push in, locked-off base with slight drift, shallow depth of field, warm practical light</code>.</p>
+        <p>What extraction cannot give you, and what you must add: the duration, the end state, and the one thing you want to change relative to the reference.</p>
+        <h2 id="assemble">Assembling the prompt</h2>
+        <pre><code>[subject + action]  [tag list: size, angle, movement, stability, optics]  [light]  [grade]
+[duration]  [ending]
+
+A barista presses espresso into a portafilter, steam curling past the rim. Close-up, low angle,
+slow push in, slight handheld drift, shallow depth of field. Single hard window key from
+camera-left, deep shadow behind. Warm muted grade, fine grain. Six seconds, ends on the
+tamper lifted from frame.
+</code></pre>
+        <p>Subject and action lead — models weight what comes first — and the tags follow as a compact block rather than being woven into prose. Light and grade are stated, never implied, because a reference-derived prompt that omits them defaults to a generic look.</p>
+        <h2 id="fails">Hailuo-specific failures</h2>
+        <ul>
+          <li><strong>Two movements, one smear.</strong> If the reference has a dolly-in followed by a pan, generate two shots and cut them.</li>
+          <li><strong>Over-tagged optics.</strong> Wide-angle plus anamorphic flare plus macro is a contradiction; pick the dominant one.</li>
+          <li><strong>Tag words in the wrong slot.</strong> Movement buried after a long subject clause loses to the subject; keep the tag block early.</li>
+          <li><strong>Inherited motion from a stabilised reference.</strong> Gimbal footage extracts as static more often than not — check it before accepting an empty movement tag.</li>
+        </ul>
+        <p>For the same reference aimed at other dialects, see <a href="../seedance-prompt-from-video/">Seedance</a>, <a href="../kling-ai-prompt-extractor-from-video/">Kling</a> and <a href="../wan-ai-prompt-from-video/">Wan</a>; the underlying extraction is <a href="../ai-video-prompt-extractor/">what a prompt extractor returns</a>. And the same rights test applies to every model family: camera technique is not owned, expression and likeness are.</p>
+        <h2 id="faq">Frequently asked questions</h2>
+        <h3>How do I write a prompt for a Hailuo-family model from a video?</h3>
+        <p>Extract the clip's fields and convert them into a compact tag block: shot size, angle, one movement, stability, optics, then light and grade. Lead with the subject and action, keep the tags early and literal, and add the duration and ending yourself, because no extractor supplies those.</p>
+        <h3>How many camera tags should one prompt contain?</h3>
+        <p>One per category and, critically, only one movement. This family follows camera instructions unusually literally, so two movements in a short clip produce an averaged smear rather than a sequence.</p>
+        <h3>Why is my generated shot static when the reference wasn't?</h3>
+        <p>Because stabilised gimbal movement often extracts as no movement — the background shifts so smoothly that the motion reading reports a locked camera. Watch the frame edges on the reference and write the movement tag by hand.</p>
+        <h3>Do mood words help with this model family?</h3>
+        <p>Minimal value. Named techniques and physical light descriptions do the work; adjectives about atmosphere are the least-weighted content in the prompt. Spend your words on optics, direction of light, and what changes.</p>
+
+      </div>
+
+      <section class="mx-auto mt-12 max-w-3xl">
+        <h2 class="text-xl font-extrabold tracking-tight">Related reading</h2>
+        <div class="mt-4 grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <a class="post-card" href="../extract-camera-movement-from-video-ai/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">Extract Camera Movement From a Video With AI</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">The movement vocabulary every family needs.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 13, 2026 · 9 min read</span>
+          </a>
+          <a class="post-card" href="../kling-ai-prompt-extractor-from-video/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">Kling AI Prompt Extractor From a Video: How To</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">A neighbouring dialect: motion clauses and explicit verbs.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 13, 2026 · 7 min read</span>
+          </a>
+          <a class="post-card" href="../socialtoprompt-review/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">SocialToPrompt Review: Turn Any Video Into a Prompt</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">The scored review: social downloader plus prompt engine in one page, and where each half earns its keep.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Sep 13, 2026 · 8 min read</span>
+          </a>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="mt-14 border-t border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900/40">
+    <div class="wrap flex flex-wrap items-center justify-between gap-2 py-6 text-sm text-slate-400 dark:text-slate-500">
+      <span>© 2026 <a class="text-slate-600 hover:text-indigo-600 dark:text-slate-300" href="../../">FreeToolsHub</a>. All rights reserved.</span>
+      <span>Business inquiries: <a class="text-slate-600 hover:text-indigo-600 dark:text-slate-300" href="mailto:hello@veonib.com">hello@veonib.com</a></span>
+    </div>
+  </footer>
+
+</body>
+</html>
