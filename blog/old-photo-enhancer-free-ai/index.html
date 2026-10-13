@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Old Photo Enhancer Free: What AI Can’t Fix</title>
+  <meta name="description" content="An honest old photo enhancement pipeline: scan settings, scratch repair with inpainting, 4x upscaling, and colour — with the tools that do each step free.">
+  <link rel="canonical" href="https://freeonlinehub.github.io/blog/old-photo-enhancer-free-ai/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="FreeToolsHub">
+  <meta property="og:title" content="Old Photo Enhancer Free: What AI Can’t Fix">
+  <meta property="og:description" content="An honest old photo enhancement pipeline: scan settings, scratch repair with inpainting, 4x upscaling, and colour — with the tools that do each step free.">
+  <meta property="og:url" content="https://freeonlinehub.github.io/blog/old-photo-enhancer-free-ai/">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script src="../../js/tailwindcss.js"></script>
+  <script src="../../js/site.js"></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BlogPosting","headline":"Old Photo Enhancer Free: A Four-Step Pipeline, and What It Cannot Do","datePublished":"2026-10-13","dateModified":"2026-10-13","author":{"@type":"Organization","name":"FreeToolsHub"},"publisher":{"@type":"Organization","name":"FreeToolsHub","url":"https://freeonlinehub.github.io/"},"url":"https://freeonlinehub.github.io/blog/old-photo-enhancer-free-ai/"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://freeonlinehub.github.io/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://freeonlinehub.github.io/blog/"},{"@type":"ListItem","position":3,"name":"Old Photo Enhancer Free: A Four-Step Pipeline, and What It Cannot Do","item":"https://freeonlinehub.github.io/blog/old-photo-enhancer-free-ai/"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is there a free AI old photo enhancer?","acceptedAnswer":{"@type":"Answer","text":"There is a free pipeline: on-device inpainting for scratches and date stamps, and on-device Real-ESRGAN for resolution, both without an account, upload or watermark. What is not free-standing is one click that repairs, sharpens, reconstructs faces and colours a print — those are separate models with different reliability."}},{"@type":"Question","name":"What resolution should I scan an old photograph at?","acceptedAnswer":{"@type":"Answer","text":"600 dpi for snapshot-sized prints and 1200 dpi for smaller ones or fine detail, saving TIFF or PNG rather than JPEG. Under-scanning is unrecoverable: upscaling predicts texture, it does not return detail a scanner never sampled."}},{"@type":"Question","name":"Can AI remove scratches from an old photo?","acceptedAnswer":{"@type":"Answer","text":"Yes — this is the part that genuinely works well. Scratches are narrow damaged regions with predictable surroundings, which is ideal for mask-based inpainting. Paint the scratch with a pixel of margin, work in segments on long ones, then run again on leftovers."}},{"@type":"Question","name":"Why does the restored face look like somebody else?","acceptedAnswer":{"@type":"Answer","text":"Because face-restoration models are trained to output faces, and they will produce one from an illegible smudge. Compare against other photographs of the person, and skip face reconstruction entirely for anything where accuracy matters."}},{"@type":"Question","name":"Should I repair, then upscale, or upscale then repair?","acceptedAnswer":{"@type":"Answer","text":"Repair first, always. Cleaning 400 pixels is much easier than cleaning 6,400, and upscaling multiplies every artefact you leave behind along with everything else."}}]}
+  </script>
+</head>
+<body class="bg-white font-sans text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100">
+
+  <header class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/80 backdrop-blur-md dark:border-slate-800/80 dark:bg-slate-950/80">
+    <div class="wrap flex h-16 items-center justify-between gap-3">
+      <a href="../../" class="flex flex-none items-center gap-2.5 text-lg font-extrabold tracking-tight text-slate-900 no-underline dark:text-white">
+        <span class="grid h-8 w-8 flex-none place-items-center rounded-[9px] bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 text-[13px] font-extrabold text-white shadow-md shadow-indigo-500/25">FT</span>
+        FreeTools<span class="text-indigo-600 dark:text-indigo-400">Hub</span>
+      </a>
+      <button data-nav-toggle aria-label="Toggle navigation" aria-expanded="false"
+        class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-slate-600 md:hidden dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">☰</button>
+      <nav data-nav class="main-nav">
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../ai-tools/">AI Tools</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../seo-tools/">SEO</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-image-tools/">Image</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-video-tools/">Video</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-pdf-tools/">PDF</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../developer-tools/">Developer</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../social-media-tools/">Social</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm font-semibold text-indigo-700 no-underline hover:bg-indigo-50 dark:text-indigo-300 dark:hover:bg-slate-800" href="../../free-tools/">Directory</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <article class="wrap mx-auto max-w-3xl">
+      <p class="crumbs"><a href="../">Blog</a> / Old Photo Enhancer Free</p>
+      <h1 class="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">Old Photo Enhancer Free: A Four-Step Pipeline, and What It Cannot Do</h1>
+      <p class="mt-2 text-sm text-slate-400 dark:text-slate-500">Published October 13, 2026 &middot; 9 min read</p>
+
+      <div class="prose prose-slate mt-8 max-w-none dark:prose-invert prose-a:text-indigo-600 dark:prose-a:text-indigo-400">
+
+        <p>&ldquo;Restore this 1948 photograph with AI&rdquo; is the request the marketing has prepared everyone for and the technology has not quite delivered. What actually works is a pipeline of four separate jobs, each with its own tool, done in the right order — and one of them, the step everybody assumes AI does for free, is the step a general upscaler cannot do at all. Here is the whole sequence for a family print, using free tools.</p>
+        <div class="toc not-prose rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm dark:border-slate-800 dark:bg-slate-900/40">
+          <strong class="text-slate-900 dark:text-slate-100">In this guide</strong>
+          <ol class="mt-1 space-y-1 text-slate-600 dark:text-slate-400">
+            <li><a href="#start">Step 0 — the scan decides everything</a></li>
+            <li><a href="#scratch">Step 1 — scratches, dust and tears are an inpainting job</a></li>
+            <li><a href="#upscale">Step 2 — 4x super-resolution for sharpness and size</a></li>
+            <li><a href="#faces">Step 3 — the thing the upscaler will not do: rebuild faces</a></li>
+            <li><a href="#colour">Step 4 — tone, stains and colourisation</a></li>
+            <li><a href="#order">The whole pipeline, in order</a></li>
+            <li><a href="#faq">Frequently asked questions</a></li>
+          </ol>
+        </div>
+        <h2 id="start">Step 0 — the scan decides everything</h2>
+        <p>Most failed restorations are lost before any software is involved, because the source was a phone photo of a print, or a 150 dpi scan. Rules that hold:</p>
+        <ul>
+          <li><strong>600 dpi minimum</strong> for a snapshot-sized print; 1200 dpi for anything smaller than a wallet print or with fine detail you care about. Upscaling cannot recover resolution the scanner never sampled — see <a href="../4x-image-upscaler-online-free/">what a multiplier really buys</a>.</li>
+          <li><strong>Flatbed or film scanner over a phone snap.</strong> A photograph of a glossy print inherits the print’s reflections, and no model removes them well.</li>
+          <li><strong>Save as TIFF or PNG.</strong> A JPG scan adds compression artefacts on top of sixty years of damage, and every later edit compounds them.</li>
+          <li><strong>Scan slightly larger than needed.</strong> Cropping straightens a crooked scan; a scan that is already tight has nothing to work with.</li>
+          <li><strong>Handle dust as a separate pass</strong> — a compressed-air blow before the scan beats any cleanup afterwards.</li>
+        </ul>
+        <h2 id="scratch">Step 1 — scratches, dust and tears are an inpainting job</h2>
+        <p>A scratch is a narrow damaged region whose surroundings are highly structured — a face, a fence, hair — and it is exactly the shape of problem that mask-based inpainting solves: you paint the defect, and a model synthesizes the region from context elsewhere in the image. <a href="https://watermarkremover.onlinefree.fyi" target="_blank" rel="noopener">WatermarkRemover</a> is marketed for watermarks and runs a LaMa-class model (<a href="https://arxiv.org/abs/2109.07126" target="_blank" rel="noopener">paper</a>) on your own device, with no upload, up to 25&nbsp;MB in and PNG out, and the tool preserves full resolution outside the painted area.</p>
+        <ol>
+          <li>Paint along the scratch, not exactly on it — give it a pixel of margin, since the damage has a soft halo.</li>
+          <li>Tackle long scratches in segments rather than one continuous stroke; a shorter mask gets better context.</li>
+          <li>Dust specks can be painted in a cluster and removed in one pass.</li>
+          <li>Run again on leftovers. Second passes on small regions are cheap and are where the polish happens.</li>
+          <li>Tears across a face are beyond general inpainting: it will invent a cheek. Accept it or hand-fix.</li>
+        </ol>
+        <p>The same technique handles a date stamp burned into the print, covered in <a href="../remove-date-stamp-timestamp-from-photo/">removing a date stamp</a>.</p>
+        <h2 id="upscale">Step 2 — 4x super-resolution for sharpness and size</h2>
+        <p>With the damage gone, the image is clean but small and soft — that is a resolution problem, and it is what a super-resolution model is for. <a href="https://imageupscaler.onlinefree.fyi" target="_blank" rel="noopener">ImageUpscaler</a> runs <a href="https://arxiv.org/abs/2107.06145" target="_blank" rel="noopener">Real-ESRGAN</a> locally at 4&times; per side; the model is about 32&nbsp;MB, downloaded once, and nothing leaves the machine. Order matters: repair first, then upscale. Cleaning 400 pixels is easier than cleaning 6,400, and every artefact you leave behind gets sixteen times the area.</p>
+        <ul>
+          <li>Do the pass on the largest sane scan you have; 4&times; is your ceiling in one go.</li>
+          <li>Export PNG between steps — do not round-trip a restoration through JPEG.</li>
+          <li>Downscale at the end to the display size you actually need; that averaging is what removes the painted look.</li>
+          <li>Check faces at 100%. General super-resolution sharpens a face without reconstructing it.</li>
+        </ul>
+        <h2 id="faces">Step 3 — the thing the upscaler will not do: rebuild faces</h2>
+        <p>A soft, small face is the reason people expect magic from &ldquo;AI restoration&rdquo;, and general super-resolution is the wrong tool. Face restoration is its own research area with dedicated models: <a href="https://github.com/TencentARC/GFPGAN" target="_blank" rel="noopener">GFPGAN</a> and <a href="https://arxiv.org/abs/2206.11253" target="_blank" rel="noopener">CodeFormer</a> are trained on faces and hallucinate a face-shaped result where nothing is legible. That is impressive and it is also a hazard: the person in the output may not be the person in the photograph.</p>
+        <div class="not-prose rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-slate-700 dark:border-amber-500/30 dark:bg-amber-500/10 dark:text-slate-300">
+          <strong>Decide deliberately.</strong> For a family archive, a confidently invented face is a fabrication, not a restoration. Use face models when you know the subject and can check the result against other photos of them — and never for anything evidential.
+        </div>
+        <h2 id="colour">Step 4 — tone, stains and colourisation</h2>
+        <ul>
+          <li><strong>Exposure and contrast first</strong>, in any free editor. Most faded prints need a black-point fix far more than they need AI. <a href="https://www.gimp.org/" target="_blank" rel="noopener">GIMP</a> and Photopea both do levels.</li>
+          <li><strong>Yellow cast</strong> is a channel-balance job, not a generative one — reduce the yellow by pulling the blue channel up in the shadows.</li>
+          <li><strong>Stains and foxing</strong> are inpainting again, with a soft-edged brush at low opacity.</li>
+          <li><strong>Colourisation</strong> of a black-and-white photo is a separate model class — <a href="https://github.com/jantic/DeOldify" target="_blank" rel="noopener">DeOldify</a> is the well-known open implementation. Treat its output as an artist’s guess: skin, clothing and sky are plausible, and a specific dress colour is not a historical record.</li>
+        </ul>
+        <h2 id="order">The whole pipeline, in order</h2>
+        <table>
+          <thead><tr><th scope="col">Step</th><th scope="col">Job</th><th scope="col">Free tool</th><th scope="col">Skip it if</th></tr></thead>
+          <tbody>
+            <tr><td>0</td><td>Scan at 600–1200 dpi, TIFF/PNG</td><td>your scanner</td><td>the source is already a high-res file</td></tr>
+            <tr><td>1</td><td>Scratches, dust, tears, date stamps</td><td>on-device inpainting</td><td>the image is undamaged</td></tr>
+            <tr><td>2</td><td>4x super-resolution for size and crispness</td><td>Real-ESRGAN upscaler</td><td>you already have the dimensions you need</td></tr>
+            <tr><td>3</td><td>Face reconstruction, deliberately</td><td>GFPGAN or CodeFormer</td><td>identity accuracy matters</td></tr>
+            <tr><td>4</td><td>Levels, colour cast, stains</td><td>any free editor</td><td>the scan was already corrected</td></tr>
+            <tr><td>5</td><td>Colourisation, optional</td><td>DeOldify</td><td>you want an accurate record</td></tr>
+          </tbody>
+        </table>
+        <p>Save a master PNG at the end of each stage so you can return to any step without starting again, and keep the original scan untouched — a restoration that goes wrong is recoverable only if step zero survives. The rest of the toolkit is on our <a href="../../free-image-tools/">image tools</a> page and in the <a href="../../free-tools/">tool directory</a>.</p>
+        <h2 id="faq">Frequently asked questions</h2>
+        <h3>Is there a free AI old photo enhancer?</h3>
+        <p>There is a free pipeline: on-device inpainting for scratches and date stamps, and on-device Real-ESRGAN for resolution, both without an account, upload or watermark. What is not free-standing is one click that repairs, sharpens, reconstructs faces and colours a print — those are separate models with different reliability.</p>
+        <h3>What resolution should I scan an old photograph at?</h3>
+        <p>600 dpi for snapshot-sized prints and 1200 dpi for smaller ones or fine detail, saving TIFF or PNG rather than JPEG. Under-scanning is unrecoverable: upscaling predicts texture, it does not return detail a scanner never sampled.</p>
+        <h3>Can AI remove scratches from an old photo?</h3>
+        <p>Yes — this is the part that genuinely works well. Scratches are narrow damaged regions with predictable surroundings, which is ideal for mask-based inpainting. Paint the scratch with a pixel of margin, work in segments on long ones, then run again on leftovers.</p>
+        <h3>Why does the restored face look like somebody else?</h3>
+        <p>Because face-restoration models are trained to output faces, and they will produce one from an illegible smudge. Compare against other photographs of the person, and skip face reconstruction entirely for anything where accuracy matters.</p>
+        <h3>Should I repair, then upscale, or upscale then repair?</h3>
+        <p>Repair first, always. Cleaning 400 pixels is much easier than cleaning 6,400, and upscaling multiplies every artefact you leave behind along with everything else.</p>
+
+
+      </div>
+
+      <section class="mx-auto mt-12 max-w-3xl">
+        <h2 class="text-xl font-extrabold tracking-tight">Related reading</h2>
+        <div class="mt-4 grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <a class="post-card" href="../remove-date-stamp-timestamp-from-photo/">
+            <span class="text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400">Image Tools</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">Remove a Date Stamp or Timestamp From a Photo</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">Burned-in camera dates live in the pixels; EXIF dates live in the metadata. Two different problems, two different fixes.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 13, 2026 &middot; 7 min read</span>
+          </a>
+          <a class="post-card" href="../4x-image-upscaler-online-free/">
+            <span class="text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400">Image Tools</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">4x Image Upscaler Online Free: 2x, 4x or 8x</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">What each multiplier does to pixel count, file size and print dimensions — and how to get a clean 2x from a 4x model.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 13, 2026 &middot; 8 min read</span>
+          </a>
+          <a class="post-card" href="../ai-photo-enhancer-free-online/">
+            <span class="text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400">Image Tools</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">AI Photo Enhancer Free Online: 3 On-Device Tools</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">Enhancer is four jobs wearing one word. Match the symptom to the tool, and to a browser that never uploads the file.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 13, 2026 &middot; 8 min read</span>
+          </a>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="mt-14 border-t border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900/40">
+    <div class="wrap flex flex-wrap items-center justify-between gap-2 py-6 text-sm text-slate-400 dark:text-slate-500">
+      <span>© 2026 <a class="text-slate-600 hover:text-indigo-600 dark:text-slate-300" href="../../">FreeToolsHub</a>. All rights reserved.</span>
+      <span>Business inquiries: <a class="text-slate-600 hover:text-indigo-600 dark:text-slate-300" href="mailto:hello@veonib.com">hello@veonib.com</a></span>
+    </div>
+  </footer>
+
+</body>
+</html>

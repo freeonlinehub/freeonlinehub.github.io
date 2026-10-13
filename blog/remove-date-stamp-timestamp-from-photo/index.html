@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Remove a Date Stamp or Timestamp From a Photo</title>
+  <meta name="description" content="Remove a burned-in camera date stamp from a photo free, and strip the EXIF timestamp separately: two different things, two different tools, one workflow.">
+  <link rel="canonical" href="https://freeonlinehub.github.io/blog/remove-date-stamp-timestamp-from-photo/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="FreeToolsHub">
+  <meta property="og:title" content="Remove a Date Stamp or Timestamp From a Photo">
+  <meta property="og:description" content="Remove a burned-in camera date stamp from a photo free, and strip the EXIF timestamp separately: two different things, two different tools, one workflow.">
+  <meta property="og:url" content="https://freeonlinehub.github.io/blog/remove-date-stamp-timestamp-from-photo/">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script src="../../js/tailwindcss.js"></script>
+  <script src="../../js/site.js"></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BlogPosting","headline":"Remove a Date Stamp From a Photo — and Strip the Timestamp Separately","datePublished":"2026-10-13","dateModified":"2026-10-13","author":{"@type":"Organization","name":"FreeToolsHub"},"publisher":{"@type":"Organization","name":"FreeToolsHub","url":"https://freeonlinehub.github.io/"},"url":"https://freeonlinehub.github.io/blog/remove-date-stamp-timestamp-from-photo/"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://freeonlinehub.github.io/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://freeonlinehub.github.io/blog/"},{"@type":"ListItem","position":3,"name":"Remove a Date Stamp From a Photo — and Strip the Timestamp Separately","item":"https://freeonlinehub.github.io/blog/remove-date-stamp-timestamp-from-photo/"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I remove a date stamp from a photo for free?","acceptedAnswer":{"@type":"Answer","text":"Paint over the digits with an inpainting tool and re-run on any leftover. WatermarkRemover does this in the browser with no account and no upload, up to 25 MB per image, with roughly a 200 MB one-time model download. Export PNG so you do not recompress the repaired patch."}},{"@type":"Question","name":"Does removing the visible date also remove the EXIF date?","acceptedAnswer":{"@type":"Answer","text":"No. Inpainting changes pixels only; the capture time lives in the file’s metadata and stays put. Strip it separately, for example with ImageMagick’s -strip, which also removes GPS and camera serial data."}},{"@type":"Question","name":"Why is there still a faint rectangle after I erased the stamp?","acceptedAnswer":{"@type":"Answer","text":"Usually the drop shadow or glow around the digits, which is a different colour from the numerals but part of the same mark. Extend the mask a couple of pixels past every edge and run a second, smaller pass."}},{"@type":"Question","name":"Can the date be removed if it covers someone’s shoes?","acceptedAnswer":{"@type":"Answer","text":"Partially. General inpainting is excellent over lawn, road and wall, and weak where it must invent anatomy. Take the background as far as you can automatically, then finish the subject boundary by hand in a free editor with a clone stamp."}},{"@type":"Question","name":"Will a photo editing app leave a trace that it was edited?","acceptedAnswer":{"@type":"Answer","text":"It can: re-saving changes compression signatures and strips or rewrites metadata, and a heavily inpainted region has different noise statistics from the rest of the frame. If provenance matters to you, keep the original file untouched and work on copies."}}]}
+  </script>
+</head>
+<body class="bg-white font-sans text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100">
+
+  <header class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/80 backdrop-blur-md dark:border-slate-800/80 dark:bg-slate-950/80">
+    <div class="wrap flex h-16 items-center justify-between gap-3">
+      <a href="../../" class="flex flex-none items-center gap-2.5 text-lg font-extrabold tracking-tight text-slate-900 no-underline dark:text-white">
+        <span class="grid h-8 w-8 flex-none place-items-center rounded-[9px] bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 text-[13px] font-extrabold text-white shadow-md shadow-indigo-500/25">FT</span>
+        FreeTools<span class="text-indigo-600 dark:text-indigo-400">Hub</span>
+      </a>
+      <button data-nav-toggle aria-label="Toggle navigation" aria-expanded="false"
+        class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-slate-600 md:hidden dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">☰</button>
+      <nav data-nav class="main-nav">
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../ai-tools/">AI Tools</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../seo-tools/">SEO</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-image-tools/">Image</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-video-tools/">Video</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-pdf-tools/">PDF</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../developer-tools/">Developer</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../social-media-tools/">Social</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm font-semibold text-indigo-700 no-underline hover:bg-indigo-50 dark:text-indigo-300 dark:hover:bg-slate-800" href="../../free-tools/">Directory</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <article class="wrap mx-auto max-w-3xl">
+      <p class="crumbs"><a href="../">Blog</a> / Remove a Date Stamp From a Photo</p>
+      <h1 class="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">Remove a Date Stamp From a Photo — and Strip the Timestamp Separately</h1>
+      <p class="mt-2 text-sm text-slate-400 dark:text-slate-500">Published October 13, 2026 &middot; 7 min read</p>
+
+      <div class="prose prose-slate mt-8 max-w-none dark:prose-invert prose-a:text-indigo-600 dark:prose-a:text-indigo-400">
+
+        <p>&ldquo;Remove the date from my photo&rdquo; means one of two completely different things, and picking the wrong tool wastes an afternoon. An orange timestamp <em>baked into</em> the image is pixels and needs inpainting. A date stored in the file’s EXIF block is metadata and never appears on screen at all — it needs a metadata strip. Here is how to tell which you have, and both fixes.</p>
+        <div class="toc not-prose rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm dark:border-slate-800 dark:bg-slate-900/40">
+          <strong class="text-slate-900 dark:text-slate-100">In this guide</strong>
+          <ol class="mt-1 space-y-1 text-slate-600 dark:text-slate-400">
+            <li><a href="#which">Which problem do you actually have?</a></li>
+            <li><a href="#burned">The visible stamp: inpaint it</a></li>
+            <li><a href="#hard">When a date stamp is not easy</a></li>
+            <li><a href="#exif">The invisible one: strip the metadata</a></li>
+            <li><a href="#quality">Keeping the result looking like a photograph</a></li>
+            <li><a href="#faq">Frequently asked questions</a></li>
+          </ol>
+        </div>
+        <h2 id="which">Which problem do you actually have?</h2>
+        <ul>
+          <li><strong>Visible in the picture</strong> — usually orange or white, bottom-right, in the blocky font of a compact camera, phone app or dashcam. This is drawn into the image when the photo is taken. Pixels. Needs inpainting.</li>
+          <li><strong>Invisible in the picture, visible in properties</strong> — the capture time stored as <code>DateTimeOriginal</code> in EXIF, or <code>CreateDate</code> in XMP. No editing of the image is involved; the value travels with the file and is displayed by viewers, galleries and upload forms. Metadata. Needs stripping.</li>
+          <li><strong>Both</strong> — extremely common in camera-JPEG output, and the reason a scan of an old print can still report a camera date while the orange numerals sit visibly in the corner.</li>
+        </ul>
+        <p>Quick test: view the image full-screen on a plain background. If you can see the date, you have problem one. If you cannot but a file inspector or an upload form shows a capture time, you have problem two.</p>
+        <h2 id="burned">The visible stamp: inpaint it</h2>
+        <p>A date stamp is a kind thing to remove: it is small, sits in a corner, and the surrounding area is usually one continuous thing — lawn, road, wall, carpet, sky. That is close to the ideal case for a LaMa-class inpainting model (<a href="https://arxiv.org/abs/2109.07126" target="_blank" rel="noopener">paper</a>, <a href="https://github.com/advimman/lama" target="_blank" rel="noopener">code</a>), which rebuilds masked texture from the wider neighbourhood instead of blurring it.</p>
+        <ol>
+          <li>Open the photo in <a href="https://watermarkremover.onlinefree.fyi" target="_blank" rel="noopener">WatermarkRemover</a>. It takes PNG, JPG or WebP up to 25&nbsp;MB and needs no account; the first run downloads a model of roughly 200&nbsp;MB and caches it.</li>
+          <li>Zoom in. Brush the numerals with a mask that extends a couple of pixels beyond every edge, including any soft glow around the digits — the halo is what gives a removal away.</li>
+          <li>Run the erase once. Inspect at 100%.</li>
+          <li>If a ghost remains, paint just the ghost and run again. A second small pass beats one careless mask.</li>
+          <li>Export PNG, so you do not re-compress the repaired patch.</li>
+        </ol>
+        <p>Nothing is uploaded, which for scanned family snapshots is the point: the pictures you care most about are the ones you least want sent to somebody’s queue.</p>
+        <h2 id="hard">When a date stamp is not easy</h2>
+        <table>
+          <thead><tr><th scope="col">Case</th><th scope="col">Why it fights back</th><th scope="col">What to do</th></tr></thead>
+          <tbody>
+            <tr><td>Stamp over a person (feet, hem, a dog)</td><td>Structure must be invented</td><td>Mask only the digits; hand-fix the subject edge in GIMP</td></tr>
+            <tr><td>Stamp over a busy pattern (grass, gravel)</td><td>Texture repeats, so a mismatch reads instantly</td><td>Two passes, then accept a subtle smoothing</td></tr>
+            <tr><td>Large stamp on a low-resolution scan</td><td>The stamp can be 15% of the frame</td><td>Upscale the cleaned result, or re-scan at a higher resolution first</td></tr>
+            <tr><td>Dashcam or security overlay (date, time, speed, text)</td><td>Lots of small text over moving detail</td><td>Inpainting helps but expect artefacts; crop if the framing allows</td></tr>
+            <tr><td>Stamp with a coloured drop shadow</td><td>The shadow is part of the mark</td><td>Mask the whole glyph plus its fringe in one stroke</td></tr>
+          </tbody>
+        </table>
+        <h2 id="exif">The invisible one: strip the metadata</h2>
+        <p>For the stored capture time, no image editing is involved. ImageMagick re-writes the file without its profiles:</p>
+        <pre><code>magick input.jpg -strip output.jpg        # drop EXIF, XMP, ICC and other profiles
+magick identify -format "%[EXIF:*]" x.jpg # look before and after to confirm
+ffmpeg -i in.jpg -map_metadata -1 -update 1 out.jpg   # same idea via ffmpeg</code></pre>
+        <p>Stripping is not cosmetic: EXIF also carries GPS coordinates, camera serial numbers and device settings, and any file you post can leak them. Our guide to <a href="../remove-unwanted-object-from-photo-ai/">what inpainting does and does not touch</a> explains why pixel edits leave metadata in place, which is exactly why you want both steps.</p>
+        <div class="not-prose rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-slate-700 dark:border-amber-500/30 dark:bg-amber-500/10 dark:text-slate-300">
+          <strong>Both, in one sitting:</strong> inpaint the visible stamp, export PNG, then strip metadata on the way to a JPG for upload. Two minutes, and the file is genuinely clean.
+        </div>
+        <h2 id="quality">Keeping the result looking like a photograph</h2>
+        <ul>
+          <li>Work from the highest-resolution copy you have — a re-scan at 600–1200 dpi beats trying to clean a small, already-compressed JPEG.</li>
+          <li>Fix the stamp before any upscaling, not after: repairing 300 pixels is easier than repairing 4,800, and see <a href="../4x-image-upscaler-online-free/">what upscaling can and cannot recover</a>.</li>
+          <li>Do colour and exposure corrections before inpainting, so the model matches the tone it is filling into.</li>
+          <li>Keep a PNG master and make the share JPEG from it — each JPG save compounds.</li>
+        </ul>
+        <p>If your goal is a general clean-up of old prints rather than one corner, the whole pipeline — scan settings, scratch repair, upscaling, colour — is in <a href="../old-photo-enhancer-free-ai/">the old photo enhancement guide</a>. More free editors and utilities are listed on our <a href="../../free-image-tools/">image tools</a> page.</p>
+        <h2 id="faq">Frequently asked questions</h2>
+        <h3>How do I remove a date stamp from a photo for free?</h3>
+        <p>Paint over the digits with an inpainting tool and re-run on any leftover. WatermarkRemover does this in the browser with no account and no upload, up to 25 MB per image, with roughly a 200 MB one-time model download. Export PNG so you do not recompress the repaired patch.</p>
+        <h3>Does removing the visible date also remove the EXIF date?</h3>
+        <p>No. Inpainting changes pixels only; the capture time lives in the file’s metadata and stays put. Strip it separately, for example with ImageMagick’s -strip, which also removes GPS and camera serial data.</p>
+        <h3>Why is there still a faint rectangle after I erased the stamp?</h3>
+        <p>Usually the drop shadow or glow around the digits, which is a different colour from the numerals but part of the same mark. Extend the mask a couple of pixels past every edge and run a second, smaller pass.</p>
+        <h3>Can the date be removed if it covers someone’s shoes?</h3>
+        <p>Partially. General inpainting is excellent over lawn, road and wall, and weak where it must invent anatomy. Take the background as far as you can automatically, then finish the subject boundary by hand in a free editor with a clone stamp.</p>
+        <h3>Will a photo editing app leave a trace that it was edited?</h3>
+        <p>It can: re-saving changes compression signatures and strips or rewrites metadata, and a heavily inpainted region has different noise statistics from the rest of the frame. If provenance matters to you, keep the original file untouched and work on copies.</p>
+
+
+      </div>
+
+      <section class="mx-auto mt-12 max-w-3xl">
+        <h2 class="text-xl font-extrabold tracking-tight">Related reading</h2>
+        <div class="mt-4 grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <a class="post-card" href="../remove-text-watermark-from-image-online-free/">
+            <span class="text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400">Image Tools</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">Remove Text Watermark From an Image Online Free</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">Paint, inpaint, verify. How text marks differ from logo marks, and what an inpainting model can and cannot rebuild.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 13, 2026 &middot; 8 min read</span>
+          </a>
+          <a class="post-card" href="../old-photo-enhancer-free-ai/">
+            <span class="text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400">Image Tools</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">Old Photo Enhancer Free: What AI Can’t Fix</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">Scanning resolution, then scratch repair, then upscaling, then colour. An honest four-step pipeline for family prints.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 13, 2026 &middot; 9 min read</span>
+          </a>
+          <a class="post-card" href="../remove-logo-watermark-from-photo/">
+            <span class="text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400">Image Tools</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">Remove a Logo Watermark From a Photo (No Smudge)</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">Opaque logos over busy texture are the hardest inpainting case. Brush strategy, pass-by-pass, plus the rights question.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 13, 2026 &middot; 8 min read</span>
+          </a>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="mt-14 border-t border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900/40">
+    <div class="wrap flex flex-wrap items-center justify-between gap-2 py-6 text-sm text-slate-400 dark:text-slate-500">
+      <span>© 2026 <a class="text-slate-600 hover:text-indigo-600 dark:text-slate-300" href="../../">FreeToolsHub</a>. All rights reserved.</span>
+      <span>Business inquiries: <a class="text-slate-600 hover:text-indigo-600 dark:text-slate-300" href="mailto:hello@veonib.com">hello@veonib.com</a></span>
+    </div>
+  </footer>
+
+</body>
+</html>
