@@ -5,20 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Wan AI Prompt From a Video (Open Weights)</title>
   <meta name="description" content="A Wan-family prompt from a reference clip: the caption style it likes, prompt compression, local pipelines, and where extraction still helps.">
-  <link rel="canonical" href="https://freeonlinehub.github.io/blog/wan-ai-prompt-from-video/">
+  <link rel="canonical" href="https://geonib.com/blog/wan-ai-prompt-from-video/">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="FreeToolsHub">
   <meta property="og:title" content="Wan AI Prompt From a Video (Open Weights)">
   <meta property="og:description" content="A Wan-family prompt from a reference clip: the caption style it likes, prompt compression, local pipelines, and where extraction still helps.">
-  <meta property="og:url" content="https://freeonlinehub.github.io/blog/wan-ai-prompt-from-video/">
+  <meta property="og:url" content="https://geonib.com/blog/wan-ai-prompt-from-video/">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <script src="../../js/tailwindcss.js"></script>
   <script src="../../js/site.js"></script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"BlogPosting","headline":"Wan AI Prompt From a Video (Open Weights)","datePublished":"2026-10-13","dateModified":"2026-10-13","author":{"@type":"Organization","name":"FreeToolsHub"},"publisher":{"@type":"Organization","name":"FreeToolsHub","url":"https://freeonlinehub.github.io/"},"url":"https://freeonlinehub.github.io/blog/wan-ai-prompt-from-video/"}
+  {"@context":"https://schema.org","@type":"BlogPosting","headline":"Wan AI Prompt From a Video (Open Weights)","datePublished":"2026-10-13","dateModified":"2026-10-13","author":{"@type":"Organization","name":"FreeToolsHub"},"publisher":{"@type":"Organization","name":"FreeToolsHub","url":"https://geonib.com/"},"url":"https://geonib.com/blog/wan-ai-prompt-from-video/"}
   </script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://freeonlinehub.github.io/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://freeonlinehub.github.io/blog/"},{"@type":"ListItem","position":3,"name":"Wan AI Prompt From a Video (Open Weights)","item":"https://freeonlinehub.github.io/blog/wan-ai-prompt-from-video/"}]}
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://geonib.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://geonib.com/blog/"},{"@type":"ListItem","position":3,"name":"Wan AI Prompt From a Video (Open Weights)","item":"https://geonib.com/blog/wan-ai-prompt-from-video/"}]}
   </script>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I write a Wan prompt from an existing video?","acceptedAnswer":{"@type":"Answer","text":"Extract the clip's fields — subject, camera, lighting, pacing, style — then compress them into one or two present-tense sentences: what the subject does, where, how it is shot with one camera verb, and a single style cue. Open-weights captions were short and observational, so dense prose outperforms long descriptions."}},{"@type":"Question","name":"Can the whole pipeline run locally?","acceptedAnswer":{"@type":"Answer","text":"Yes, and that is the point for confidential footage: download and excerpt with yt-dlp and ffmpeg, describe the clip with a local video model, and generate locally with a frame from the clip as image conditioning. What you give up is the temporal analysis a hosted service does, since sampling still frames cannot measure motion."}},{"@type":"Question","name":"Does image conditioning replace detailed prompts?","acceptedAnswer":{"@type":"Answer","text":"For look and subject, largely. One conditioning frame carries palette, lighting and identity, so your text should stop describing those and instead carry the action and the camera behaviour — which is exactly what a frame cannot express."}},{"@type":"Question","name":"When is a hosted extractor worth paying for in a local workflow?","acceptedAnswer":{"@type":"Answer","text":"When motion and camera language are what you need. Frame-sampling a clip locally gives you content and colour but guesses at movement, so most people run a hybrid: extract the shot description hosted, then generate locally."}}]}

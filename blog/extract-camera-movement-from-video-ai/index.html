@@ -5,20 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Extract Camera Movement From a Video With AI</title>
   <meta name="description" content="Dolly, pan, crane, handheld, zoom: the camera vocabulary that makes an extracted prompt regenerate correctly, and how AI motion analysis reads it.">
-  <link rel="canonical" href="https://freeonlinehub.github.io/blog/extract-camera-movement-from-video-ai/">
+  <link rel="canonical" href="https://geonib.com/blog/extract-camera-movement-from-video-ai/">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="FreeToolsHub">
   <meta property="og:title" content="Extract Camera Movement From a Video With AI">
   <meta property="og:description" content="Dolly, pan, crane, handheld, zoom: the camera vocabulary that makes an extracted prompt regenerate correctly, and how AI motion analysis reads it.">
-  <meta property="og:url" content="https://freeonlinehub.github.io/blog/extract-camera-movement-from-video-ai/">
+  <meta property="og:url" content="https://geonib.com/blog/extract-camera-movement-from-video-ai/">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <script src="../../js/tailwindcss.js"></script>
   <script src="../../js/site.js"></script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"BlogPosting","headline":"Extract Camera Movement From a Video With AI","datePublished":"2026-10-13","dateModified":"2026-10-13","author":{"@type":"Organization","name":"FreeToolsHub"},"publisher":{"@type":"Organization","name":"FreeToolsHub","url":"https://freeonlinehub.github.io/"},"url":"https://freeonlinehub.github.io/blog/extract-camera-movement-from-video-ai/"}
+  {"@context":"https://schema.org","@type":"BlogPosting","headline":"Extract Camera Movement From a Video With AI","datePublished":"2026-10-13","dateModified":"2026-10-13","author":{"@type":"Organization","name":"FreeToolsHub"},"publisher":{"@type":"Organization","name":"FreeToolsHub","url":"https://geonib.com/"},"url":"https://geonib.com/blog/extract-camera-movement-from-video-ai/"}
   </script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://freeonlinehub.github.io/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://freeonlinehub.github.io/blog/"},{"@type":"ListItem","position":3,"name":"Extract Camera Movement From a Video With AI","item":"https://freeonlinehub.github.io/blog/extract-camera-movement-from-video-ai/"}]}
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://geonib.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://geonib.com/blog/"},{"@type":"ListItem","position":3,"name":"Extract Camera Movement From a Video With AI","item":"https://geonib.com/blog/extract-camera-movement-from-video-ai/"}]}
   </script>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can AI tell me what camera movement a video uses?","acceptedAnswer":{"@type":"Answer","text":"Yes, if the tool analyses the clip over time rather than sampling stills. Motion analysis distinguishes camera movement from subject movement by looking at parallax, whether the whole frame shifts, and how the horizon behaves — the cues a still-frame description simply does not contain."}},{"@type":"Question","name":"What is the difference between a dolly-in and a zoom?","acceptedAnswer":{"@type":"Answer","text":"A dolly physically moves the camera toward the subject, so background perspective changes and objects appear to slide past each other. A zoom magnifies through the lens, so the frame tightens while perspective stays flat and the background grows with the subject. Models render these differently and captioners confuse them constantly."}},{"@type":"Question","name":"Why do my generated videos look static even with a camera prompt?","acceptedAnswer":{"@type":"Answer","text":"Usually one of three things: the movement word is ambiguous to that model, there are two competing moves in a short clip, or the verb sits so late in the prompt that subject nouns dominate. Put one camera verb early and bind it to an action beat."}},{"@type":"Question","name":"How many camera moves should a single prompt describe?","acceptedAnswer":{"@type":"Answer","text":"One. A four-to-six second clip cannot carry a dolly-in followed by an orbit; the renderer averages them into an unsteady smear. If the reference clip has multiple moves, segment the clip and generate one move per shot."}}]}

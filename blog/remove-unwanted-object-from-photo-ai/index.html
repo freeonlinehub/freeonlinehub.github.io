@@ -5,20 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Remove an Unwanted Object From a Photo With AI</title>
   <meta name="description" content="Remove tourists, cables and bin bags from a photo with inpainting. Mask strategy, shadow traps, structured backgrounds, and where generative fill wins.">
-  <link rel="canonical" href="https://freeonlinehub.github.io/blog/remove-unwanted-object-from-photo-ai/">
+  <link rel="canonical" href="https://geonib.com/blog/remove-unwanted-object-from-photo-ai/">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="FreeToolsHub">
   <meta property="og:title" content="Remove an Unwanted Object From a Photo With AI">
   <meta property="og:description" content="Remove tourists, cables and bin bags from a photo with inpainting. Mask strategy, shadow traps, structured backgrounds, and where generative fill wins.">
-  <meta property="og:url" content="https://freeonlinehub.github.io/blog/remove-unwanted-object-from-photo-ai/">
+  <meta property="og:url" content="https://geonib.com/blog/remove-unwanted-object-from-photo-ai/">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <script src="../../js/tailwindcss.js"></script>
   <script src="../../js/site.js"></script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"BlogPosting","headline":"Remove an Unwanted Object From a Photo With AI, Pass by Pass","datePublished":"2026-10-13","dateModified":"2026-10-13","author":{"@type":"Organization","name":"FreeToolsHub"},"publisher":{"@type":"Organization","name":"FreeToolsHub","url":"https://freeonlinehub.github.io/"},"url":"https://freeonlinehub.github.io/blog/remove-unwanted-object-from-photo-ai/"}
+  {"@context":"https://schema.org","@type":"BlogPosting","headline":"Remove an Unwanted Object From a Photo With AI, Pass by Pass","datePublished":"2026-10-13","dateModified":"2026-10-13","author":{"@type":"Organization","name":"FreeToolsHub"},"publisher":{"@type":"Organization","name":"FreeToolsHub","url":"https://geonib.com/"},"url":"https://geonib.com/blog/remove-unwanted-object-from-photo-ai/"}
   </script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://freeonlinehub.github.io/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://freeonlinehub.github.io/blog/"},{"@type":"ListItem","position":3,"name":"Remove an Unwanted Object From a Photo With AI, Pass by Pass","item":"https://freeonlinehub.github.io/blog/remove-unwanted-object-from-photo-ai/"}]}
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://geonib.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://geonib.com/blog/"},{"@type":"ListItem","position":3,"name":"Remove an Unwanted Object From a Photo With AI, Pass by Pass","item":"https://geonib.com/blog/remove-unwanted-object-from-photo-ai/"}]}
   </script>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can AI remove an object from a photo and fill the gap?","acceptedAnswer":{"@type":"Answer","text":"Yes, when the surrounding area is reasonably predictable. A LaMa-class inpainting model rebuilds the masked region using context from across the whole frame, so lawns, walls, roads and sky come back convincingly. Structured patterns, anatomy and legible text are where it visibly fails."}},{"@type":"Question","name":"What is the most common mistake in object removal?","acceptedAnswer":{"@type":"Answer","text":"Forgetting the shadow. The object and its contact shadow are one visual event; mask both, including the soft falloff, or the result looks pasted."}},{"@type":"Question","name":"Should I remove an object before or after upscaling?","acceptedAnswer":{"@type":"Answer","text":"Before. Repairing a 200-pixel hole is easier than repairing a 3,200-pixel one, and the extra detail from upscaling is texture the model then has to match. Order: clean, then correct colour, then upscale."}},{"@type":"Question","name":"Does the photo get uploaded to a server for this?","acceptedAnswer":{"@type":"Answer","text":"With an on-device tool, no. WatermarkRemover decodes, inpaints and exports locally, with a one-time model download of roughly 200 MB. That matters more for photos of people you know than for anything else in this guide."}},{"@type":"Question","name":"Will the file still look untouched?","acceptedAnswer":{"@type":"Answer","text":"Only the pixels you painted change; everything else is preserved at full resolution. If you export PNG you keep that exactly. Re-saving to JPEG is what alters the rest of the frame, by re-compressing it."}}]}

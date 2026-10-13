@@ -3,14 +3,14 @@
  * Cloudflare Pages build step: rewrite the site's absolute base URL for the
  * pages.dev deployment.
  *
- * The GitHub Pages deployment serves https://freeonlinehub.github.io/ and the
+ * The GitHub Pages deployment serves https://geonib.com/ and the
  * repo's HTML/XML declare that domain in canonical, Open Graph, JSON-LD,
  * sitemap.xml and robots.txt. When Cloudflare Pages builds the same repo for
  * https://freeonlinehub-github-io.pages.dev/, run this script as the build
  * command so the deployed copy references its own domain.
  *
  * The rewrite only touches Cloudflare's ephemeral build copy — nothing is
- * committed back to the repo, so GitHub Pages keeps the github.io URLs.
+ * committed back to the repo, so the canonical geonib.com URLs stay put.
  *
  * Usage: node replace-base-url.mjs <base-url>
  * Example (Cloudflare Pages build command):
@@ -21,7 +21,7 @@ import { join, extname } from 'node:path';
 
 // The source domain baked into the repo. Override the target per deployment
 // by passing a different <base-url> argument.
-const FROM = 'https://freeonlinehub.github.io';
+const FROM = 'https://geonib.com';
 
 const target = process.argv[2];
 if (!target) {

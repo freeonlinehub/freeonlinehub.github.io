@@ -5,20 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Extract Video Transition Prompts With AI</title>
   <meta name="description" content="Turn a transition into a prompt: match cuts, whip pans, morphs and occlusion wipes — what survives extraction and what belongs in the edit instead.">
-  <link rel="canonical" href="https://freeonlinehub.github.io/blog/extract-video-transition-prompt-with-ai/">
+  <link rel="canonical" href="https://geonib.com/blog/extract-video-transition-prompt-with-ai/">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="FreeToolsHub">
   <meta property="og:title" content="Extract Video Transition Prompts With AI">
   <meta property="og:description" content="Turn a transition into a prompt: match cuts, whip pans, morphs and occlusion wipes — what survives extraction and what belongs in the edit instead.">
-  <meta property="og:url" content="https://freeonlinehub.github.io/blog/extract-video-transition-prompt-with-ai/">
+  <meta property="og:url" content="https://geonib.com/blog/extract-video-transition-prompt-with-ai/">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <script src="../../js/tailwindcss.js"></script>
   <script src="../../js/site.js"></script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"BlogPosting","headline":"Extract Video Transition Prompts With AI","datePublished":"2026-10-13","dateModified":"2026-10-13","author":{"@type":"Organization","name":"FreeToolsHub"},"publisher":{"@type":"Organization","name":"FreeToolsHub","url":"https://freeonlinehub.github.io/"},"url":"https://freeonlinehub.github.io/blog/extract-video-transition-prompt-with-ai/"}
+  {"@context":"https://schema.org","@type":"BlogPosting","headline":"Extract Video Transition Prompts With AI","datePublished":"2026-10-13","dateModified":"2026-10-13","author":{"@type":"Organization","name":"FreeToolsHub"},"publisher":{"@type":"Organization","name":"FreeToolsHub","url":"https://geonib.com/"},"url":"https://geonib.com/blog/extract-video-transition-prompt-with-ai/"}
   </script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://freeonlinehub.github.io/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://freeonlinehub.github.io/blog/"},{"@type":"ListItem","position":3,"name":"Extract Video Transition Prompts With AI","item":"https://freeonlinehub.github.io/blog/extract-video-transition-prompt-with-ai/"}]}
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://geonib.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://geonib.com/blog/"},{"@type":"ListItem","position":3,"name":"Extract Video Transition Prompts With AI","item":"https://geonib.com/blog/extract-video-transition-prompt-with-ai/"}]}
   </script>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why do extracted prompts miss transitions and cuts?","acceptedAnswer":{"@type":"Answer","text":"Because a transition lasts a fraction of a second and spans two different scenes, so it falls outside the temporal window motion analysis uses. Extractors describe the interior of shots well; boundaries are usually lost or reported as an incoherent third shot."}},{"@type":"Question","name":"Which transitions can a single generation actually produce?","acceptedAnswer":{"@type":"Answer","text":"Whip pans, light sweeps and flare wipes, foreground occlusion wipes, and continuous morphs — anything where the change happens inside one shot. Match cuts, jump cuts and speed ramps are editing operations rather than generation operations."}},{"@type":"Question","name":"How do I make two generated clips join seamlessly?","acceptedAnswer":{"@type":"Answer","text":"Design the shared visual state and describe it from both ends: shot A ends as the cup fills the frame with dark ceramic, shot B opens on dark ceramic filling the frame then pulling back. Match lens feel, light direction and camera height as well."}},{"@type":"Question","name":"Can AI tell me where the cuts are in a video?","acceptedAnswer":{"@type":"Answer","text":"That's shot detection rather than prompt extraction, and it's a different tool — segment first, then describe each shot with a prompt extractor. Trying to extract one prompt for a whole edited sequence just averages its shots together."}}]}

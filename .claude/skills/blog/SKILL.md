@@ -39,7 +39,7 @@ you only ever edit HTML and commit.
 
 - `<title>`: ≤ 60 chars, primary keyword near the front.
 - `meta description`: 140–160 chars, keyword + concrete value promise.
-- `<link rel="canonical">` → `https://freeonlinehub.github.io/blog/<slug>/`
+- `<link rel="canonical">` → `https://geonib.com/blog/<slug>/`
 - Open Graph: `og:type=article`, `og:site_name=FreeToolsHub`, title, description, url.
 - JSON-LD **BlogPosting**: headline, datePublished (ISO), dateModified, author and
   publisher as `{"@type":"Organization","name":"FreeToolsHub"}`, url.
@@ -112,7 +112,7 @@ you only ever edit HTML and commit.
    Social=violet — pick the nearest for new topics), `<h2>` title, 1–2 sentence
    description, `<span>` date · read time.
 2. `sitemap.xml`: add an entry for the new post, e.g.
-   `<url><loc>https://freeonlinehub.github.io/blog/<slug>/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>`.
+   `<url><loc>https://geonib.com/blog/<slug>/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>`.
    This applies to **any new page anywhere on the site** — a new category page
    or landing page must also get a matching `<url>` entry (use
    `weekly`/`0.8` for category pages).
@@ -126,7 +126,7 @@ you only ever edit HTML and commit.
    open the post, confirm no console errors, prose renders, TOC anchors jump,
    and every internal link resolves (no 404s). Then `git add`, commit with a
    descriptive message, and `git push origin main` — the site (and the post)
-   goes live at https://freeonlinehub.github.io/ via the bundled Pages workflow.
+   goes live at https://geonib.com/ via the bundled Pages workflow.
 7. WordPress mirror: publish the same article to the WordPress.com site with
    `node scripts/wp-publish.mjs blog/<slug>/index.html --status publish`
    (default mode is the full article plus an "Originally published at"

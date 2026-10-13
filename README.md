@@ -2,7 +2,7 @@
 
 A static, SEO-first directory of the best free online tools: AI, SEO, images, video,
 PDF, developer and social media tools. Live at
-**https://freeonlinehub.github.io/** (GitHub Pages).
+**https://geonib.com/** (GitHub Pages).
 
 ## Tech stack
 
@@ -33,16 +33,19 @@ PDF, developer and social media tools. Live at
 ## Deployment
 
 The site lives in the `freeonlinehub/freeonlinehub.github.io` repo and is
-served at **https://freeonlinehub.github.io/** — GitHub Pages deploys it with
+served at **https://geonib.com/** — GitHub Pages deploys it with
 the bundled `.github/workflows/deploy-pages.yml` on every push to `main`:
 
 ```bash
 git push origin main
 ```
 
-Note: the former `laitingyou/free-tools` mirror at
-https://freeonlinehub.github.io/free-tools/ has been retired (its Pages is
-disabled); all canonical, Open Graph and sitemap URLs point at the root site.
+Note: `https://geonib.com` is the canonical host. It is set as the Pages custom
+domain in the repo's Settings → Pages and committed as `CNAME`; the old
+`https://freeonlinehub.github.io/…` URLs now 301-redirect to the same paths on
+geonib.com, so existing links keep working. The older `laitingyou/free-tools`
+mirror has been retired (its Pages is disabled); every canonical, Open Graph and
+sitemap URL points at the root site.
 
 **Cloudflare Pages mirror:** the repo is also connected to Cloudflare Pages,
 which serves the same site at https://freeonlinehub-github-io.pages.dev/. Set
@@ -50,8 +53,8 @@ its build command to
 `node replace-base-url.mjs https://freeonlinehub-github-io.pages.dev`
 (output directory `.`) so the deployed copy rewrites all canonical, OG,
 JSON-LD, sitemap and robots URLs to the pages.dev domain. The rewrite runs
-only inside Cloudflare's build — the repo itself always keeps the github.io
-URLs, and GitHub Pages stays canonical.
+only inside Cloudflare's build — the repo itself always keeps the canonical
+geonib.com URLs, and geonib.com stays canonical.
 
 ## How to edit
 

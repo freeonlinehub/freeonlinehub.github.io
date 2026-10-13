@@ -5,20 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Convert a Video to a Seedance Prompt, Step by Step</title>
   <meta name="description" content="Six steps from reference clip to Seedance-ready prompt: excerpt, extract, reformat into shot clauses, fix the camera verb, add constants, then test render.">
-  <link rel="canonical" href="https://freeonlinehub.github.io/blog/convert-video-to-seedance-prompt/">
+  <link rel="canonical" href="https://geonib.com/blog/convert-video-to-seedance-prompt/">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="FreeToolsHub">
   <meta property="og:title" content="Convert a Video to a Seedance Prompt, Step by Step">
   <meta property="og:description" content="Six steps from reference clip to Seedance-ready prompt: excerpt, extract, reformat into shot clauses, fix the camera verb, add constants, then test render.">
-  <meta property="og:url" content="https://freeonlinehub.github.io/blog/convert-video-to-seedance-prompt/">
+  <meta property="og:url" content="https://geonib.com/blog/convert-video-to-seedance-prompt/">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <script src="../../js/tailwindcss.js"></script>
   <script src="../../js/site.js"></script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"BlogPosting","headline":"Convert a Video to a Seedance Prompt, Step by Step","datePublished":"2026-10-13","dateModified":"2026-10-13","author":{"@type":"Organization","name":"FreeToolsHub"},"publisher":{"@type":"Organization","name":"FreeToolsHub","url":"https://freeonlinehub.github.io/"},"url":"https://freeonlinehub.github.io/blog/convert-video-to-seedance-prompt/"}
+  {"@context":"https://schema.org","@type":"BlogPosting","headline":"Convert a Video to a Seedance Prompt, Step by Step","datePublished":"2026-10-13","dateModified":"2026-10-13","author":{"@type":"Organization","name":"FreeToolsHub"},"publisher":{"@type":"Organization","name":"FreeToolsHub","url":"https://geonib.com/"},"url":"https://geonib.com/blog/convert-video-to-seedance-prompt/"}
   </script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://freeonlinehub.github.io/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://freeonlinehub.github.io/blog/"},{"@type":"ListItem","position":3,"name":"Convert a Video to a Seedance Prompt, Step by Step","item":"https://freeonlinehub.github.io/blog/convert-video-to-seedance-prompt/"}]}
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://geonib.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://geonib.com/blog/"},{"@type":"ListItem","position":3,"name":"Convert a Video to a Seedance Prompt, Step by Step","item":"https://geonib.com/blog/convert-video-to-seedance-prompt/"}]}
   </script>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I convert a video into a Seedance prompt?","acceptedAnswer":{"@type":"Answer","text":"Excerpt one continuous shot, extract its structured fields with a video-to-prompt tool, then reformat as subject-framing, one camera verb, and what changes by the end. Add light direction, palette, duration and aspect ratio, and repair the camera verb yourself against the source."}},{"@type":"Question","name":"Which step do people skip and regret?","acceptedAnswer":{"@type":"Answer","text":"Verifying the camera verb. Extractors routinely report gimbal glides as static shots and tripod frames as slow push-ins, and with this model family a wrong movement word is the single biggest cause of a render that looks nothing like the reference."}},{"@type":"Question","name":"Should I convert the whole video or one shot?","acceptedAnswer":{"@type":"Answer","text":"One shot. A multi-scene clip produces an averaged description that fits none of its shots, and the video models handle a single movement cleanly while averaging two into drift. Convert four shots as four prompts, then cut them together."}},{"@type":"Question","name":"How do I keep a Seedance sequence consistent?","acceptedAnswer":{"@type":"Answer","text":"Restate the constants in every shot prompt: identical subject noun, same light source and direction, same palette words, same format and aspect ratio. Models have no memory between generations, so wording drift becomes footage drift."}}]}

@@ -5,20 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Analyze a Video and Generate a Prompt: Inside It</title>
   <meta name="description" content="Frame extraction, motion, camera, style and aesthetics: what each stage of video analysis contributes to the prompt, and what makes the output quality vary.">
-  <link rel="canonical" href="https://freeonlinehub.github.io/blog/analyze-video-and-generate-prompt/">
+  <link rel="canonical" href="https://geonib.com/blog/analyze-video-and-generate-prompt/">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="FreeToolsHub">
   <meta property="og:title" content="Analyze a Video and Generate a Prompt: Inside It">
   <meta property="og:description" content="Frame extraction, motion, camera, style and aesthetics: what each stage of video analysis contributes to the prompt, and what makes the output quality vary.">
-  <meta property="og:url" content="https://freeonlinehub.github.io/blog/analyze-video-and-generate-prompt/">
+  <meta property="og:url" content="https://geonib.com/blog/analyze-video-and-generate-prompt/">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <script src="../../js/tailwindcss.js"></script>
   <script src="../../js/site.js"></script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"BlogPosting","headline":"Analyze a Video and Generate a Prompt: Inside It","datePublished":"2026-10-13","dateModified":"2026-10-13","author":{"@type":"Organization","name":"FreeToolsHub"},"publisher":{"@type":"Organization","name":"FreeToolsHub","url":"https://freeonlinehub.github.io/"},"url":"https://freeonlinehub.github.io/blog/analyze-video-and-generate-prompt/"}
+  {"@context":"https://schema.org","@type":"BlogPosting","headline":"Analyze a Video and Generate a Prompt: Inside It","datePublished":"2026-10-13","dateModified":"2026-10-13","author":{"@type":"Organization","name":"FreeToolsHub"},"publisher":{"@type":"Organization","name":"FreeToolsHub","url":"https://geonib.com/"},"url":"https://geonib.com/blog/analyze-video-and-generate-prompt/"}
   </script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://freeonlinehub.github.io/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://freeonlinehub.github.io/blog/"},{"@type":"ListItem","position":3,"name":"Analyze a Video and Generate a Prompt: Inside It","item":"https://freeonlinehub.github.io/blog/analyze-video-and-generate-prompt/"}]}
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://geonib.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://geonib.com/blog/"},{"@type":"ListItem","position":3,"name":"Analyze a Video and Generate a Prompt: Inside It","item":"https://geonib.com/blog/analyze-video-and-generate-prompt/"}]}
   </script>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What does an AI actually look at when it analyses a video?","acceptedAnswer":{"@type":"Answer","text":"A sampled sequence of frames, then relationships between them: objects and on-screen text, subject motion against background motion, perspective change, horizon behaviour, colour and contrast. Those signals become subject, camera, lighting, pacing and style fields in the generated prompt."}},{"@type":"Question","name":"How long does video analysis take?","acceptedAnswer":{"@type":"Answer","text":"SocialToPrompt states 20 to 40 seconds for a typical run and narrates the stages as they happen. Longer or faster-cut clips sit at the top of that range, because more frames have to be sampled and compared."}},{"@type":"Question","name":"Why does the generated prompt get the camera wrong?","acceptedAnswer":{"@type":"Answer","text":"Because camera movement has to be inferred from change between frames, and fast moves can fall between samples while very short clips barely register any. Verify the verb yourself — sweep the frame corners, watch whether the background grows, check the horizon — then correct that one field."}},{"@type":"Question","name":"Which fields should I not trust an analysis to get right?","acceptedAnswer":{"@type":"Answer","text":"Lighting direction, on-screen text contexts, and anything stylised. Style and aesthetics stages tend to overfit to colour, and screen recordings produce prompts about graphics rather than about shots. Treat those as drafts and edit them."}}]}

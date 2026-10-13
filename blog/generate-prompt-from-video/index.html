@@ -5,20 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Generate a Prompt From a Video: The 8-Slot Template</title>
   <meta name="description" content="Turn any clip into a reusable prompt with eight slots — subject, action, lens, camera move, light, grade, pacing, mood — plus an iteration loop that works.">
-  <link rel="canonical" href="https://freeonlinehub.github.io/blog/generate-prompt-from-video/">
+  <link rel="canonical" href="https://geonib.com/blog/generate-prompt-from-video/">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="FreeToolsHub">
   <meta property="og:title" content="Generate a Prompt From a Video: The 8-Slot Template">
   <meta property="og:description" content="Turn any clip into a reusable prompt with eight slots — subject, action, lens, camera move, light, grade, pacing, mood — plus an iteration loop that works.">
-  <meta property="og:url" content="https://freeonlinehub.github.io/blog/generate-prompt-from-video/">
+  <meta property="og:url" content="https://geonib.com/blog/generate-prompt-from-video/">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <script src="../../js/tailwindcss.js"></script>
   <script src="../../js/site.js"></script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"BlogPosting","headline":"Generate a Prompt From a Video: The 8-Slot Template","datePublished":"2026-10-13","dateModified":"2026-10-13","author":{"@type":"Organization","name":"FreeToolsHub"},"publisher":{"@type":"Organization","name":"FreeToolsHub","url":"https://freeonlinehub.github.io/"},"url":"https://freeonlinehub.github.io/blog/generate-prompt-from-video/"}
+  {"@context":"https://schema.org","@type":"BlogPosting","headline":"Generate a Prompt From a Video: The 8-Slot Template","datePublished":"2026-10-13","dateModified":"2026-10-13","author":{"@type":"Organization","name":"FreeToolsHub"},"publisher":{"@type":"Organization","name":"FreeToolsHub","url":"https://geonib.com/"},"url":"https://geonib.com/blog/generate-prompt-from-video/"}
   </script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://freeonlinehub.github.io/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://freeonlinehub.github.io/blog/"},{"@type":"ListItem","position":3,"name":"Generate a Prompt From a Video: The 8-Slot Template","item":"https://freeonlinehub.github.io/blog/generate-prompt-from-video/"}]}
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://geonib.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://geonib.com/blog/"},{"@type":"ListItem","position":3,"name":"Generate a Prompt From a Video: The 8-Slot Template","item":"https://geonib.com/blog/generate-prompt-from-video/"}]}
   </script>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What template should I use to write a prompt from a video?","acceptedAnswer":{"@type":"Answer","text":"An eight-slot skeleton in this order: subject, action, lens and format, camera move, light, grade, pacing, mood — comma-separated, under about 60 words. Early slots carry more weight with the renderer, which is why mood goes last and camera detail goes third or fourth rather than being buried in prose."}},{"@type":"Question","name":"Can a tool generate the prompt for me?","acceptedAnswer":{"@type":"Answer","text":"Yes — an extractor reads the clip and returns most of the fields, typically including camera behaviour, lighting, pacing and style. You still own two slots yourself: lens and format, which depends on where the clip is going, and mood, which is intent rather than observation."}},{"@type":"Question","name":"How do I stop changing five things at once when I iterate?","acceptedAnswer":{"@type":"Answer","text":"Change one slot per run and put the changed value in the filename. Five single-variable runs answer five questions; twenty rewrites answer none, because you cannot tell which edit helped."}},{"@type":"Question","name":"Why do adjectives and negations hurt my renders?","acceptedAnswer":{"@type":"Answer","text":"Stacked intensifiers carry no visual information, so they dilute the concrete words around them. Negations are worse: models frequently render the thing you told them to exclude, because the token is present. Write the positive state instead — 'empty street', not 'no people'."}}]}

@@ -1,5 +1,5 @@
 # Deploys the static site to GitHub Pages on every push to main
-# (https://freeonlinehub.github.io/).
+# (https://geonib.com/).
 name: Deploy to GitHub Pages
 
 on:

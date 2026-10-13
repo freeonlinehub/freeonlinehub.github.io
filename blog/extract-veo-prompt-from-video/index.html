@@ -5,20 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Extract a Veo Prompt From a Video (Rewrite Pass)</title>
   <meta name="description" content="A four-pass rewrite turning any clip's extracted fields into a Veo-ready prompt: camera, light, sound, change — with the clauses to delete and the ones to add.">
-  <link rel="canonical" href="https://freeonlinehub.github.io/blog/extract-veo-prompt-from-video/">
+  <link rel="canonical" href="https://geonib.com/blog/extract-veo-prompt-from-video/">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="FreeToolsHub">
   <meta property="og:title" content="Extract a Veo Prompt From a Video (Rewrite Pass)">
   <meta property="og:description" content="A four-pass rewrite turning any clip's extracted fields into a Veo-ready prompt: camera, light, sound, change — with the clauses to delete and the ones to add.">
-  <meta property="og:url" content="https://freeonlinehub.github.io/blog/extract-veo-prompt-from-video/">
+  <meta property="og:url" content="https://geonib.com/blog/extract-veo-prompt-from-video/">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <script src="../../js/tailwindcss.js"></script>
   <script src="../../js/site.js"></script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"BlogPosting","headline":"Extract a Veo Prompt From a Video (Rewrite Pass)","datePublished":"2026-10-13","dateModified":"2026-10-13","author":{"@type":"Organization","name":"FreeToolsHub"},"publisher":{"@type":"Organization","name":"FreeToolsHub","url":"https://freeonlinehub.github.io/"},"url":"https://freeonlinehub.github.io/blog/extract-veo-prompt-from-video/"}
+  {"@context":"https://schema.org","@type":"BlogPosting","headline":"Extract a Veo Prompt From a Video (Rewrite Pass)","datePublished":"2026-10-13","dateModified":"2026-10-13","author":{"@type":"Organization","name":"FreeToolsHub"},"publisher":{"@type":"Organization","name":"FreeToolsHub","url":"https://geonib.com/"},"url":"https://geonib.com/blog/extract-veo-prompt-from-video/"}
   </script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://freeonlinehub.github.io/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://freeonlinehub.github.io/blog/"},{"@type":"ListItem","position":3,"name":"Extract a Veo Prompt From a Video (Rewrite Pass)","item":"https://freeonlinehub.github.io/blog/extract-veo-prompt-from-video/"}]}
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://geonib.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://geonib.com/blog/"},{"@type":"ListItem","position":3,"name":"Extract a Veo Prompt From a Video (Rewrite Pass)","item":"https://geonib.com/blog/extract-veo-prompt-from-video/"}]}
   </script>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can an extractor write a Veo prompt for me?","acceptedAnswer":{"@type":"Answer","text":"Four of the five clauses, yes: scene, camera, light and the change beat come out of a video extraction. Sound does not, because a visual model reads frames rather than audio, and audio is the clause that makes a Veo render feel filmed. Write that one yourself by watching the clip with the sound on."}},{"@type":"Question","name":"What should I delete from an extracted prompt before using it in Veo?","acceptedAnswer":{"@type":"Answer","text":"Genre and quality adjectives, anything describing on-screen text or watermarks, and descriptions of cuts. A single generation handles one continuous shot, so a multi-cut reference needs to be extracted one shot at a time."}},{"@type":"Question","name":"How do I get the light direction right?","acceptedAnswer":{"@type":"Answer","text":"Look at the reference and state source, position and quality as a set-up note: 'hard key from frame right, deep shadow on the left wall, specular on the glaze'. Extractors usually report colour temperature and softness but not direction, because grading hides the shadow geometry they'd infer it from."}},{"@type":"Question","name":"In what order should I iterate a Veo prompt?","acceptedAnswer":{"@type":"Answer","text":"Camera, then light, then the change clause, then sound — and one clause per run. Sound goes last because changing the camera movement changes what the audio needs to sync with."}}]}

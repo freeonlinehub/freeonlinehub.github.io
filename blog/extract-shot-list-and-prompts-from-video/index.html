@@ -5,20 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Extract a Shot List and Prompts From a Video</title>
   <meta name="description" content="Break an edited video into a numbered shot list with a prompt per shot: segmentation, timecodes, per-shot extraction, and a constants block.">
-  <link rel="canonical" href="https://freeonlinehub.github.io/blog/extract-shot-list-and-prompts-from-video/">
+  <link rel="canonical" href="https://geonib.com/blog/extract-shot-list-and-prompts-from-video/">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="FreeToolsHub">
   <meta property="og:title" content="Extract a Shot List and Prompts From a Video">
   <meta property="og:description" content="Break an edited video into a numbered shot list with a prompt per shot: segmentation, timecodes, per-shot extraction, and a constants block.">
-  <meta property="og:url" content="https://freeonlinehub.github.io/blog/extract-shot-list-and-prompts-from-video/">
+  <meta property="og:url" content="https://geonib.com/blog/extract-shot-list-and-prompts-from-video/">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <script src="../../js/tailwindcss.js"></script>
   <script src="../../js/site.js"></script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"BlogPosting","headline":"Extract a Shot List and Prompts From a Video","datePublished":"2026-10-13","dateModified":"2026-10-13","author":{"@type":"Organization","name":"FreeToolsHub"},"publisher":{"@type":"Organization","name":"FreeToolsHub","url":"https://freeonlinehub.github.io/"},"url":"https://freeonlinehub.github.io/blog/extract-shot-list-and-prompts-from-video/"}
+  {"@context":"https://schema.org","@type":"BlogPosting","headline":"Extract a Shot List and Prompts From a Video","datePublished":"2026-10-13","dateModified":"2026-10-13","author":{"@type":"Organization","name":"FreeToolsHub"},"publisher":{"@type":"Organization","name":"FreeToolsHub","url":"https://geonib.com/"},"url":"https://geonib.com/blog/extract-shot-list-and-prompts-from-video/"}
   </script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://freeonlinehub.github.io/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://freeonlinehub.github.io/blog/"},{"@type":"ListItem","position":3,"name":"Extract a Shot List and Prompts From a Video","item":"https://freeonlinehub.github.io/blog/extract-shot-list-and-prompts-from-video/"}]}
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://geonib.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://geonib.com/blog/"},{"@type":"ListItem","position":3,"name":"Extract a Shot List and Prompts From a Video","item":"https://geonib.com/blog/extract-shot-list-and-prompts-from-video/"}]}
   </script>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can I get a shot list from an existing video?","acceptedAnswer":{"@type":"Answer","text":"Yes, in two passes: segment the video at its cuts — manually for short clips or with a shot detector for longer ones — then extract a prompt per segment. The result is a numbered list with timecodes, a description per shot, and a header block stating the constants that unify them."}},{"@type":"Question","name":"Why can't I extract one prompt for a whole video?","acceptedAnswer":{"@type":"Answer","text":"Because analysis summarises across scenes and generation cannot render several camera setups in a few seconds. A multi-scene clip produces an averaged description that matches none of its shots, and a generator turns that into a morphing blur."}},{"@type":"Question","name":"What should a shot list entry contain?","acceptedAnswer":{"@type":"Answer","text":"Timecode range, role in the edit (hook, reveal, demonstration, end card), one line of shot description, and the paste-ready prompt. Plus a header with the constants — subject noun, light direction, palette, format, aspect ratio — repeated in every entry so the sequence looks like one film."}},{"@type":"Question","name":"Does uploading each shot as a file cost fewer credits?","acceptedAnswer":{"@type":"Answer","text":"Yes. SocialToPrompt bills extraction separately from prompt generation, so uploading a segment you cut yourself pays only the generation credits rather than the 4 credits a full link run costs on a clip up to 20 seconds."}}]}

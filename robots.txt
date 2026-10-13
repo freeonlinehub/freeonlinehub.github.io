@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://freeonlinehub.github.io/sitemap.xml
+Sitemap: https://geonib.com/sitemap.xml
