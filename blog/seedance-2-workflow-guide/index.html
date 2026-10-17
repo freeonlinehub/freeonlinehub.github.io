@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How to Use Seedance 2.0: A Complete 2026 Workflow</title>
+  <meta name="description" content="Seedance 2.0 access, real pricing across four platforms, the face-filter fix that works, and a physics-first prompt framework for product videos.">
+  <link rel="canonical" href="https://geonib.com/blog/seedance-2-workflow-guide/">
+  <meta property="og:type" article>
+  <meta property="og:site_name" content="FreeToolsHub">
+  <meta property="og:title" content="How to Use Seedance 2.0: A Complete 2026 Workflow">
+  <meta property="og:description" content="Seedance 2.0 access, real pricing across four platforms, the face-filter fix that works, and a physics-first prompt framework for product videos.">
+  <meta property="og:url" content="https://geonib.com/blog/seedance-2-workflow-guide/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How to Use Seedance 2.0: A Complete 2026 Workflow">
+  <meta name="twitter:description" content="Seedance 2.0 access, real pricing across four platforms, the face-filter fix that works, and a physics-first prompt framework for product videos.">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script src="../../js/tailwindcss.js"></script>
+  <script src="../../js/site.js"></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BlogPosting","headline":"How to Use Seedance 2.0: A Complete 2026 Workflow","datePublished":"2026-10-17","dateModified":"2026-10-17","author":{"@type":"Organization","name":"FreeToolsHub"},"publisher":{"@type":"Organization","name":"FreeToolsHub","url":"https://geonib.com/"},"url":"https://geonib.com/blog/seedance-2-workflow-guide/"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://geonib.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://geonib.com/blog/"},{"@type":"ListItem","position":3,"name":"How to Use Seedance 2.0: A Complete 2026 Workflow","item":"https://geonib.com/blog/seedance-2-workflow-guide/"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Which platform should I run Seedance 2.0 on?","acceptedAnswer":{"@type":"Answer","text":"Four platforms carry Seedance 2.0 right now: Dreamina (cheapest, around $0.11 per clip but with the most aggressive face filter), Higgsfield (community favorite, 70% discount in April 2026 for new signups but unavailable in the US and Japan), Runway (most expensive at roughly $2.24 per generation but globally available), and fal.ai (API-based per-second pricing aimed at developers). Outside the US: Higgsfield. Inside the US: Runway. Pure cost optimization above everything else: Dreamina, with the filter caveat."}},
+    {"@type":"Question","name":"How do you bypass the Seedance face filter?","acceptedAnswer":{"@type":"Answer","text":"The most reliable workaround is a solid grid overlay on your reference image at 100 percent opacity (a 6&times;6 grid is the sweet spot). The grid breaks up pixel patterns face detection relies on while leaving Seedance able to read the character underneath; some community browser tools automate it. Other options that pass inconsistently: replace the real reference with an illustrated or AI-generated portrait, or shift the composition so the face is a smaller portion of a full-body shot. Rewriting the prompt does nothing &mdash; the filter blocks before the prompt is processed."}},
+    {"@type":"Question","name":"Why does Seedance produce chaos instead of cinema?","acceptedAnswer":{"@type":"Answer","text":"Because Seedance reads physics, not adjectives. Words like 'cinematic,' 'epic' and 'amazing' produce nothing useful. To get speed, describe what the physics would look like &mdash; fabric pulling taut against wind, dust scattering behind a pivot, liquid sloshing from deceleration. The second cause of chaos is combining camera movements: Seedance handles one continuous movement per generation, so a prompt that asks for pan-plus-zoom-plus-tracking tries all three and produces nothing clean. The third is ignoring shot sequence: a single line like 'a man comes home from work' is too vague. Break it into beats the model can render individually."}},
+    {"@type":"Question","name":"What does 'physics-first prompt' actually look like?","acceptedAnswer":{"@type":"Answer","text":"A Seedance prompt is: subject +amp; action +amp; environment +amp; camera +amp; style +amp; constraints, where each component is described as a chain of physical interactions rather than a mood. Instead of 'car crashes into wall,' write 'front bumper contacts concrete barrier, hood crumples upward from impact point, glass fragments scatter forward and upward, momentum transfers through chassis causing rear wheels to lift.' The model renders each interaction sequentially. Material behavior &mdash; cloth drapes, liquid splashes, metal deforms, smoke disperses &mdash; is the part Seedance's physics engine actually excels at, and that is what separates usable output from chaos."}},
+    {"@type":"Question","name":"How long does a usable Seedance clip take from a product photo?","acceptedAnswer":{"@type":"Answer","text":"About ten minutes once the framework is dialed in. First time, budget thirty minutes for the setup plus a couple of bad generations. The image-tag-and-prompt path runs in roughly 10 minutes: prep the image on a clean background, upload and tag it as your product reference, write a physics-first prompt (subject, action, environment, camera, style, constraints), generate at 720p in Fast mode to save credits, evaluate, refine, render the winner at 1080p. Most creators land on a publishable clip by generation two or three."}}
+  ]}
+  </script>
+</head>
+<body class="bg-white font-sans text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100">
+
+  <header class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/80 backdrop-blur-md dark:border-slate-800/80 dark:bg-slate-950/80">
+    <div class="wrap flex h-16 items-center justify-between gap-3">
+      <a href="../../" class="flex flex-none items-center gap-2.5 text-lg font-extrabold tracking-tight text-slate-900 no-underline dark:text-white">
+        <span class="grid h-8 w-8 flex-none place-items-center rounded-[9px] bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 text-[13px] font-extrabold text-white shadow-md shadow-indigo-500/25">FT</span>
+        FreeTools<span class="text-indigo-600 dark:text-indigo-400">Hub</span>
+      </a>
+      <button data-nav-toggle aria-label="Toggle navigation" aria-expanded="false"
+        class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-slate-600 md:hidden dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">☰</button>
+      <nav data-nav class="main-nav">
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../ai-tools/">AI Tools</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../seo-tools/">SEO</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-image-tools/">Image</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-video-tools/">Video</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../free-pdf-tools/">PDF</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../developer-tools/">Developer</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../../social-media-tools/">Social</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm font-semibold text-indigo-700 no-underline hover:bg-indigo-50 dark:text-indigo-300 dark:hover:bg-slate-800" href="../../free-tools/">Directory</a>
+        <a class="rounded-lg px-2.5 py-2 text-sm text-slate-600 no-underline hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white" href="../">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <article class="wrap mx-auto max-w-3xl">
+      <p class="crumbs"><a href="../">Blog</a> / How to Use Seedance 2.0: A Complete 2026 Workflow</p>
+      <h1 class="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">How to Use Seedance 2.0: A Complete 2026 Workflow</h1>
+      <p class="mt-2 text-sm text-slate-400 dark:text-slate-500">Published October 17, 2026 &middot; 11 min read</p>
+
+      <div class="prose prose-slate mt-8 max-w-none dark:prose-invert prose-a:text-indigo-600 dark:prose-a:text-indigo-400">
+
+        <p>You watched the viral Seedance 2.0 demos &mdash; the Brad Pitt vs. Tom Cruise clip, the Friends-as-otters short, the Will Smith spaghetti scene &mdash; and decided to try it. You opened <a href="https://dreamina.capcut.com/" target="_blank" rel="noopener">Dreamina</a>, typed "epic cinematic fight scene, slow motion, dramatic lighting," hit generate, and got random camera chaos with a face that melted halfway through.</p>
+
+        <p>The gap between the demo and your first generation is not a skill problem. It is a sequencing problem. Most Seedance tutorials cover prompting and skip the part that actually matters first &mdash; which platform to pick, what it really costs once half your generations fail, why the face filter blocks characters you built from scratch, and how to write prompts the model actually reads. This is the full Seedance 2.0 workflow, in the order you need it.</p>
+
+        <div class="toc not-prose rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm dark:border-slate-800 dark:bg-slate-900/40">
+          <strong class="text-slate-900 dark:text-slate-100">In this guide</strong>
+          <ol class="mt-1 space-y-1 text-slate-600 dark:text-slate-400">
+            <li><a href="#platforms">Where to access Seedance 2.0 in 2026</a></li>
+            <li><a href="#pricing">Real pricing after failure rates</a></li>
+            <li><a href="#setup">Setup on Dreamina in 10 minutes</a></li>
+            <li><a href="#face">The face-filter workaround that works</a></li>
+            <li><a href="#physics">The physics-first prompting framework</a></li>
+            <li><a href="#photo">Product photo to video, step by step</a></li>
+            <li><a href="#templates">Copy-paste prompt templates</a></li>
+            <li><a href="#claude">The Claude + Seedance two-step pipeline</a></li>
+            <li><a href="#when-not">When Seedance is not the right tool</a></li>
+            <li><a href="#faq">Frequently asked questions</a></li>
+          </ol>
+        </div>
+
+        <h2 id="platforms">Where to access Seedance 2.0 in 2026</h2>
+
+        <p>Four platforms carry Seedance 2.0 right now and they are not interchangeable. Pick by location and budget, not by interface.</p>
+
+        <table>
+          <thead><tr><th>Platform</th><th>Per generation</th><th>Best for</th><th>Catch</th></tr></thead>
+          <tbody>
+            <tr><td><a href="https://dreamina.capcut.com/" target="_blank" rel="noopener">Dreamina</a></td><td>~$0.11 / 10s clip</td><td>Budget-first users outside the US-friendly filter matrix</td><td>Most aggressive face filter; clunky interface for Western users</td></tr>
+            <tr><td><a href="https://higgsfield.ai/" target="_blank" rel="noopener">Higgsfield</a></td><td>~$0.50 / usable 10s clip after waste</td><td>Community power users outside the US and Japan</td><td>Not available in the US or Japan</td></tr>
+            <tr><td><a href="https://runwayml.com/" target="_blank" rel="noopener">Runway</a></td><td>~$2.24 / generation</td><td>US-based creators; clean and globally available</td><td>Most expensive per-clip</td></tr>
+            <tr><td>fal.ai</td><td>~$0.30&ndash;$0.50 / second</td><td>Developers piping Seedance into their own tools</td><td>API-only; not for casual users</td></tr>
+          </tbody>
+        </table>
+
+        <p>The rule that holds across the four: outside the US and Japan, Higgsfield is the practical default thanks to its multi-model workspace and the April 2026 70-percent signup discount. Inside the US, Runway is usually the cleanest option. Dreamina wins on price above everything else, but only if you can work around its face filter and its clunkier interface. fal.ai is for developers building Seedance into their own pipeline.</p>
+
+        <h2 id="pricing">Real pricing after failure rates</h2>
+
+        <p>Every platform publishes credit costs. None publishes failure rates. On Higgsfield, a 15-second 720p Seedance 2.0 video eats roughly 90 credits; a $34 / month Plus plan gives about 700 of them, which lands at 11 to 12 videos per month before waste. The hidden term is that 20 to 30 percent of generations produce unusable output while you are dialing in prompts &mdash; and failed generations still burn credits.</p>
+
+        <p>Real per-usable-10-second-clip math across the platforms, after the waste factor:</p>
+
+        <ul>
+          <li><strong>Dreamina</strong>: $0.15 to $0.20 per usable clip.</li>
+          <li><strong>Higgsfield</strong>: $0.45 to $0.55 per usable clip.</li>
+          <li><strong>Runway</strong>: $2.50 to $3.00 per usable clip.</li>
+          <li><strong>fal.ai</strong>: $0.30 to $0.50 per-second at API rate, varies by implementation.</li>
+        </ul>
+
+        <p>The single largest cost-saver: draft with Fast mode (where available) at half the credits, then only render your winners with Standard mode. Most platforms expose the toggle; use it. As a smaller second rule &mdash; on Higgsfield specifically, credits expire after 90 days, so top-up packs vanish if you forget about them. Budget for what you actually use this month.</p>
+
+        <h2 id="setup">Setup on Dreamina in 10 minutes</h2>
+
+        <p>For a first test, Dreamina's the fastest path because it costs about a tenth of a Runway generation per attempt.</p>
+
+        <ol>
+          <li>Open <a href="https://dreamina.capcut.com/" target="_blank" rel="noopener">dreamina.com</a> in any browser.</li>
+          <li>Sign up or log in with a Google account.</li>
+          <li>Hit <strong>AI Video</strong> on the left sidebar.</li>
+          <li>Choose <strong>Seedance 2.0</strong> from the model selector. Depending on the region it may be labeled "Advanced" or "Pro."</li>
+          <li>Paste a quick test prompt: <em>A white cat leaps onto a wooden kitchen counter, morning window light casting long shadows, medium shot, natural film grain.</em></li>
+          <li>Set aspect ratio to 16:9, duration to 6 seconds.</li>
+          <li>Hit <strong>Generate</strong> and wait 30&ndash;90 seconds for the output.</li>
+        </ol>
+
+        <p>Diagnostic pass: if the model delivers a cat jumping onto a counter under soft morning light, the workflow is working end-to-end. If Seedance 2.0 does not appear in your model selector, the platform has not shipped it in your region yet &mdash; switch to <a href="https://higgsfield.ai/" target="_blank" rel="noopener">Higgsfield</a> for the same model.</p>
+
+        <h2 id="face">The face-filter workaround that works</h2>
+
+        <p>The single most common complaint across every Seedance community right now is the face filter. It blocks AI-generated characters, stylized illustrations, side profiles, and even cartoon faces with sunglasses. The detection runs as computer vision on your reference images <em>before</em> the prompt is processed, which is why rewriting the prompt changes nothing: the filter has already failed the request before the model ever sees the words.</p>
+
+        <p>What actually passes, ranked by reliability:</p>
+
+        <p><strong>Grid overlay method (most reliable).</strong> Put solid grid lines over your reference image at 100 percent opacity. A 6&times;6 grid is the sweet spot for most images. The grid breaks up the pixel patterns face detection relies on, while Seedance still reads the character underneath. Tradeoff: faint grid artifacts can show through in the output. For social content and drafts it is worth it. For final renders, plan a clean-up pass.</p>
+
+        <p><strong>AI-generated portrait swap.</strong> Instead of uploading a real photo, generate the portrait of your character using an image model and use that as the reference. The filter applies differently to illustrated and AI-generated faces. This is the cleanest output method but adds a step.</p>
+
+        <p><strong>Composition tricks.</strong> Full-body shots where the face is a small portion of the frame, dynamic poses with hair or objects partially covering the face, and complex backgrounds all help. The rule of thumb is to make the image look less like an ID photo.</p>
+
+        <p>Methods that look promising but fail: semi-transparent grids (the detector sees through them). Cropping to hide part of the face (passes sometimes, kills character consistency between generations). Editing the prompt to mention generic characters (the prompt is not the problem).</p>
+
+        <h2 id="physics">The physics-first prompting framework</h2>
+
+        <p>This is the framework that separates first-try chaos from usable output.</p>
+
+<pre><code>[subject] + [action] + [environment] + [camera] + [style] + [constraints]
+</code></pre>
+
+        <p>Five fields. Each one has a job. None of them are optional.</p>
+
+        <p><strong>Step 1: Name the shot.</strong> Start every prompt with the camera position. ECU (extreme close-up), OTS (over the shoulder), POV, wide, tracking &mdash; these are the first things the model processes. If the camera position is not stated, the model picks one and you lose a generation learning what it picked.</p>
+
+        <p><strong>Step 2: Describe the physics chain, not the action.</strong> Seedance reads physics. Cause, reaction, redirection, impact, continuation. Adjectives produce nothing useful. Instead of <em>car crashes into wall</em>, write <em>front bumper contacts concrete barrier, hood crumples upward from impact point, glass fragments scatter forward and upward, momentum transfers through chassis causing rear wheels to lift.</em> The model renders each physical interaction in sequence; that is what the physics engine actually does.</p>
+
+        <p><strong>Step 3: One camera, one movement.</strong> Seedance handles one continuous camera movement per generation. The moment a prompt asks for a pan that becomes a zoom that becomes a tracking shot, the model tries to do all three and the output is visual chaos. Pick one. Describe where the camera starts, what it moves through, and where it ends. If you need a cut, that is a separate generation.</p>
+
+        <p><strong>Step 4: Anchor with material behavior.</strong> Describe what surfaces and materials do during the action. Cloth drapes. Liquid splashes. Metal deforms. Smoke disperses. This is the part Seedance's physics engine actually excels at, and it is what makes the viral clips read as real.</p>
+
+        <p><strong>Step 5: Negative prompts for cleanup.</strong> Keep them short and specific to the actual problem. <em>No jitter, no warping, no identity drift.</em> Or <em>no flickering, no floating limbs.</em> Two or three targeted terms beat a long list every time. The result reads more like a storyboard annotation than a creative brief; that is the point.</p>
+
+        <h2 id="photo">Product photo to video, step by step</h2>
+
+        <p>The e-commerce use case is the highest-leverage one for Seedance: a single image plus a physics prompt produces a publishable clip in under ten minutes once the framework is dialed in.</p>
+
+        <ol>
+          <li><strong>Prep the image.</strong> Product on a clean background, well lit, high resolution. For lifestyle shots, make sure the product is the clear focal point. Seedance accepts up to 9 reference images, 3 video clips and 3 audio clips in a single generation, but for product videos one clean image plus a text prompt is enough to start.</li>
+          <li><strong>Tag the reference.</strong> Upload the image and tag it: <em>@Image1 is the product, a [name] on a [surface].</em> Seedance uses these tags to bind the prompt to the correct input.</li>
+          <li><strong>Write the physics prompt.</strong> Not <em>show the product in a cool way</em> but something concrete: <em>ECU of @Image1 on a marble countertop, camera pushes in slowly from medium to tight, morning light catches the surface edge creating a highlight sweep left to right, slight condensation forms on the surface, ambient kitchen sounds.</em></li>
+          <li><strong>Set 720p for drafts.</strong> Save credits. 1080p doubles consumption on most platforms and the quality difference only matters on the final export.</li>
+          <li><strong>Generate, evaluate, iterate.</strong> The first generation is a test. Look at what the model did right, adjust the physics chain, regenerate. Most creators land on a usable clip by generation two or three once the framework is in muscle memory.</li>
+          <li><strong>For final renders</strong>, switch to Standard mode, bump to 1080p if the platform supports it, and add brand-specific details to the prompt.</li>
+        </ol>
+
+        <p>The end-to-end process takes about ten minutes once you know the sequence. The first time, budget thirty.</p>
+
+        <h2 id="templates">Copy-paste prompt templates</h2>
+
+        <p>These are starting points built on the physics-first framework. Swap in your specifics; the structure is what matters.</p>
+
+        <p><strong>Product showcase:</strong></p>
+
+<pre><em>Medium shot of @Image1 centered on a [surface material], camera
+executes slow 180-degree orbit at product height, soft directional
+light from upper left creates moving shadow beneath product, [material
+property] catches light at 90-degree angle. No text, no jitter, clean
+background.</em>
+</pre>
+
+        <p><strong>Social ad (scroll-stopper):</strong></p>
+
+<pre><em>ECU of @Image1, camera snaps to a fast push-in from wide to tight
+in 2 seconds then holds, [product material] reflects a color shift
+from warm to cool as light source rotates, wind catches [nearby
+element] creating lateral movement. No flickering, sharp focus
+throughout.</em>
+</pre>
+
+        <p><strong>Explainer B-roll:</strong></p>
+
+<pre><em>Tracking shot moving left to right across a workspace, @Image1
+positioned at center frame, hands enter from bottom of frame and
+interact with product, natural desk lighting with soft shadows,
+ambient room sound. No identity drift, no warping.</em>
+</pre>
+
+        <p><strong>Action sequence:</strong></p>
+
+<pre><em>POV shot racing forward through [environment], camera altitude
+drops 2 meters while accelerating, wind deforms fabric on nearby
+elements, debris scatters outward from camera path, motion blur on
+peripheral objects only. One continuous forward movement, no cuts.</em>
+</pre>
+
+        <p>The structure holds across product types because the discipline is the same: cause, reaction, material behavior, camera commitment.</p>
+
+        <h2 id="claude">The Claude + Seedance two-step pipeline</h2>
+
+        <p>Writing physics-first prompts from scratch every time is slow. The community pipeline converges on a clean shortcut.</p>
+
+        <p>The setup: describe what you want in plain language to <a href="https://claude.com/" target="_blank" rel="noopener">Claude</a> &mdash; <em>I need a product showcase of a glass perfume bottle on a marble surface, morning light, premium feel, 10 seconds.</em> Claude converts that into a structured Seedance prompt with the physics chain, camera position, material behavior and negative prompts already formatted.</p>
+
+        <p>Two reasons this pipeline beats direct prompting for batch production. First, you describe intent in natural language instead of forcing yourself to think in physics terminology every time. Second, Claude catches things a human first-time prompter forgets &mdash; like specifying a single camera movement or anchoring with material behavior. The pipeline becomes especially powerful at scale: write ten plain-language descriptions of ten different products, run them through Claude, paste the outputs into Seedance. What used to take an afternoon becomes an hour.</p>
+
+        <p>This two-step approach is also the natural hand-off point if you have a reference video rather than a text brief. If you have an existing TikTok, Instagram Reel or YouTube clip and want a Seedance-shaped prompt extracted from it rather than reverse-engineered manually, <a href="https://socialtoprompt.com" target="_blank" rel="noopener">SocialToPrompt</a> returns a generation-ready prompt structured for Seedance (and Veo, Kling) straight from a URL. The output saves the half-hour of staring at a reference clip trying to name its beats &mdash; the same beats you would otherwise feed back into Claude.</p>
+
+        <p>For briefs that start from a pattern rather than a reference, <a href="https://videosprompt.com" target="_blank" rel="noopener">VideoSPrompt</a> is the library path: working Seedance-style prompts tagged by model, motion style and outcome. Combined with the Claude round-trip, it gives you a "reference video &mdash; Claude translation &mdash; Seedance render" path and a "pattern library &mdash; Claude adaptation &mdash; Seedance render" path in the same toolchain.</p>
+
+        <h2 id="when-not">When Seedance is not the right tool</h2>
+
+        <p>Seedance 2.0 is the best publicly available AI video model for physics coherence, character lock and multi-shot consistency right now. That does not make it the right choice for every job.</p>
+
+        <ul>
+          <li><strong>High-volume social at the lowest cost.</strong> <a href="https://klingai.com/" target="_blank" rel="noopener">Kling 3.0</a> still wins this: native 4K at 60fps, globally available API at roughly $0.075 per second, more mature ecosystem. If you are producing 50 clips a week for TikTok, Kling's cost structure wins.</li>
+          <li><strong>Broadcast-quality output with native audio.</strong> <a href="https://deepmind.google/models/veo/" target="_blank" rel="noopener">Google's Veo 3.1</a> has the best audio-video synchronization of any publicly available model. Bundled into Google Vids at no additional cost for Workspace users, which makes it the right pick for narrated walkthroughs and corporate-style product demos.</li>
+          <li><strong>Longer-than-15-second coherent shots.</strong> Veo 3.1 handles coherent 60-second shots in demos. Seedance caps at 15 seconds per generation, so anything longer requires manual extension and character re-anchoring.</li>
+          <li><strong>Open-source local deployment.</strong> Watch <em>HappyHorse-1.0</em> through 2026; it briefly topped the Artificial Analysis leaderboard in early April 2026 before being taken offline, and an open-weights release would change the landscape. No stable access exists today.</li>
+        </ul>
+
+        <p>Pick by the job, not by the brand. The wider set of utilities we use to ship AI video pipelines lives in our <a href="../../free-video-tools/">free video tools</a> directory and the broader <a href="../../ai-tools/">AI tools</a> index. When the seed video goes viral and the next requirement is a long-tail article layer to capture the comparison and how-to searches for the same product category, <a href="https://seonib.com" target="_blank" rel="noopener">SEONib</a> handles the queue: one product brief in, published articles out in forty-plus languages. It is downstream of the video work, not a substitute for any tool in this article.</p>
+
+        <h2 id="faq">Frequently asked questions</h2>
+
+        <h3>Which platform should I run Seedance 2.0 on?</h3>
+        <p>Four platforms carry Seedance 2.0 right now: <a href="https://dreamina.capcut.com/" target="_blank" rel="noopener">Dreamina</a> (cheapest, around $0.11 per clip but with the most aggressive face filter), <a href="https://higgsfield.ai/" target="_blank" rel="noopener">Higgsfield</a> (community favorite, 70% discount in April 2026 for new signups but unavailable in the US and Japan), <a href="https://runwayml.com/" target="_blank" rel="noopener">Runway</a> (most expensive at roughly $2.24 per generation but globally available), and fal.ai (API-based per-second pricing aimed at developers). Outside the US: Higgsfield. Inside the US: Runway. Pure cost optimization above everything else: Dreamina, with the filter caveat.</p>
+
+        <h3>How do you bypass the Seedance face filter?</h3>
+        <p>The most reliable workaround is a solid grid overlay on your reference image at 100 percent opacity (a 6&times;6 grid is the sweet spot). The grid breaks up pixel patterns face detection relies on while leaving Seedance able to read the character underneath; some community browser tools automate it. Other options that pass inconsistently: replace the real reference with an illustrated or AI-generated portrait, or shift the composition so the face is a smaller portion of a full-body shot. Rewriting the prompt does nothing &mdash; the filter blocks before the prompt is processed.</p>
+
+        <h3>Why does Seedance produce chaos instead of cinema?</h3>
+        <p>Because Seedance reads physics, not adjectives. Words like <em>cinematic, epic</em> and <em>amazing</em> produce nothing useful. To get speed, describe what the physics would look like &mdash; fabric pulling taut against wind, dust scattering behind a pivot, liquid sloshing from deceleration. The second cause of chaos is combining camera movements: Seedance handles one continuous movement per generation, so a prompt that asks for pan-plus-zoom-plus-tracking tries all three and produces nothing clean. The third is ignoring shot sequence: a single line like <em>a man comes home from work</em> is too vague. Break it into beats the model can render individually.</p>
+
+        <h3>What does "physics-first prompt" actually look like?</h3>
+        <p>A Seedance prompt is: subject +amp; action +amp; environment +amp; camera +amp; style +amp; constraints, where each component is described as a chain of physical interactions rather than a mood. Instead of <em>car crashes into wall,</em> write <em>front bumper contacts concrete barrier, hood crumples upward from impact point, glass fragments scatter forward and upward, momentum transfers through chassis causing rear wheels to lift.</em> The model renders each interaction sequentially. Material behavior &mdash; cloth drapes, liquid splashes, metal deforms, smoke disperses &mdash; is the part Seedance's physics engine actually excels at, and that is what separates usable output from chaos.</p>
+
+        <h3>How long does a usable Seedance clip take from a product photo?</h3>
+        <p>About ten minutes once the framework is dialed in. First time, budget thirty minutes for the setup plus a couple of bad generations. The image-tag-and-prompt path runs in roughly 10 minutes: prep the image on a clean background, upload and tag it as your product reference, write a physics-first prompt (subject, action, environment, camera, style, constraints), generate at 720p in Fast mode to save credits, evaluate, refine, render the winner at 1080p. Most creators land on a publishable clip by generation two or three.</p>
+
+      </div>
+
+      <section class="mx-auto mt-12 max-w-3xl">
+        <h2 class="text-xl font-extrabold tracking-tight">Related reading</h2>
+        <div class="mt-4 grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <a class="post-card" href="../deevid-viral-studio-review/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">DeeVid Viral Studio Review: Turn Trends Into Ideas (2026)</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">Tested: DeeVid Viral Studio for turning trending short-form into personalized ideas. Pros, limits, and how it compares to focused prompt extractors.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 17, 2026 &middot; 9 min read</span>
+          </a>
+          <a class="post-card" href="../12-ai-video-prompts-product-demo/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">12 Copy-Paste AI Video Prompts for Product Demos (2026)</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">Twelve copy-paste AI video prompts for product demos. Subject, goal, scene, camera, style &mdash; the brief format that turns generic output into agency-grade shots.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Oct 17, 2026 &middot; 12 min read</span>
+          </a>
+          <a class="post-card" href="../socialtoprompt-review/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">SocialToPrompt Review: Turn Any Video Into a Prompt</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">Download clips from TikTok, Instagram or X and reverse-engineer them into AI prompts for Veo, Kling and Seedance.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Sep 13, 2026 &middot; 8 min read</span>
+          </a>
+          <a class="post-card" href="../videosprompt-review/">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI Video</span>
+            <h3 class="m-0 text-lg font-bold leading-snug">VideosPrompt Review: Find Proven AI Video Prompts</h3>
+            <p class="m-0 grow text-sm text-slate-600 dark:text-slate-400">A community library of working AI video prompts for Veo, Kling, Sora and more &mdash; watch the video before you spend a credit.</p>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Sep 13, 2026 &middot; 8 min read</span>
+          </a>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="mt-14 border-t border-slate-200 bg-slate-50 dark:border-slate-800/40">
+    <div class="wrap flex flex-wrap items-center justify-between gap-2 py-6 text-sm text-slate-400 dark:text-slate-500">
+      <span>© 2026 <a class="text-slate-600 hover:text-indigo-600 dark:text-slate-300" href="../../">FreeToolsHub</a>. All rights reserved.</span>
+      <span>Business inquiries: <a class="text-slate-600 hover:text-indigo-600 dark:text-slate-300" href="mailto:hello@veonib.com">hello@veonib.com</a></span>
+    </div>
+  </footer>
+
+</body>
+</html>
